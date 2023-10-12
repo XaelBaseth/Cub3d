@@ -39,9 +39,15 @@ int worldMap[mapWidth][mapHeight] =
 	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
 
+int	close_window(t_data *data)
+{
+	mlx_destroy_window(data->mlx, data->win);
+	exit(0);
+}
+
 int main(int argc, char **argv)
 {
-	t_data data;
+	t_data *data;
 	double posX = 22; //x and y start position
 	double posY = 12;
 
@@ -54,6 +60,8 @@ int main(int argc, char **argv)
 	double time = 0; //time of current frame
 	double oldTime = 0; //time of previous frame
 
-	data.mlx = mlx_init();
-	data.win = mlx_new_window(data.mlx, screenWidth, screenWidth, "Raycaster");
+	data->mlx = mlx_init();
+	data->win = mlx_new_window(data->mlx, screenWidth, screenWidth, "Raycaster");
+	mlx_hook(data->win, 02, 1L, close_window ,data);
+	mlx_loop(data->mlx);
 }
