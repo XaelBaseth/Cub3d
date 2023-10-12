@@ -6,8 +6,8 @@ HEADER		=	-I inc
 SRC_DIR		=	src/
 OBJ_DIR		=	obj/
 CC			=	gcc
-FLAGS		=	-Wall -Werror -Wextra -g
-MLXFLAGS	= 	-I mlx -L inc/minilibx -lmlx -lXext -lX11 -lm -lbsd
+FLAGS		=	-Wall -Werror -Wextra -g3
+MLXFLAGS	= 	-L ./lib/minilibx -lmlx -Ilmlx_linux -lXext -lX11 -lbsd
 LIBFT		=	lib/libft
 MINILIBX	=	lib/minilibx
 RM 			=	rm -rf
@@ -41,12 +41,8 @@ all: ${NAME}
 
 ${NAME}: $(OBJ)
 				@make -C $(MINILIBX)
-				@cp lib/minilibx/libmlx_Linux.a .
-				@$(RM) lib/minilibx/libmlx_Linux.a
 				@make -C $(LIBFT)
-				@cp lib/libft/libft.a .
-				@$(RM) lib/libft/libft.a
-				$(CC) $(FLAGS) $(OBJ) -lm -lz $(HEADER) libft.a libmlx_Linux.a -o $(NAME)
+				$(CC) $(FLAGS) $(OBJ) $(HEADER) $(MLXFLAGS) lib/libft/libft.a lib/minilibx/libmlx.a -o $(NAME)
 				@$(ECHO) "$(YELLOW)[CUB3D]:\t$(ORANGE)[==========]\t$(GREEN) => Success!$(DEF_COLOR)\n"
 
 $(OBJ_DIR)%.o:	$(SRC_DIR)%.c $(OBJF)
@@ -72,7 +68,7 @@ fclean: ## Clean all generated file, including binaries.
 				@make clean
 				@$(RM) $(NAME)
 				@$(RM) libft.a
-				@$(RM) libmlx_Linux.a
+				@$(RM) libmlx.a
 				@make fclean -C $(LIBFT)
 				@make clean -C $(MINILIBX)
 				@$(ECHO) "$(CYAN)[CUB3D]:\texec. files$(DEF_COLOR)\t$(GREEN) => Cleaned!$(DEF_COLOR)\n"
