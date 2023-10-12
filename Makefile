@@ -33,8 +33,6 @@ SRC_MAI_FILE=	$(addprefix $(MAIN_DIR), $(MAIN_FILES))
 MSRC		=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_MAI_FILE)))
 MOBJ		=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_MAI_FILE)))
 
-OBJF 		= 	.cache_exists
-
 OBJ 		=	$(MOBJ)
 
 all: ${NAME}
@@ -51,7 +49,6 @@ $(OBJ_DIR)%.o:	$(SRC_DIR)%.c $(OBJF)
 $(OBJF):		
 				@mkdir -p $(OBJ_DIR)
 				@mkdir -p $(OBJ_DIR)$(MAIN_DIR)
-				@touch $(OBJF)
 
 help: ## Print help on Makefile.
 				@grep '^[^.#]\+:\s\+.*#' Makefile | \
@@ -60,7 +57,6 @@ help: ## Print help on Makefile.
 
 clean: ## Clean generated files and cache.
 				@$(RM) $(OBJ_DIR)
-				@$(RM) $(OBJF)
 				@$(RM) libft/obj
 				@$(ECHO) "$(BLUE)[CUB3D]:\tobject files$(DEF_COLOR)\t$(GREEN) => Cleaned!$(DEF_COLOR)\n"
 
