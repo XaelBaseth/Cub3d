@@ -26,7 +26,7 @@ CYAN		=	\033[0;96m
 WHITE		=	\033[0;97m
 
 MAIN_DIR 	=	main/
-MAIN_FILES	=	main
+MAIN_FILES	=	miniCub3d
 
 SRC_MAI_FILE=	$(addprefix $(MAIN_DIR), $(MAIN_FILES))
 
@@ -41,12 +41,12 @@ all: ${NAME}
 
 ${NAME}: $(OBJ)
 				@make -C $(MINILIBX)
-				@cp lib/minilibx/libmlx.a .
-				@$(RM) lib/minilibx/libmlx.a
+				@cp lib/minilibx/libmlx_Linux.a .
+				@$(RM) lib/minilibx/libmlx_Linux.a
 				@make -C $(LIBFT)
 				@cp lib/libft/libft.a .
 				@$(RM) lib/libft/libft.a
-				$(CC) $(FLAGS) $(OBJ) -lm $(HEADER) libft.a libmlx.a -o $(NAME)
+				$(CC) $(FLAGS) $(OBJ) -lm -lz $(HEADER) libft.a libmlx_Linux.a -o $(NAME)
 				@$(ECHO) "$(YELLOW)[CUB3D]:\t$(ORANGE)[==========]\t$(GREEN) => Success!$(DEF_COLOR)\n"
 
 $(OBJ_DIR)%.o:	$(SRC_DIR)%.c $(OBJF)
@@ -72,7 +72,7 @@ fclean: ## Clean all generated file, including binaries.
 				@make clean
 				@$(RM) $(NAME)
 				@$(RM) libft.a
-				@$(RM) libmlx.a
+				@$(RM) libmlx_Linux.a
 				@make fclean -C $(LIBFT)
 				@make clean -C $(MINILIBX)
 				@$(ECHO) "$(CYAN)[CUB3D]:\texec. files$(DEF_COLOR)\t$(GREEN) => Cleaned!$(DEF_COLOR)\n"
