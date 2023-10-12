@@ -5,10 +5,37 @@
 #define screenWidth 640
 #define screenHeight 480
 
-typedef struct data 
+
+typedef struct	s_textures
 {
-	void *mlx;
-	void *win;
+	void	*north;
+	void	*south;
+	void	*east;
+	void	*west;
+}				t_textures;
+
+typedef struct	s_color
+{
+	int	r;
+	int	g;
+	int	b;
+}				t_color;
+
+typedef struct	s_pos
+{
+	int		pos_x;
+	int		pos_y;
+	double	sub_x;
+	double	sub_y;
+	double	rotation;
+}				t_pos;
+
+typedef struct	data 
+{
+	void		*mlx;
+	void		*win;
+	t_textures	*textures;
+	char		**level;
 }				t_data;
 
 int worldMap[mapWidth][mapHeight] = 
