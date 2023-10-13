@@ -7,6 +7,16 @@
 									STRUCTURES
 ---------------------------------------------------------------------*/
 
+
+typedef struct	s_pos
+{
+	int		pos_x;
+	int		pos_y;
+	double	sub_x;
+	double	sub_y;
+	double	rotation;
+}				t_pos;
+
 typedef struct	s_player
 {
 	char	dir;

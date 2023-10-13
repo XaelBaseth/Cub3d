@@ -13,6 +13,9 @@
 # include "raycasting.h"
 # include "player.h"
 
+# include <stdio.h>
+# include <stdlib.h>
+# include <fcntl.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <math.h>
@@ -23,6 +26,9 @@
 # define WIN_WIDTH 640
 # define WIN_HEIGHT 480
 
+# define BUFFER 4096
+# define IMG_SIZE 128
+
 # define SUCCESS 0
 # define FAILURE 1
 
@@ -30,15 +36,34 @@
 									MACROS
 ---------------------------------------------------------------------*/
 
+typedef struct	s_color
+{
+	int	r;
+	int	g;
+	int	b;
+}				t_color;
+
+typedef struct	s_block
+{
+	void	*texture_north;
+	void	*texture_south;
+	void	*texture_east;
+	void	*texture_west;
+	int		width;
+	int		height;
+}				t_block;
+
 typedef struct s_mapinfo
 {
 	int			fd;
 	int			line_count;
 	char		*path;
-	char		**file;
+	char		**level;
 	int			height;
 	int			width;
 	int			index_end_of_map;
+	t_color		ceiling_color;
+	t_color		floor_color;
 }				t_mapinfo;
 
 typedef struct	s_data
@@ -47,8 +72,9 @@ typedef struct	s_data
 	void		*win;
 	int			win_height;
 	int			win_width;
-	t_mapinfo	mapinfo;
-	char		**map;
+	char		*map_str;
+	t_block		cube_info;
+	t_mapinfo	map_info;
 	t_player	player;
 	t_ray		ray;
 
@@ -59,5 +85,8 @@ typedef struct	s_data
 ---------------------------------------------------------------------*/
 
 void	init_ray(t_ray *ray);
+
+/* Parsing */
+int		check_args(t_data *data, char *args[]);
 
 #endif

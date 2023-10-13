@@ -26,7 +26,7 @@ CYAN		=	\033[0;96m
 WHITE		=	\033[0;97m
 
 MAIN_DIR 	=	main/
-MAIN_FILES	=	miniCub3d
+MAIN_FILES	=	miniCub3d parsing
 
 SRC_MAI_FILE=	$(addprefix $(MAIN_DIR), $(MAIN_FILES))
 
