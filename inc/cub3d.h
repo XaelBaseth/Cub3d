@@ -1,63 +1,40 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/13 09:06:15 by acharlot          #+#    #+#             */
+/*   Updated: 2023/10/13 10:47:53 by acharlot         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
-/*-------------------------------------------------------------------
-									LIBRAIRIES
----------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------
+								STRUCTURES
+-----------------------------------------------------------------------------*/
 
-# include "../lib/minilibx/mlx.h"
-# include "../lib/libft/inc/libft.h"
 # include "../lib/libft/inc/ft_gc_alloc.h"
 # include "../lib/libft/inc/ft_printf.h"
+# include "../lib/libft/inc/libft.h"
 # include "../lib/libft/inc/get_next_line.h"
-# include "raycasting.h"
-# include "player.h"
+# include "../lib/minilibx/mlx.h"
 
-# include <X11/X.h>
-# include <X11/keysym.h>
 # include <math.h>
 
-/*-------------------------------------------------------------------
-									MACROS
----------------------------------------------------------------------*/
-# define WIN_WIDTH 640
-# define WIN_HEIGHT 480
+/*-----------------------------------------------------------------------------
+								STRUCTURES
+-----------------------------------------------------------------------------*/
 
-# define SUCCESS 0
-# define FAILURE 1
+typedef struct s_data	t_data;
 
-/*-------------------------------------------------------------------
-									MACROS
----------------------------------------------------------------------*/
-
-typedef struct s_mapinfo
+typedef struct s_data
 {
-	int			fd;
-	int			line_count;
-	char		*path;
-	char		**file;
-	int			height;
-	int			width;
-	int			index_end_of_map;
-}				t_mapinfo;
-
-typedef struct	s_data
-{
-	void		*mlx;
-	void		*win;
-	int			win_height;
-	int			win_width;
-	t_mapinfo	mapinfo;
-	char		**map;
-	t_player	player;
-	t_ray		ray;
-
-}				t_data;
-
-/*-------------------------------------------------------------------
-									FUNCTIONS
----------------------------------------------------------------------*/
-
-void	init_ray(t_ray *ray);
+	void	*mlx;
+	void	*mlx_win;
+}			t_data;
 
 #endif

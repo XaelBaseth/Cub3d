@@ -6,7 +6,7 @@ HEADER		=	-I inc
 SRC_DIR		=	src/
 OBJ_DIR		=	obj/
 CC			=	gcc
-FLAGS		=	-Wall -Werror -Wextra -g3
+FLAGS		=	-Wall -Werror -Wextra -g3 -fsanitize=address
 MLXFLAGS	= 	-L ./lib/minilibx -lmlx -Ilmlx_linux -lXext -lX11 -lbsd
 LIBFT		=	lib/libft
 MINILIBX	=	lib/minilibx
@@ -29,6 +29,7 @@ MAIN_DIR 	=	main/
 MAIN_FILES	=	miniCub3d
 
 SRC_MAI_FILE=	$(addprefix $(MAIN_DIR), $(MAIN_FILES))
+SRC_REN_FILE=	$(addprefix $(REN_DIR), $(REN_FILES))
 
 MSRC		=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_MAI_FILE)))
 MOBJ		=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_MAI_FILE)))
