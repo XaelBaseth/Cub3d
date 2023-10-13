@@ -23,11 +23,13 @@
 /*-------------------------------------------------------------------
 									MACROS
 ---------------------------------------------------------------------*/
+
+# define MAP_PATH "maps/"
 # define WIN_WIDTH 640
 # define WIN_HEIGHT 480
 
 # define BUFFER 4096
-# define IMG_SIZE 128
+# define IMG_SIZE 256
 
 # define SUCCESS 0
 # define FAILURE 1
@@ -72,7 +74,6 @@ typedef struct	s_data
 	void		*win;
 	int			win_height;
 	int			win_width;
-	char		*map_str;
 	t_block		cube_info;
 	t_mapinfo	map_info;
 	t_player	player;
@@ -87,6 +88,6 @@ typedef struct	s_data
 void	init_ray(t_ray *ray);
 
 /* Parsing */
-int		check_args(t_data *data, char *args[]);
+void	read_file_map(t_data *data, char *map_name);
 
 #endif

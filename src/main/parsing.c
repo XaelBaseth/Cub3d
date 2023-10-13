@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 16:26:39 by cpothin           #+#    #+#             */
-/*   Updated: 2023/10/13 17:05:43 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/10/13 18:19:20 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	save_color(t_data *data, t_color *var, char *arg)
 	args = ft_split(arg, ' ');
 	if (!args[1])
 		return (0);
-	nbrs = ft_split(arg[1], ',');
+	nbrs = ft_split(args[1], ',');
 	if (!check_nbr(nbrs[0]) || !check_nbr(nbrs[1]) || !check_nbr(nbrs[2]))
 		return (0);
 	var->r = ft_atoi(nbrs[0]);
@@ -42,24 +42,23 @@ static int	save_color(t_data *data, t_color *var, char *arg)
 
 static int	save_img(t_data *data, void *img, char *arg)
 {
-	int	*size;
+	int		size;
 	char	**args;
 
 	args = ft_split(arg, ' ');
 	size = IMG_SIZE;
 	if (!args[1])
 		return (0);
-	img = mlx_xpm_file_to_image(data->mlx,
-			args[1], &size, &size);
-	if (!img)
+	if (access(args[1], F_OK) == -1)
 	{
-		ft_printf("Error\n\t%s not found", args[1]);
+		printf("Error:\n\t%s doesn't exist\n", args[1]);
 		return (0);
 	}
+	img = mlx_xpm_file_to_image(data->mlx, args[1], &size, &size);
 	return (1);
 }
 
-int		check_args(t_data *data, char *args[])
+static int		check_args(t_data *data, char *args[])
 {
 	if (args[0][0] == 'N' && args[0][1] == 'O' && args[0][2] == ' ')
 		if (save_img(data, data->cube_info.texture_north, args[0]) == 0)
@@ -91,17 +90,25 @@ void	parse_map(t_data *data, char *args[])
 	data->cube_info.width = IMG_SIZE;
 }
 
-void	read_file(t_data *data, char *map_name)
+void	read_file_map(t_data *data, char *map_name)
 {
-	int	fd;
-	int	read_int;
+	int		fd;
+	int		read_int;
+	char	*full_map_path;
+	char	*level;
 
-	fd = open(map_name, O_RDONLY);
-	read_int = read(fd, data->map_str, BUFFER);
+	full_map_path = ft_strjoin(MAP_PATH, map_name);
+	fd = open(full_map_path, O_RDONLY);
+	if (fd == -1)
+		ft_printf("Error\n\tMap error  %d\n", fd);
+	level = malloc(sizeof(char) * (BUFFER + 1));
+	read_int = read(fd, level, BUFFER);
 	if (read_int < 0)
 	{
-		ft_printf("Error\n\tInvalide file.");
+		ft_printf("Error\n\tInvalid file.\n");
 		return ;
 	}
-	data->map_info.level = ft_split(data->map_str, '\n');
+	data->map_info.level = ft_split(level, '\n');
+	parse_map(data, data->map_info.level);
+	free(level);
 }
