@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 16:26:39 by cpothin           #+#    #+#             */
-/*   Updated: 2023/10/13 18:19:20 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/10/13 18:39:22 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,24 @@ void	parse_map(t_data *data, char *args[])
 	data->cube_info.width = IMG_SIZE;
 }
 
+void	extract_map(t_data *data, char *map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < 8)
+	{
+		while (map[j] && map[j] != '\n')
+			j++;
+		i++;
+		j++;
+	}
+	i = 0;
+	while (map[j])
+
+}
+
 void	read_file_map(t_data *data, char *map_name)
 {
 	int		fd;
@@ -108,7 +126,8 @@ void	read_file_map(t_data *data, char *map_name)
 		ft_printf("Error\n\tInvalid file.\n");
 		return ;
 	}
+	data->map_info.level = 
 	data->map_info.level = ft_split(level, '\n');
-	parse_map(data, data->map_info.level);
+	parse_map(data, data->map_info.infos);
 	free(level);
 }

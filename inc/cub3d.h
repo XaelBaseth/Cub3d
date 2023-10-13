@@ -60,6 +60,7 @@ typedef struct s_mapinfo
 	int			fd;
 	int			line_count;
 	char		*path;
+	char		**infos;
 	char		**level;
 	int			height;
 	int			width;
