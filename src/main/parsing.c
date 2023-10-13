@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 16:26:39 by cpothin           #+#    #+#             */
-/*   Updated: 2023/10/13 18:39:22 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/10/13 18:53:38 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,12 +90,15 @@ void	parse_map(t_data *data, char *args[])
 	data->cube_info.width = IMG_SIZE;
 }
 
-void	extract_map(t_data *data, char *map)
+char	*extract_map(char *map)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
+	char	*level;
 
+	level = malloc(sizeof(char) * BUFFER);
 	i = 0;
+	j = 0;
 	while (i < 8)
 	{
 		while (map[j] && map[j] != '\n')
@@ -105,7 +108,9 @@ void	extract_map(t_data *data, char *map)
 	}
 	i = 0;
 	while (map[j])
-
+		level[i++] = map[j++];
+	level[i] = 0;
+	return (level);
 }
 
 void	read_file_map(t_data *data, char *map_name)
@@ -113,21 +118,24 @@ void	read_file_map(t_data *data, char *map_name)
 	int		fd;
 	int		read_int;
 	char	*full_map_path;
+	char	*file_content;
 	char	*level;
 
 	full_map_path = ft_strjoin(MAP_PATH, map_name);
 	fd = open(full_map_path, O_RDONLY);
 	if (fd == -1)
 		ft_printf("Error\n\tMap error  %d\n", fd);
-	level = malloc(sizeof(char) * (BUFFER + 1));
-	read_int = read(fd, level, BUFFER);
+	file_content = malloc(sizeof(char) * (BUFFER + 1));
+	read_int = read(fd, file_content, BUFFER);
 	if (read_int < 0)
 	{
 		ft_printf("Error\n\tInvalid file.\n");
 		return ;
 	}
-	data->map_info.level = 
+	level = extract_map(file_content);
+	data->file_content = ft_split(file_content, '\n');
 	data->map_info.level = ft_split(level, '\n');
-	parse_map(data, data->map_info.infos);
+	parse_map(data, data->file_content);
+	free(file_content);
 	free(level);
 }

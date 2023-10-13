@@ -60,7 +60,6 @@ typedef struct s_mapinfo
 	int			fd;
 	int			line_count;
 	char		*path;
-	char		**infos;
 	char		**level;
 	int			height;
 	int			width;
@@ -75,6 +74,7 @@ typedef struct	s_data
 	void		*win;
 	int			win_height;
 	int			win_width;
+	char		**file_content;
 	t_block		cube_info;
 	t_mapinfo	map_info;
 	t_player	player;
