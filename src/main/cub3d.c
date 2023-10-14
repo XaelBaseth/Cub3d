@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 17:10:34 by cpothin           #+#    #+#             */
-/*   Updated: 2023/10/14 17:05:15 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/10/14 17:32:48 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	main(int argc, char *argv[])
 	t_data	data;
 
 	data.mlx = mlx_init();
+	data.state = IN_MENU;
 	read_file_map(&data, argv[1]);
 	// print_vars(&data);
 	data.win = mlx_new_window(data.mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3d");

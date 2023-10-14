@@ -45,6 +45,13 @@ typedef struct	s_color
 	int	b;
 }				t_color;
 
+typedef enum	game_state
+{
+	IN_MENU,
+	IN_LVL_SELECTION,
+	IN_GAME
+}				game_state;
+
 typedef struct	s_block
 {
 	void	*texture_north;
@@ -75,10 +82,12 @@ typedef struct	s_data
 	int			win_height;
 	int			win_width;
 	char		**file_content;
+	game_state	state;
 	t_block		cube_info;
 	t_mapinfo	map_info;
 	t_player	player;
 	t_ray		ray;
+
 
 }				t_data;
 
