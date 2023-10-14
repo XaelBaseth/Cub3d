@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 16:26:39 by cpothin           #+#    #+#             */
-/*   Updated: 2023/10/13 18:53:38 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/10/14 16:42:02 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int	save_color(t_data *data, t_color *var, char *arg)
 	return (1);
 }
 
-static int	save_img(t_data *data, void *img, char *arg)
+static int	save_img(t_data *data, void **img, char *arg)
 {
 	int		size;
 	char	**args;
@@ -51,32 +51,32 @@ static int	save_img(t_data *data, void *img, char *arg)
 		return (0);
 	if (access(args[1], F_OK) == -1)
 	{
-		printf("Error:\n\t%s doesn't exist\n", args[1]);
+		ft_printf("Error:\n\t%s doesn't exist\n", args[1]);
 		return (0);
 	}
-	img = mlx_xpm_file_to_image(data->mlx, args[1], &size, &size);
+	*img = mlx_xpm_file_to_image(data->mlx, args[1], &size, &size);
 	return (1);
 }
 
 static int		check_args(t_data *data, char *args[])
 {
 	if (args[0][0] == 'N' && args[0][1] == 'O' && args[0][2] == ' ')
-		if (save_img(data, data->cube_info.texture_north, args[0]) == 0)
+		if (save_img(data, &data->cube_info.texture_north, args[0]) == 0)
 			return (0);
 	if (args[1][0] == 'S' && args[1][1] == 'O' && args[1][2] == ' ')
-		if (save_img(data, data->cube_info.texture_south, args[1]) == 0)
+		if (save_img(data, &data->cube_info.texture_south, args[1]) == 0)
 			return (0);
 	if (args[2][0] == 'W' && args[2][1] == 'E' && args[2][2] == ' ')
-		if (save_img(data, data->cube_info.texture_west, args[2]) == 0)
+		if (save_img(data, &data->cube_info.texture_west, args[2]) == 0)
 			return (0);
 	if (args[3][0] == 'E' && args[3][1] == 'A' && args[3][2] == ' ')
-		if (save_img(data, data->cube_info.texture_east, args[3]) == 0)
+		if (save_img(data, &data->cube_info.texture_east, args[3]) == 0)
 			return (0);
-	if (args[5][0] == 'F' && args[5][1] == ' ')
-		if (save_color(data, &data->map_info.floor_color, args[5]) == 0)
+	if (args[4][0] == 'F' && args[5][1] == ' ')
+		if (save_color(data, &data->map_info.floor_color, args[4]) == 0)
 			return (0);
-	if (args[6][0] == 'C' && args[5][1] == ' ')
-		if (save_color(data, &data->map_info.ceiling_color, args[6]) == 0)
+	if (args[5][0] == 'C' && args[5][1] == ' ')
+		if (save_color(data, &data->map_info.ceiling_color, args[5]) == 0)
 			return (0);
 	return (1);
 }
@@ -96,7 +96,7 @@ char	*extract_map(char *map)
 	int		j;
 	char	*level;
 
-	level = malloc(sizeof(char) * BUFFER);
+	level = gc_alloc(sizeof(char) * BUFFER, "level");
 	i = 0;
 	j = 0;
 	while (i < 8)
@@ -123,19 +123,26 @@ void	read_file_map(t_data *data, char *map_name)
 
 	full_map_path = ft_strjoin(MAP_PATH, map_name);
 	fd = open(full_map_path, O_RDONLY);
+	gc_free(full_map_path);
 	if (fd == -1)
+	{
 		ft_printf("Error\n\tMap error  %d\n", fd);
-	file_content = malloc(sizeof(char) * (BUFFER + 1));
+		return ;
+	}
+	file_content = gc_alloc(sizeof(char) * (BUFFER + 1), "map_content");
 	read_int = read(fd, file_content, BUFFER);
 	if (read_int < 0)
 	{
 		ft_printf("Error\n\tInvalid file.\n");
+		close(fd);
 		return ;
 	}
+	file_content[read_int] = 0;
+	close(fd);
 	level = extract_map(file_content);
 	data->file_content = ft_split(file_content, '\n');
 	data->map_info.level = ft_split(level, '\n');
 	parse_map(data, data->file_content);
-	free(file_content);
-	free(level);
+	gc_free(file_content);
+	gc_free(level);
 }

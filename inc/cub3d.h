@@ -29,7 +29,7 @@
 # define WIN_HEIGHT 480
 
 # define BUFFER 4096
-# define IMG_SIZE 256
+# define IMG_SIZE 128
 
 # define SUCCESS 0
 # define FAILURE 1
@@ -90,5 +90,12 @@ void	init_ray(t_ray *ray);
 
 /* Parsing */
 void	read_file_map(t_data *data, char *map_name);
+
+/* Game */
+int		exit_game(t_data *data);
+
+/* Inputs */
+int	handle_keypress(int keysym, t_data *data);
+
 
 #endif
