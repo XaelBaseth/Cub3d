@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/10/16 14:46:16 by cpothin           #+#    #+#              #
+#    Updated: 2023/10/16 14:48:32 by cpothin          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 MAKEFLAGS += --silent
 
 NAME		=	cub3d
@@ -6,7 +18,7 @@ HEADER		=	-I inc
 SRC_DIR		=	src/
 OBJ_DIR		=	obj/
 CC			=	gcc
-FLAGS		=	-Wall -Werror -Wextra -g3 #-fsanitize=address
+FLAGS		=	-Wall -Werror -Wextra -g3 -fsanitize=address
 MLXFLAGS	= 	-L ./lib/minilibx -lmlx -Ilmlx_linux -lXext -lX11 -lbsd
 LIBFT		=	lib/libft
 MINILIBX	=	lib/minilibx
@@ -26,14 +38,24 @@ CYAN		=	\033[0;96m
 WHITE		=	\033[0;97m
 
 MAIN_DIR 	=	main/
-MAIN_FILES	=	cub3d parsing game inputs
+MAIN_FILES	=	cub3d init game inputs parsing
+
+REND_DIR 	=	render/
+REND_FILES	=	raycasting 
+
 
 SRC_MAI_FILE=	$(addprefix $(MAIN_DIR), $(MAIN_FILES))
+SRC_REN_FILE=	$(addprefix $(REN_DIR), $(REN_FILES))
 
 MSRC		=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_MAI_FILE)))
 MOBJ		=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_MAI_FILE)))
 
-OBJ 		=	$(MOBJ)
+RSRC		=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_REN_FILE)))
+ROBJ		=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_REN_FILE)))
+
+OBJF 		= 	.cache_exists
+
+OBJ 		=	$(MOBJ) $(ROBJ)
 
 all: ${NAME}
 
@@ -49,6 +71,7 @@ $(OBJ_DIR)%.o:	$(SRC_DIR)%.c $(OBJF)
 $(OBJF):		
 				@mkdir -p $(OBJ_DIR)
 				@mkdir -p $(OBJ_DIR)$(MAIN_DIR)
+				@touch $(OBJF)
 
 help: ## Print help on Makefile.
 				@grep '^[^.#]\+:\s\+.*#' Makefile | \
@@ -57,6 +80,7 @@ help: ## Print help on Makefile.
 
 clean: ## Clean generated files and cache.
 				@$(RM) $(OBJ_DIR)
+				@$(RM) $(OBJF)
 				@$(RM) libft/obj
 				@$(ECHO) "$(BLUE)[CUB3D]:\tobject files$(DEF_COLOR)\t$(GREEN) => Cleaned!$(DEF_COLOR)\n"
 
@@ -71,6 +95,3 @@ fclean: ## Clean all generated file, including binaries.
 
 re: ## Clean and rebuild binary file.
 				@make fclean all
-				@$(ECHO) "\n$(GREEN)###\tCleaned and rebuilt everything for [CUB3D]!\t###$(DEF_COLOR)\n"
-
-.PHONY: all clean fclean re

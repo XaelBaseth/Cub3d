@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 08:19:10 by acharlot          #+#    #+#             */
-/*   Updated: 2023/10/16 14:36:20 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/10/16 14:42:57 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,23 +121,5 @@ int		exit_game(t_data *data);
 
 /* Inputs */
 int	handle_keypress(int keysym, t_data *data);
-
-# include "X11/X.h"
-# include "X11/keysym.h"
-
-# include <math.h>
-
-
-/*-----------------------------------------------------------------------------
-								STRUCTURES
------------------------------------------------------------------------------*/
-
-typedef struct s_data	t_data;
-
-typedef struct s_data
-{
-	void	*mlx;
-	void	*mlx_win;
-}			t_data;
 
 #endif
