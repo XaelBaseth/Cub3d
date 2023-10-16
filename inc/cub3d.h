@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 08:19:10 by acharlot          #+#    #+#             */
-/*   Updated: 2023/10/16 14:42:57 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/10/16 15:01:52 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,6 @@
 # include "../lib/libft/inc/libft.h"
 # include "../lib/libft/inc/get_next_line.h"
 # include "../lib/minilibx/mlx.h"
-# include "../lib/libft/inc/libft.h"
-# include "../lib/libft/inc/ft_gc_alloc.h"
-# include "../lib/libft/inc/ft_printf.h"
-# include "../lib/libft/inc/get_next_line.h"
-# include "raycasting.h"
-# include "player.h"
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -61,6 +55,27 @@ typedef struct	s_color
 	int	b;
 }				t_color;
 
+typedef struct s_ray
+{
+	double	camera_x;
+	double	dir_x;
+	double	dir_y;
+	int		map_x;
+	int		map_y;
+	int		step_x;
+	int		step_y;
+	double	sidedist_x;
+	double	sidedist_y;
+	double	deltadist_x;
+	double	deltadist_y;
+	double	wall_dist;
+	double	wall_x;
+	int		side;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+}				t_ray;
+
 typedef enum	game_state
 {
 	IN_MENU,
@@ -91,6 +106,16 @@ typedef struct s_mapinfo
 	t_color		floor_color;
 }				t_mapinfo;
 
+typedef struct	s_player
+{
+	double	pos_x;
+	double	pos_y;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
+}				t_player;
+
 typedef struct	s_data
 {
 	void		*mlx;
@@ -103,9 +128,9 @@ typedef struct	s_data
 	t_mapinfo	map_info;
 	t_player	player;
 	t_ray		ray;
-
-
 }				t_data;
+
+
 
 /*-------------------------------------------------------------------
 									FUNCTIONS

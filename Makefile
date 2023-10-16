@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+         #
+#    By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/16 14:46:16 by cpothin           #+#    #+#              #
-#    Updated: 2023/10/16 14:48:32 by cpothin          ###   ########.fr        #
+#    Updated: 2023/10/16 14:57:34 by acharlot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -95,3 +95,5 @@ fclean: ## Clean all generated file, including binaries.
 
 re: ## Clean and rebuild binary file.
 				@make fclean all
+
+.PHONY: all clean fclean re help

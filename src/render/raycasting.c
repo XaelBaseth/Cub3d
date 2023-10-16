@@ -6,11 +6,11 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 12:01:06 by acharlot          #+#    #+#             */
-/*   Updated: 2023/10/12 14:11:15 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/10/16 15:02:37 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/raycasting.h"
+#include "../../inc/cub3d.h"
 
 /*
 	We initialize the set up for the rays.
