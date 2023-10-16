@@ -159,6 +159,7 @@ int main()
 		int drawEnd = lineHeight / 2 + screenHeight / 2;
 		if (drawEnd >= screenHeight)
 			drawEnd = screenHeight - 1;
+		// We trace the different colors according to wich side of the walls we are facing.
 		unsigned int color1 = mlx_get_color_value(data.mlx, 0xFF0000); // Red
 		unsigned int color2 = mlx_get_color_value(data.mlx, 0x00FF00); // Green
 		unsigned int color3 = mlx_get_color_value(data.mlx, 0x0000FF); // Blue
@@ -176,7 +177,6 @@ int main()
 				break;
 		}
 		drawVerticalLine(data.mlx, data.mlx_win, x, drawStart, drawEnd, color);
-
 	}
 	mlx_loop(data.mlx); //We start the loop
 }
