@@ -6,7 +6,7 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 12:01:06 by acharlot          #+#    #+#             */
-/*   Updated: 2023/10/16 15:02:37 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/10/16 15:43:04 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,10 +94,10 @@ static void	exec_dda(t_data *data, t_ray *ray)
 			ray->side = 1;
 		}
 		if (ray->map_y < 0.25 || ray->map_x < 0.25
-			|| ray->map_y > data->mapinfo.height - 0.25
-			|| ray->map_x > data->mapinfo.width - 1.25)
+			|| ray->map_y > data->map_info.height - 0.25
+			|| ray->map_x > data->map_info.width - 1.25)
 			break ;
-		else if (data->map[ray->map_y][ray->map_x] > '0')
+		else if (data->file_content[ray->map_y][ray->map_x] > '0')
 			hit = 1;
 	}
 }
@@ -122,7 +122,7 @@ static void	calculate_line_height(t_ray *ray, t_data *data, t_player *player)
 		ray->wall_x = player->pos_x + ray->wall_dist * ray->dir_y;
 	else
 		ray->wall_x = player->pos_x + ray->wall_dist * ray->dir_x;
-	ray->wall_x -= floor(ray->wall_x);
+	//ray->wall_x -= floor(ray->wall_x);
 }
 
 int	raycasting(t_player *player, t_data *data)

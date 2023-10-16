@@ -6,7 +6,7 @@
 #    By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/16 14:46:16 by cpothin           #+#    #+#              #
-#    Updated: 2023/10/16 14:57:34 by acharlot         ###   ########.fr        #
+#    Updated: 2023/10/16 15:42:34 by acharlot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ REND_FILES	=	raycasting
 
 
 SRC_MAI_FILE=	$(addprefix $(MAIN_DIR), $(MAIN_FILES))
-SRC_REN_FILE=	$(addprefix $(REN_DIR), $(REN_FILES))
+SRC_REN_FILE=	$(addprefix $(REND_DIR), $(REND_FILES))
 
 MSRC		=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_MAI_FILE)))
 MOBJ		=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_MAI_FILE)))
@@ -55,7 +55,7 @@ ROBJ		=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_REN_FILE)))
 
 OBJF 		= 	.cache_exists
 
-OBJ 		=	$(MOBJ) $(ROBJ)
+OBJ 		=	$(MOBJ) $(ROBJ) 
 
 all: ${NAME}
 
@@ -71,6 +71,7 @@ $(OBJ_DIR)%.o:	$(SRC_DIR)%.c $(OBJF)
 $(OBJF):		
 				@mkdir -p $(OBJ_DIR)
 				@mkdir -p $(OBJ_DIR)$(MAIN_DIR)
+				@mkdir -p $(OBJ_DIR)$(REND_DIR)
 				@touch $(OBJF)
 
 help: ## Print help on Makefile.
