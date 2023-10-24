@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+         #
+#    By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/16 14:46:16 by cpothin           #+#    #+#              #
-#    Updated: 2023/10/24 09:56:55 by acharlot         ###   ########.fr        #
+#    Updated: 2023/10/24 12:00:15 by cpothin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,7 +67,7 @@ ${NAME}: $(OBJ)
 $(OBJ_DIR)%.o:	$(SRC_DIR)%.c $(OBJF)
 				@$(CC) $(CFLAGS) -c $< -o $@
 
-$(OBJF):		
+$(OBJF):
 				@mkdir -p $(OBJ_DIR)
 				@mkdir -p $(OBJ_DIR)$(MAIN_DIR)
 				@mkdir -p $(OBJ_DIR)$(REND_DIR)

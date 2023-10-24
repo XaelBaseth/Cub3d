@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 17:10:34 by cpothin           #+#    #+#             */
-/*   Updated: 2023/10/24 11:20:04 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/10/24 15:15:17 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ int	main(int argc, char *argv[])
 {
 	t_data	data;
 
+	init_mlx(&data);
 	read_file_map(&data, argv[1]);
 	init_data(&data);
-	init_mlx(&data);
 	data.state = IN_MENU;
 	init_textures(&data);
 	// print_vars(&data);

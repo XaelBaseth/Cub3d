@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 14:12:19 by cpothin           #+#    #+#             */
-/*   Updated: 2023/10/14 16:25:49 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/10/24 14:44:39 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ static void	free_level(t_data *data)
 
 static void	free_imgs(t_data *data)
 {
-	mlx_destroy_image(data->mlx, data->cube_info.texture_east);
-	mlx_destroy_image(data->mlx, data->cube_info.texture_north);
-	mlx_destroy_image(data->mlx, data->cube_info.texture_south);
-	mlx_destroy_image(data->mlx, data->cube_info.texture_west);
+	mlx_destroy_image(data->mlx, data->cube_info.textures_paths[0]);
+	mlx_destroy_image(data->mlx, data->cube_info.textures_paths[1]);
+	mlx_destroy_image(data->mlx, data->cube_info.textures_paths[2]);
+	mlx_destroy_image(data->mlx, data->cube_info.textures_paths[3]);
 }
 
 int	exit_game(t_data *data)

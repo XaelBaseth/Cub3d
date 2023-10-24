@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 08:19:10 by acharlot          #+#    #+#             */
-/*   Updated: 2023/10/24 11:10:46 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/10/24 14:48:32 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ typedef enum	game_state
 typedef struct	s_block
 {
 	void			*image;
+	char			*textures_paths[4];
 	void			*texture_north;
 	void			*texture_south;
 	void			*texture_east;

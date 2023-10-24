@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 14:17:23 by cpothin           #+#    #+#             */
-/*   Updated: 2023/10/14 17:35:40 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/10/24 14:41:46 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,6 @@ int	handle_keypress(int keysym, t_data *data)
 		exit_game(data);
 	if (keysym == XK_w || keysym == XK_a || keysym == XK_s || keysym == XK_d)
 	{
-		mlx_put_image_to_window(data->mlx, data->win,
-			data->cube_info.texture_east, 0, 0);
 		if (data->state == IN_MENU)
 			press_in_menu(keysym, data);
 		else if (data->state == IN_LVL_SELECTION)

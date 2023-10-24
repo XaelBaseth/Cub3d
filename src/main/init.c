@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 12:14:27 by acharlot          #+#    #+#             */
-/*   Updated: 2023/10/24 11:15:19 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/10/24 15:15:55 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	init_img_clean(t_block *img)
 {
-	img->image = NULL;
+	// img->image = NULL;
 	img->addr = NULL;
 	img->pixel_bits = 0;
 	img->size_line = 0;
@@ -24,7 +24,7 @@ void	init_img_clean(t_block *img)
 void	init_texture_img(t_data *data, t_block *image, char *path)
 {
 	init_img_clean(image);
-	//ft_printf("\n path->%s \n size->%d\n", path, data->cube_info.size);
+	ft_printf("\n path->%s \n size->%d\n", path, data->cube_info.size);
 	image->image = mlx_xpm_file_to_image(data->mlx, path, &data->cube_info.size,
 		&data->cube_info.size);
 	ft_printf("init_text :\npath => %s\ndata->cube_info.size = %d\n", path, data->cube_info.size);
@@ -82,7 +82,7 @@ static int	*xpm_to_image(t_data *data, char *path)
 	int		x;
 	int		y;
 
-	ft_printf("\nxpm_to_img:\npath=%s\n", path);
+	// ft_printf("\nxpm_to_img:\npath=%s\n", path);
 	init_texture_img(data, &tmp, path);
 	buffer = ft_calloc(1, sizeof * buffer * data->cube_info.size * data->cube_info.size);
 	if (!buffer)
@@ -107,11 +107,10 @@ void	init_textures(t_data *data)
 	data->textures = ft_calloc(5, sizeof * data->textures);
 	if (!data->textures)
 		panic(data, "init_textures: Failed to allocate memory.");
-	printf("\ninit_textures:\ntex_north: %s\n", (char *)data->cube_info.texture_north);
-	data->textures[NORTH] = xpm_to_image(data, data->cube_info.texture_north);
-	data->textures[SOUTH] = xpm_to_image(data, data->cube_info.texture_south);
-	data->textures[EAST] = xpm_to_image(data, data->cube_info.texture_east);
-	data->textures[WEST] = xpm_to_image(data, data->cube_info.texture_west);
+	data->textures[NORTH] = xpm_to_image(data, data->cube_info.textures_paths[NORTH]);
+	data->textures[SOUTH] = xpm_to_image(data, data->cube_info.textures_paths[SOUTH]);
+	data->textures[WEST] = xpm_to_image(data, data->cube_info.textures_paths[WEST]);
+	data->textures[EAST] = xpm_to_image(data, data->cube_info.textures_paths[EAST]);
 }
 
 void	init_cubeinfo(t_block *cube_info)
@@ -119,9 +118,6 @@ void	init_cubeinfo(t_block *cube_info)
 	cube_info->hex_ceiling = 0x0;
 	cube_info->hex_floor = 0;
 	cube_info->size = 128;
-	cube_info->texture_south = "textures/SO.xpm";
-	cube_info->texture_east = "textures/EA.xpm";
-	cube_info->texture_west = "textures/WE.xpm";
 }
 
 void	init_player(t_player *player)
@@ -137,8 +133,6 @@ void	init_player(t_player *player)
 
 void	init_data(t_data *data)
 {
-	data->mlx = NULL;
-	data->win = NULL;
 	data->textures_pixel = NULL;
 	data->textures = NULL;
 	init_player(&data->player);

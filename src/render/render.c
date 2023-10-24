@@ -3,6 +3,7 @@
 
 static void	set_image_pixel(t_block *image, int x, int y, int color)
 {
+	// ft_printf("x: %d, y: %d, color: %d\n", x, y, color);
 	int	pixel;
 
 	pixel = y * (image->size_line / 4) + x;
@@ -11,13 +12,22 @@ static void	set_image_pixel(t_block *image, int x, int y, int color)
 
 static void set_frame_image_pixel(t_data *data, t_block *image, int x, int y)
 {
-	//ft_printf("\nset_frame_image_pixel\nx->%d\ny->%d\ndata->textures_pixel[y][x]->%d\n", x, y, data->textures_pixel[y][x]);
+	// ft_printf("\nset_frame_image_pixel\nx->%d\ny->%d\ndata->textures_pixel[y][x]->%d\n", x, y, data->textures_pixel[y][x]);
 	if (data->textures_pixel[y][x] > 0)
+	{
 		set_image_pixel(image, x, y, data->textures_pixel[y][x]);
+		// ft_printf("\n0000000000\n");
+	}
 	else if (y < WIN_HEIGHT / 2)
+	{
 		set_image_pixel(image, x, y, data->cube_info.hex_ceiling);
-	else if (y < WIN_HEIGHT -1)
+		// ft_printf("\n1111111111\n");
+	}
+	else if (y < WIN_HEIGHT - 1)
+	{
 		set_image_pixel(image, x, y, data->cube_info.hex_floor);
+		// ft_printf("\n22222222222\n");
+	}
 }
 
 static void	render_frame(t_data *data)

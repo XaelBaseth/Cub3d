@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 16:26:39 by cpothin           #+#    #+#             */
-/*   Updated: 2023/10/24 11:41:30 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/10/24 15:45:45 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int	save_color(t_data *data, t_color *var, char *arg)
 	return (1);
 }
 
-static int	save_img(t_data *data, void **img, char *arg)
+static int	save_img(t_data *data, void **img, char *arg, int index)
 {
 	int		size;
 	char	**args;
@@ -54,24 +54,38 @@ static int	save_img(t_data *data, void **img, char *arg)
 		ft_printf("Error:\n\t%s doesn't exist\n", args[1]);
 		return (0);
 	}
-	printf("\nsave_img:\nchar %s\nsize: %d\n", args[1], size);
+	data->cube_info.textures_paths[index] = args[1];
 	*img = mlx_xpm_file_to_image(data->mlx, args[1], &size, &size);
 	return (1);
+}
+
+static unsigned long    convert_rgb_to_hex(t_color color)
+{
+    unsigned long    result;
+    int                r;
+    int                g;
+    int                b;
+
+    r = color.r;
+    g = color.g;
+    b = color.b;
+    result = ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
+    return (result);
 }
 
 static int		check_args(t_data *data, char *args[])
 {
 	if (args[0][0] == 'N' && args[0][1] == 'O' && args[0][2] == ' ')
-		if (save_img(data, &data->cube_info.texture_north, args[0]) == 0)
+		if (save_img(data, &data->cube_info.texture_north, args[0], 0) == 0)
 			return (0);
 	if (args[1][0] == 'S' && args[1][1] == 'O' && args[1][2] == ' ')
-		if (save_img(data, &data->cube_info.texture_south, args[1]) == 0)
+		if (save_img(data, &data->cube_info.texture_south, args[1], 1) == 0)
 			return (0);
 	if (args[2][0] == 'W' && args[2][1] == 'E' && args[2][2] == ' ')
-		if (save_img(data, &data->cube_info.texture_west, args[2]) == 0)
+		if (save_img(data, &data->cube_info.texture_west, args[2], 2) == 0)
 			return (0);
 	if (args[3][0] == 'E' && args[3][1] == 'A' && args[3][2] == ' ')
-		if (save_img(data, &data->cube_info.texture_east, args[3]) == 0)
+		if (save_img(data, &data->cube_info.texture_east, args[3], 3) == 0)
 			return (0);
 	if (args[4][0] == 'F' && args[5][1] == ' ')
 		if (save_color(data, &data->map_info.floor_color, args[4]) == 0)
@@ -79,7 +93,10 @@ static int		check_args(t_data *data, char *args[])
 	if (args[5][0] == 'C' && args[5][1] == ' ')
 		if (save_color(data, &data->map_info.ceiling_color, args[5]) == 0)
 			return (0);
-	printf("\ncheckargs: data->cube_info.texture_north: %p\n", data->cube_info.texture_north);
+	data->cube_info.hex_floor = convert_rgb_to_hex(data->map_info.floor_color);
+	ft_printf("\nfloor %x\n", data->cube_info.hex_floor);
+    data->cube_info.hex_ceiling = convert_rgb_to_hex(data->map_info.ceiling_color);
+	ft_printf("\nceiling %x\n", data->cube_info.hex_ceiling);
 	return (1);
 }
 
