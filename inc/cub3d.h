@@ -6,7 +6,7 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 08:19:10 by acharlot          #+#    #+#             */
-/*   Updated: 2023/10/16 15:01:52 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/10/24 11:10:46 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,22 @@
 ---------------------------------------------------------------------*/
 
 # define MAP_PATH "maps/"
-# define WIN_WIDTH 640
-# define WIN_HEIGHT 480
+# define WIN_WIDTH 980
+# define WIN_HEIGHT 720
 
 # define BUFFER 4096
 # define IMG_SIZE 128
 
 # define SUCCESS 0
 # define FAILURE 1
+
+enum e_texture_index
+{
+	NORTH = 0,
+	SOUTH = 1,
+	EAST = 2,
+	WEST = 3
+};
 
 /*-------------------------------------------------------------------
 									MACROS
@@ -85,12 +93,25 @@ typedef enum	game_state
 
 typedef struct	s_block
 {
-	void	*texture_north;
-	void	*texture_south;
-	void	*texture_east;
-	void	*texture_west;
-	int		width;
-	int		height;
+	void			*image;
+	void			*texture_north;
+	void			*texture_south;
+	void			*texture_east;
+	void			*texture_west;
+	unsigned long	hex_ceiling;
+	unsigned long	hex_floor;
+	int				pixel_bits;
+	int				size_line;
+	int				endian;
+	int				*addr;
+	int				width;
+	int				height;
+	int				size;
+	int				index;
+	int				x;
+	int				y;
+	double			step;
+	double			pos;
 }				t_block;
 
 typedef struct s_mapinfo
@@ -108,6 +129,7 @@ typedef struct s_mapinfo
 
 typedef struct	s_player
 {
+	char	dir;
 	double	pos_x;
 	double	pos_y;
 	double	dir_x;
@@ -120,14 +142,14 @@ typedef struct	s_data
 {
 	void		*mlx;
 	void		*win;
-	int			win_height;
-	int			win_width;
 	char		**file_content;
 	game_state	state;
 	t_block		cube_info;
 	t_mapinfo	map_info;
 	t_player	player;
 	t_ray		ray;
+	int			**textures_pixel;
+	int			**textures;
 }				t_data;
 
 
@@ -137,6 +159,19 @@ typedef struct	s_data
 ---------------------------------------------------------------------*/
 
 void	init_ray(t_ray *ray);
+void	init_texture_pixel(t_data *data);
+void	update_texture_pixel(t_data *data, t_block *block, t_ray *ray, int x);
+void	render_images(t_data *data);
+int		raycasting(t_player *player, t_data *data);
+void	init_texture_img(t_data *data, t_block *image, char *path);
+void	save_player(t_data *data);
+
+
+void	init_img(t_data *data, t_block *image, int width, int height);
+void	init_mlx(t_data *data);
+void	init_data(t_data *data);
+void	init_textures(t_data *data);
+void	init_player_direction(t_data *data);
 
 /* Parsing */
 void	read_file_map(t_data *data, char *map_name);
@@ -146,5 +181,8 @@ int		exit_game(t_data *data);
 
 /* Inputs */
 int	handle_keypress(int keysym, t_data *data);
+
+/*	Panic */
+void	panic(t_data *data, char *err_msg);
 
 #endif

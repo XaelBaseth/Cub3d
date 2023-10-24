@@ -6,7 +6,7 @@
 #    By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/16 14:46:16 by cpothin           #+#    #+#              #
-#    Updated: 2023/10/16 15:42:34 by acharlot         ###   ########.fr        #
+#    Updated: 2023/10/24 09:56:55 by acharlot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ HEADER		=	-I inc
 SRC_DIR		=	src/
 OBJ_DIR		=	obj/
 CC			=	gcc
-FLAGS		=	-Wall -Werror -Wextra -g3 -fsanitize=address
+FLAGS		=	-Wall -Werror -Wextra -lm -fsanitize=address -g3
 MLXFLAGS	= 	-L ./lib/minilibx -lmlx -Ilmlx_linux -lXext -lX11 -lbsd
 LIBFT		=	lib/libft
 MINILIBX	=	lib/minilibx
@@ -38,11 +38,10 @@ CYAN		=	\033[0;96m
 WHITE		=	\033[0;97m
 
 MAIN_DIR 	=	main/
-MAIN_FILES	=	cub3d init game inputs parsing
+MAIN_FILES	=	cub3d game init inputs panic parsing_utils parsing player_dir
 
 REND_DIR 	=	render/
-REND_FILES	=	raycasting 
-
+REND_FILES	=	raycasting render texture
 
 SRC_MAI_FILE=	$(addprefix $(MAIN_DIR), $(MAIN_FILES))
 SRC_REN_FILE=	$(addprefix $(REND_DIR), $(REND_FILES))

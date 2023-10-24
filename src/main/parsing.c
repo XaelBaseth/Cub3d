@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 16:26:39 by cpothin           #+#    #+#             */
-/*   Updated: 2023/10/16 14:34:22 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/10/24 11:18:25 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ static int		check_args(t_data *data, char *args[])
 	if (args[5][0] == 'C' && args[5][1] == ' ')
 		if (save_color(data, &data->map_info.ceiling_color, args[5]) == 0)
 			return (0);
+	printf("\ncheckargs: data->cube_info.texture_north: %s\n", data->cube_info.texture_north);
 	return (1);
 }
 
@@ -88,6 +89,29 @@ void	parse_map(t_data *data, char *args[])
 
 	data->cube_info.height = IMG_SIZE;
 	data->cube_info.width = IMG_SIZE;
+}
+
+void	save_player(t_data *data)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (data->map_info.level[y])
+	{
+		x = 0;
+		while (data->map_info.level[y][x])
+		{
+			if (data->map_info.level[y][x] == 'N' || data->map_info.level[y][x] == 'W'
+			|| data->map_info.level[y][x] == 'S' || data->map_info.level[y][x] == 'E')
+			{
+				data->player.dir = data->map_info.level[y][x];
+				break;
+			}
+			x++;
+		}
+		y++;
+	}
 }
 
 char	*extract_map(char *map)
@@ -143,6 +167,7 @@ void	read_file_map(t_data *data, char *map_name)
 	data->file_content = ft_split(file_content, '\n');
 	data->map_info.level = ft_split(level, '\n');
 	parse_map(data, data->file_content);
+	save_player(data);
 	gc_free(file_content);
 	gc_free(level);
 }

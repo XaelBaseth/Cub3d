@@ -6,7 +6,7 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 12:01:06 by acharlot          #+#    #+#             */
-/*   Updated: 2023/10/16 15:43:04 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/10/24 10:36:52 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,10 @@ static void	init_raycasting(int x, t_ray *ray, t_player *player)
 	ray->map_y = (int)player->pos_y;
 	ray->deltadist_x = fabs(1 / ray->dir_x);
 	ray->deltadist_y = fabs(1 / ray->dir_y);
+	//printf("\n\nplayer->dir = %s\n", player->dir);
+	//printf("\nray->dir_x = \nplayer->dir_x : %f\nplayer->plane_x : %f\nray->camera_x: %f\n", player->dir_x, player->plane_x, ray->camera_x);
+	//printf("\ninit_raycasting:\nray->camera: %f\nray->dir_x: %f\nray->dir_y: %f\nray->map_x: %d\nray->map_y: %d\nray->deltadist_x: %f\nray->deltadist_y: %f", ray->camera_x, ray->dir_x, ray->dir_y, ray->map_x, ray->map_y, ray->deltadist_x, ray->deltadist_y);
+	//printf("\nplayer->dir_x: %f\nplayer->plane_x: %f\nplayer->camera_x: %f\n", player->dir_x, player->plane_x, ray->camera_x);
 }
 /*
 	We initialize the setup for the DDA algorithm. The algorithm will
@@ -63,8 +67,12 @@ static void	set_dda(t_ray *ray, t_player *player)
 	else
 	{
 		ray->step_y = 1;
-		ray->sidedist_y = (ray->map_y + 1.0 - player->pos_y) * ray->deltadist_y;
+		ray->sidedist_y = (ray->map_y + 1.0 - player->pos_y) * ray->deltadist_y;	
 	}
+	//printf("\nset_dda_param:\nray->sidedist_x: %f\n", ray->sidedist_x);
+	//printf("\nplayer->pos_x: %f\nray->map_x: %f\nray->deltadist_x:%f\n", player->pos_x, ray->map_x, ray->deltadist_x);
+	//printf("\nset_dda_param:\nray->sidedist_y: %f\n", ray->sidedist_y);
+	//printf("\nplayer->pos_y: %f\nray->map_y: %f\nray->deltadist_y:%f\n", player->pos_y, ray->map_y, ray->deltadist_y);
 }
 
 /*
@@ -111,18 +119,19 @@ static void	calculate_line_height(t_ray *ray, t_data *data, t_player *player)
 		ray->wall_dist = (ray->sidedist_x - ray->deltadist_x);
 	else
 		ray->wall_dist = (ray->sidedist_y - ray->deltadist_y);
-	ray->line_height = (int)(data->win_height / ray->wall_dist);
-	ray->draw_start = -(ray->line_height) / 2 + data->win_height / 2;
+	ray->line_height = (int)(WIN_HEIGHT / ray->wall_dist);
+	ray->draw_start = -(ray->line_height) / 2 + WIN_HEIGHT/ 2;
 	if (ray->draw_start < 0)
 		ray->draw_start = 0;
-	ray->draw_end = ray->line_height / 2 + data->win_height / 2;
-	if (ray->draw_end >= data->win_height)
-		ray->draw_end = data->win_height - 1;
+	ray->draw_end = ray->line_height / 2 + WIN_HEIGHT / 2;
+	if (ray->draw_end >= WIN_HEIGHT)
+		ray->draw_end = WIN_HEIGHT - 1;
 	if (ray->side == 0)
 		ray->wall_x = player->pos_x + ray->wall_dist * ray->dir_y;
 	else
 		ray->wall_x = player->pos_x + ray->wall_dist * ray->dir_x;
-	//ray->wall_x -= floor(ray->wall_x);
+	ray->wall_x -= floor(ray->wall_x);
+	//printf("\ncalculate_line_height_param:\nray->draw_start: %d\nray->draw_end: %d\nray->line_height: %d\nray-wall_dist: %f\nray->sidedist_x: %f\nray->deltadist_x: %f\n", ray->draw_start, ray->draw_end, ray->line_height, ray->wall_dist, ray->sidedist_x, ray->deltadist_x);
 }
 
 int	raycasting(t_player *player, t_data *data)
@@ -132,13 +141,13 @@ int	raycasting(t_player *player, t_data *data)
 
 	x = 0;
 	ray = data->ray;
-	while (x < data->win_width)
+	while (x < WIN_WIDTH)
 	{
 		init_raycasting(x, &ray, player);
 		set_dda(&ray, player);
 		exec_dda(data, &ray);
 		calculate_line_height(&ray, data, player);
-		//update_texture_pixel(data, &data->texinfo, &ray, x);
+		update_texture_pixel(data, &data->cube_info, &ray, x);
 		x++;
 	}
 	return (SUCCESS);
