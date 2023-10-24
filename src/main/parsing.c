@@ -6,7 +6,7 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 16:26:39 by cpothin           #+#    #+#             */
-/*   Updated: 2023/10/24 11:18:25 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/10/24 11:41:30 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ static int	save_img(t_data *data, void **img, char *arg)
 		ft_printf("Error:\n\t%s doesn't exist\n", args[1]);
 		return (0);
 	}
+	printf("\nsave_img:\nchar %s\nsize: %d\n", args[1], size);
 	*img = mlx_xpm_file_to_image(data->mlx, args[1], &size, &size);
 	return (1);
 }
@@ -78,7 +79,7 @@ static int		check_args(t_data *data, char *args[])
 	if (args[5][0] == 'C' && args[5][1] == ' ')
 		if (save_color(data, &data->map_info.ceiling_color, args[5]) == 0)
 			return (0);
-	printf("\ncheckargs: data->cube_info.texture_north: %s\n", data->cube_info.texture_north);
+	printf("\ncheckargs: data->cube_info.texture_north: %p\n", data->cube_info.texture_north);
 	return (1);
 }
 
