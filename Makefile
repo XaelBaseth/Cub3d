@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+         #
+#    By: axel <axel@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/16 14:46:16 by cpothin           #+#    #+#              #
-#    Updated: 2023/10/16 15:42:34 by acharlot         ###   ########.fr        #
+#    Updated: 2023/10/31 17:21:43 by axel             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ HEADER		=	-I inc
 SRC_DIR		=	src/
 OBJ_DIR		=	obj/
 CC			=	gcc
-FLAGS		=	-Wall -Werror -Wextra -g3 -fsanitize=address
+FLAGS		=	-g3 -Wall -Werror -Wextra -fsanitize=address
 MLXFLAGS	= 	-L ./lib/minilibx -lmlx -Ilmlx_linux -lXext -lX11 -lbsd
 LIBFT		=	lib/libft
 MINILIBX	=	lib/minilibx
@@ -38,10 +38,10 @@ CYAN		=	\033[0;96m
 WHITE		=	\033[0;97m
 
 MAIN_DIR 	=	main/
-MAIN_FILES	=	cub3d init game inputs parsing
+MAIN_FILES	=	cub3d init game inputs parsing parsing_utils init_mlx image panic init_player_pov
 
 REND_DIR 	=	render/
-REND_FILES	=	raycasting 
+REND_FILES	=	raycasting render 
 
 
 SRC_MAI_FILE=	$(addprefix $(MAIN_DIR), $(MAIN_FILES))
@@ -62,7 +62,7 @@ all: ${NAME}
 ${NAME}: $(OBJ)
 				@make -C $(MINILIBX)
 				@make -C $(LIBFT)
-				$(CC) $(FLAGS) $(OBJ) $(HEADER) $(MLXFLAGS) lib/libft/libft.a lib/minilibx/libmlx.a -o $(NAME)
+				$(CC) $(FLAGS) $(OBJ) $(HEADER) $(MLXFLAGS) lib/libft/libft.a lib/minilibx/libmlx.a -lm -o $(NAME)
 				@$(ECHO) "$(YELLOW)[CUB3D]:\t$(ORANGE)[==========]\t$(GREEN) => Success!$(DEF_COLOR)\n"
 
 $(OBJ_DIR)%.o:	$(SRC_DIR)%.c $(OBJF)
