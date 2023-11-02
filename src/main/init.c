@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 12:14:27 by acharlot          #+#    #+#             */
-/*   Updated: 2023/11/01 10:37:34 by axel             ###   ########.fr       */
+/*   Updated: 2023/11/02 09:40:50 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,13 @@
 
 t_img	init_img(void)
 {
-	return ((t_img)
-	{
-		.img = NULL,
-		.addr = NULL,
-		.bpp = 0,
-		.size_line = 0,
-		.endian = 0
-	});
+	t_img	img;
+
+	img.img = NULL;
+	img.addr = NULL;
+	img.bpp = 0;
+	img.size_line = 0;
+	img.endian = 0;
 }
 
 void	init_ray(t_data *data, t_ray *ray, int x)

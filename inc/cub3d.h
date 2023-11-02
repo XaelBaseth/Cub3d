@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 08:19:10 by acharlot          #+#    #+#             */
-/*   Updated: 2023/11/01 10:46:53 by axel             ###   ########.fr       */
+/*   Updated: 2023/11/02 10:47:59 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,6 +200,7 @@ void	init_mlx(t_data *data);
 void	read_file_map(t_data *data, char *map_name);
 int	save_img(t_data *data, t_img *img, char *arg);
 int	save_color(t_data *data, t_color *var, char *arg);
+int save_rgb(t_data *data, int (*rgb_arr)[3], char *arg);
 void	exit_message(char *msg, int *fd);
 int	check_nbr(char *str);
 

@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 16:26:39 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/01 13:51:26 by axel             ###   ########.fr       */
+/*   Updated: 2023/11/02 10:49:05 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ int	check_args(t_data *data, char *lines[])
 		if (save_img(data, &data->texinfo.west, lines[3]) == 0)
 			return (0);
 	if (lines[4][0] == 'F' && lines[5][1] == ' ')
-		if (save_color(data, &data->map_info.floor_color, lines[4]) == 0)
+		if (save_rgb(data, data->texinfo.floor_rgb, lines[4]) == 0)
 			return (0);
 	if (lines[5][0] == 'C' && lines[5][1] == ' ')
-		if (save_color(data, &data->map_info.ceiling_color, lines[5]) == 0)
+		if (save_rgb(data, data->texinfo.sky_rgb, lines[5]) == 0)
 			return (0);
 	//printf("Image data: %p\n", data->texinfo.north.img);
 	//if (&data->texinfo.north.addr)

@@ -5,11 +5,13 @@ void	draw_vertical_line(t_data *data, t_ray *ray, int x)
 	int	y;
 
 	y = -1;
+	//printf("\n\ny at start: %d\n", y);
 	while (++y < ray->draw_start)
 	{
 		put_pixel_img(&data->img, x, y, create_tex_rgb(256,	data->texinfo.sky_rgb[0], data->texinfo.sky_rgb[1], data->texinfo.sky_rgb[2]));
 	}
 	y = ray->draw_start;
+	//printf("y draw_start: %d", y);
 	while (y < ray->draw_end)
 	{
 		ray->tex_y = (int)ray->tex_pos & (IMG_SIZE - 1);
@@ -18,9 +20,13 @@ void	draw_vertical_line(t_data *data, t_ray *ray, int x)
 		y += 1;
 	}
 	y = ray->draw_end;
+	//printf("\ny draw_end: %d", y);
 	while (y < WIN_HEIGHT)
 	{
 		put_pixel_img(&data->img, x, y, create_tex_rgb(256,	data->texinfo.floor_rgb[0], data->texinfo.floor_rgb[1], data->texinfo.floor_rgb[2]));
+		//printf("\ndata->texinfo.floor_rgb[0] : %d", data->texinfo.floor_rgb[0]);
+		//printf("\ndata->texinfo.floor_rgb[1] : %d", data->texinfo.floor_rgb[1]);
+		//printf("\ndata->texinfo.floor_rgb[2] : %d", data->texinfo.floor_rgb[2]);
 		y += 1;
 	}
 }
