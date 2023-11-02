@@ -16,5 +16,4 @@ void	init_cub3d(t_data *data)
 {
 	data->file_content = NULL;
 	data->img = init_img();
-	init_player_pov(data);
 }

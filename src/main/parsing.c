@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 16:26:39 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/02 10:49:05 by axel             ###   ########.fr       */
+/*   Updated: 2023/11/02 14:58:34 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ void	read_file_map(t_data *data, char *map_name)
 	data->map_info.level = ft_split(level, '\n');
 	parse_map(data, data->file_content);
 	save_player(data);
+	init_player_pov(data);
 	gc_free(file_content);
 	gc_free(level);
 }

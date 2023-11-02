@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 17:10:24 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/02 10:48:50 by axel             ###   ########.fr       */
+/*   Updated: 2023/11/02 14:38:18 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	save_color(t_data *data, t_color *var, char *arg)
 	return (1);
 }
 
-int save_rgb(t_data *data, int (*rgb_arr)[3], char *arg)
+int save_rgb(t_data *data, int *rgb_arr, char *arg)
 {
 	char **args;
 	char **nbrs;
@@ -71,9 +71,9 @@ int save_rgb(t_data *data, int (*rgb_arr)[3], char *arg)
 	nbrs = ft_split(args[1], ',');
 	if (!check_nbr(nbrs[0]) || !check_nbr(nbrs[1]) || !check_nbr(nbrs[2]))
 		return (0);
-	rgb_arr[0][0] = ft_atoi(nbrs[0]);
-	rgb_arr[0][1] = ft_atoi(nbrs[1]);
-	rgb_arr[0][2] = ft_atoi(nbrs[2]);
+	rgb_arr[0] = ft_atoi(nbrs[0]);
+	rgb_arr[1] = ft_atoi(nbrs[1]);
+	rgb_arr[2] = ft_atoi(nbrs[2]);
 	return (1);	
 }
 

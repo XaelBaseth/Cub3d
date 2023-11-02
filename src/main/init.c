@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 12:14:27 by acharlot          #+#    #+#             */
-/*   Updated: 2023/11/02 09:40:50 by axel             ###   ########.fr       */
+/*   Updated: 2023/11/02 15:00:28 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 t_img	init_img(void)
 {
+	printf("\n\n\nHello");
 	t_img	img;
 
 	img.img = NULL;
@@ -32,6 +33,7 @@ void	init_ray(t_data *data, t_ray *ray, int x)
 	ray->map_y = (int)data->player.pos_y;
 	ray->deltadist_x = fabs(1 / ray->dir_x);
 	ray->deltadist_y = fabs(1 / ray->dir_y);
+	
 	//printf("camera_x: %f\n", ray->camera_x);
     //printf("dir_x: %f\n", ray->dir_x);
 	//printf("camera.dir_x: %f\n", data->camera.dir_x);

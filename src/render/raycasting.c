@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 12:01:06 by acharlot          #+#    #+#             */
-/*   Updated: 2023/10/31 15:16:06 by axel             ###   ########.fr       */
+/*   Updated: 2023/11/02 15:03:01 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ void	find_wall_height(t_ray *ray)
 	ray->draw_end = ray->line_height / 2 + WIN_HEIGHT / 2;
 	if (ray->draw_end >= WIN_HEIGHT)
 		ray->draw_end= WIN_HEIGHT - 1;
+	//printf("\ndraw_start : %d", ray->draw_start);
+	//printf("\ndraw_end : %d", ray->draw_end);
 }
 
 void	find_wall_pixel(t_data *data, t_ray *ray)
