@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 08:19:10 by acharlot          #+#    #+#             */
-/*   Updated: 2023/11/02 14:38:54 by axel             ###   ########.fr       */
+/*   Updated: 2023/11/03 11:45:46 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@
 ---------------------------------------------------------------------*/
 
 # define MAP_PATH "maps/"
-# define WIN_WIDTH 640
-# define WIN_HEIGHT 480
+# define WIN_WIDTH 1280
+# define WIN_HEIGHT 720
 
 # define BUFFER 4096
 # define IMG_SIZE 128
@@ -44,16 +44,8 @@
 # define SUCCESS 0
 # define FAILURE 1
 
-enum e_texture_index
-{
-	NORTH = 0,
-	SOUTH = 1,
-	EAST = 2,
-	WEST = 3
-};
-
 /*-------------------------------------------------------------------
-									MACROS
+									STRUCTURES
 ---------------------------------------------------------------------*/
 
 typedef struct 	s_img
@@ -169,8 +161,6 @@ typedef struct	s_data
 	t_ray		ray;
 	t_img		minimap;
 }				t_data;
-
-
 
 /*-------------------------------------------------------------------
 									FUNCTIONS

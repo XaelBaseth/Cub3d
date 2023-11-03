@@ -2,14 +2,11 @@
 
 unsigned int	extract_pixel_from_image(t_img *img, int point_x, int point_y)
 {
-	//printf("img.img : %s\n", (char *)img->img);
-	//printf("img : %s\npoint_x : %d\npoint_y : %d\n", img->addr, point_x, point_y);
-	return (*(unsigned int *)(img->addr + (point_x * img->size_line) + point_x * img->bpp / 8));
+	return (*(unsigned int *)(img->addr + (point_x * img->size_line) + (point_x * img->bpp / 8)));
 }
 
 unsigned int	get_color(t_data *data, t_ray *ray)
 {
-	//printf("texinfo : %p\n", data->texinfo.west.img);
 	if (!ray->side)
 	{
 		if (data->player.pos_x > ray->map_x)
@@ -30,13 +27,8 @@ t_img	new_img(void *mlx)
 	t_img	new_img;
 
 	new_img.img = mlx_new_image(mlx, WIN_WIDTH, WIN_HEIGHT);
-	//printf("\nnew_img.img : %p", new_img.img);
-	//printf("\nnew_img.bpp : %d", new_img.bpp);
-	//printf("\nnew_img.size_line : %d", new_img.size_line);
-	//printf("\nnew_img.endian : %d", new_img.endian);
 	new_img.addr = mlx_get_data_addr(new_img.img, &new_img.bpp, 
 		&new_img.size_line, &new_img.endian);
-	//printf("\nnew_img.addr : %s\n", new_img.addr);
 	return (new_img);
 }
 

@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 12:01:06 by acharlot          #+#    #+#             */
-/*   Updated: 2023/11/02 15:03:01 by axel             ###   ########.fr       */
+/*   Updated: 2023/11/03 12:26:43 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,14 @@ void	point_rays(t_data *data, t_ray *ray)
 		ray->sidedist_y = (ray->map_y + 1.0f - data->player.pos_y)
 			* ray->deltadist_y;
 	}
-	//printf("step_x: %d\n", ray->step_x);
-	//printf("sidedist_x: %lf\n", ray->sidedist_x);
-	//printf("player->pos_x : %f\n", data->player.pos_x);
-	//printf("map_x : %d\n", ray->map_x);
-	//printf("deltadist_x : %f\n", ray->deltadist_x);
-	//printf("step_y: %d\n", ray->step_y);
-	//printf("sidedist_y: %lf\n", ray->sidedist_y);
-	//printf("player->pos_y : %f\n", data->player.pos_y);
-	//printf("map_y : %d\n", ray->map_y);
-	//printf("deltadist_y : %f\n", ray->deltadist_y);
+	//printf("\n\nray->sidedist_x : %f", ray->sidedist_x);
+	//printf("\nplayer.pos_x : %f", data->player.pos_x);
+	//printf("\nmap_x : %d", ray->map_x);
+	//printf("\ndeltadist_x : %f\n", ray->deltadist_x);
+	//printf("\n\nray->sidedist_y : %f", ray->sidedist_y);
+	//printf("\nplayer.pos_y : %f", data->player.pos_y);
+	//printf("\nmap_y : %d", ray->map_y);
+	//printf("\ndeltadist_y : %f\n", ray->deltadist_y);
 }
 
 void	find_dist_wall(t_data *data, t_ray *ray)
@@ -90,6 +88,11 @@ void	find_wall_height(t_ray *ray)
 	ray->draw_end = ray->line_height / 2 + WIN_HEIGHT / 2;
 	if (ray->draw_end >= WIN_HEIGHT)
 		ray->draw_end= WIN_HEIGHT - 1;
+	
+	//printf("\nside : %d", ray->side);
+	//printf("\nwall_dist: %f", ray->wall_dist);
+	//printf("\nline_height: %d", ray->line_height);
+	//printf("\nWIN_HEIGHT : %d", WIN_HEIGHT);
 	//printf("\ndraw_start : %d", ray->draw_start);
 	//printf("\ndraw_end : %d", ray->draw_end);
 }
