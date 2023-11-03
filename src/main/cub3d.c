@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 17:10:34 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/03 12:11:34 by axel             ###   ########.fr       */
+/*   Updated: 2023/11/03 15:05:57 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ int	main(int argc, char *argv[])
 
 	init_mlx(&data);
 	init_cub3d(&data);
-	//data.state = IN_MENU;
+	//data.state = IN_GAME;
 	read_file_map(&data, argv[1]);
-	mlx_hook(data.win, KeyPress, KeyPressMask, &handle_keypress, &data);
+	//mlx_hook(data.win, KeyPress, KeyPressMask, &handle_keypress, &data);
 	mlx_hook(data.win, 17, 0, &exit_game, &data);
 	mlx_loop_hook(data.mlx, &window_loop, &data);
 	mlx_loop(data.mlx);

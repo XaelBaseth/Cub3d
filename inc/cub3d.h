@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 08:19:10 by acharlot          #+#    #+#             */
-/*   Updated: 2023/11/03 11:45:46 by axel             ###   ########.fr       */
+/*   Updated: 2023/11/03 15:02:59 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <fcntl.h>
+# include <stdbool.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <math.h>
@@ -199,5 +200,9 @@ int		exit_game(t_data *data);
 
 /* Inputs */
 int	handle_keypress(int keysym, t_data *data);
+int	on_keypress(int key, t_data *data);
+int	on_keyrelease(int key, t_data *data);
+
+void	move_player(t_data *data);
 
 #endif

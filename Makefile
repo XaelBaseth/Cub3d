@@ -6,7 +6,7 @@
 #    By: axel <axel@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/16 14:46:16 by cpothin           #+#    #+#              #
-#    Updated: 2023/11/03 12:21:47 by axel             ###   ########.fr        #
+#    Updated: 2023/11/03 15:02:09 by axel             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ HEADER		=	-I inc
 SRC_DIR		=	src/
 OBJ_DIR		=	obj/
 CC			=	gcc
-FLAGS		=	-g -Wall -Werror -Wextra -fsanitize=address
+FLAGS		=	-g -Wall -Werror -Wextra #-fsanitize=address
 MLXFLAGS	= 	-L ./lib/minilibx -lmlx -Ilmlx_linux -lXext -lX11 -lbsd
 LIBFT		=	lib/libft
 MINILIBX	=	lib/minilibx
@@ -39,7 +39,6 @@ WHITE		=	\033[0;97m
 
 MAIN_DIR 	=	main/
 MAIN_FILES	=	cub3d init game inputs parsing parsing_utils init_mlx image panic init_player_pov
-
 REND_DIR 	=	render/
 REND_FILES	=	raycasting render 
 

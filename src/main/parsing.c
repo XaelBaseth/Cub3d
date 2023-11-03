@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 16:26:39 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/03 11:48:13 by axel             ###   ########.fr       */
+/*   Updated: 2023/11/03 14:21:00 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void	parse_map(t_data *data, char *args[])
 		return ;
 	data->cube_info.height = IMG_SIZE;
 	data->cube_info.width = IMG_SIZE;
+	data->map_info.height = WIN_HEIGHT;
+	data->map_info.width = WIN_WIDTH;
 }
 
 char	*extract_map(char *map)

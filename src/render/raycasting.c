@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 12:01:06 by acharlot          #+#    #+#             */
-/*   Updated: 2023/11/03 12:26:43 by axel             ###   ########.fr       */
+/*   Updated: 2023/11/03 14:22:37 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,10 @@ void	find_dist_wall(t_data *data, t_ray *ray)
 		else if (data->map_info.level[ray->map_y][ray->map_x] > '0')
 			hit = 1;
 	}
+	//printf("map_y : %d\n", ray->map_y);
+	//printf("map_x : %d\n", ray->map_x);
+	//printf("map.info_height : %d\n", data->map_info.height);
+	//printf("map_info.width : %d\n", data->map_info.width);
 }
 
 void	find_wall_height(t_ray *ray)
