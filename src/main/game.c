@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 14:12:19 by cpothin           #+#    #+#             */
-/*   Updated: 2023/10/21 11:19:58 by axel             ###   ########.fr       */
+/*   Updated: 2023/11/06 13:03:18 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ static void	free_level(t_data *data)
 
 static void	free_imgs(t_data *data)
 {
-	mlx_destroy_image(data->mlx, data->cube_info.texture_east);
-	mlx_destroy_image(data->mlx, data->cube_info.texture_north);
-	mlx_destroy_image(data->mlx, data->cube_info.texture_south);
-	mlx_destroy_image(data->mlx, data->cube_info.texture_west);
+	mlx_destroy_image(data->mlx, data->texinfo.north.img);
+	mlx_destroy_image(data->mlx, data->texinfo.east.img);
+	mlx_destroy_image(data->mlx, data->texinfo.south.img);
+	mlx_destroy_image(data->mlx, data->texinfo.west.img);
 }
 
 int	exit_game(t_data *data)
@@ -43,5 +43,6 @@ int	exit_game(t_data *data)
 	mlx_destroy_window(data->mlx, data->win);
 	mlx_destroy_display(data->mlx);
 	free(data->mlx);
+	gc_free_all();
 	exit(0);
 }
