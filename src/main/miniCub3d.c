@@ -33,6 +33,26 @@ int worldMap[mapWidth][mapHeight]=
   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
 
+<<<<<<< HEAD
+int	close_window(t_data *data)
+{
+	mlx_destroy_window(data->mlx, data->win);
+	exit(0);
+}
+
+int main(int argc, char **argv)
+{
+	t_data *data;
+	double posX = 22; //x and y start position
+	double posY = 12;
+=======
+void drawVerticalLine(void *mlx, void *win, int x, int startY, int endY, unsigned int color)
+{
+    for (int y = startY; y <= endY; y++)
+        mlx_pixel_put(mlx, win, x, y, color);
+}
+>>>>>>> 544db5c5ee6e531f90cf4224313272ac35e1487c
+
 int main()
 {
 	double posX = 22, posY = 12;  //x and y start position
@@ -43,8 +63,14 @@ int main()
 	double oldTime = 0; //time of previous frame
 	t_data data;
 
+<<<<<<< HEAD
+	data->mlx = mlx_init();
+	data->win = mlx_new_window(data->mlx, screenWidth, screenWidth, "Raycaster");
+	mlx_hook(data->win, 02, 1L, close_window ,data);
+	mlx_loop(data->mlx);
+=======
 	data.mlx = mlx_init();
-	data.win = mlx_new_window(data.mlx, screenHeight, screenWidth, "Cub3d"); //We create the window
+	data.mlx_win = mlx_new_window(data.mlx, screenHeight, screenWidth, "Cub3d"); //We create the window
 
 	for (int x = 0; x < screenWidth; x++)
 	{
@@ -139,7 +165,8 @@ int main()
 				color = color3;
 				break;
 		}
-		drawVerticalLine(data.mlx, data.win, x, drawStart, drawEnd, color);
+		drawVerticalLine(data.mlx, data.mlx_win, x, drawStart, drawEnd, color);
 	}
 	mlx_loop(data.mlx); //We start the loop
+>>>>>>> 544db5c5ee6e531f90cf4224313272ac35e1487c
 }

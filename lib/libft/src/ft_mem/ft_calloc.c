@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 08:26:17 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/11 11:52:50 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/10/17 14:27:37 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	{
 		return (NULL);
 	}
-	dest = malloc(total_size);
+	dest = gc_alloc(total_size, "ft_calloc");
 	if (dest == NULL)
 	{
 		return (NULL);
