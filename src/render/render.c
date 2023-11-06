@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   render.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/06 09:11:10 by acharlot          #+#    #+#             */
+/*   Updated: 2023/11/06 09:20:41 by acharlot         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/cub3d.h"
 
 void	draw_vertical_line(t_data *data, t_ray *ray, int x)
@@ -7,9 +19,9 @@ void	draw_vertical_line(t_data *data, t_ray *ray, int x)
 	y = -1;
 	while (++y < ray->draw_start)
 	{
-		put_pixel_img(&data->img, x, y, create_tex_rgb(256,	
-			data->texinfo.sky_rgb[0], data->texinfo.sky_rgb[1],
-			data->texinfo.sky_rgb[2]));
+		put_pixel_img(&data->img, x, y, create_tex_rgb(256,
+				data->texinfo.sky_rgb[0], data->texinfo.sky_rgb[1],
+				data->texinfo.sky_rgb[2]));
 	}
 	y = ray->draw_start;
 	while (y < ray->draw_end)
@@ -22,9 +34,9 @@ void	draw_vertical_line(t_data *data, t_ray *ray, int x)
 	y = ray->draw_end;
 	while (y < WIN_HEIGHT)
 	{
-		put_pixel_img(&data->img, x, y, create_tex_rgb(256,	
-			data->texinfo.floor_rgb[0], data->texinfo.floor_rgb[1], 
-			data->texinfo.floor_rgb[2]));
+		put_pixel_img(&data->img, x, y, create_tex_rgb(256,
+				data->texinfo.floor_rgb[0], data->texinfo.floor_rgb[1],
+				data->texinfo.floor_rgb[2]));
 		y += 1;
 	}
 }

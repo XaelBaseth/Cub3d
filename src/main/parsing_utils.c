@@ -6,7 +6,7 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 17:10:24 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/06 09:00:23 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/11/06 09:23:01 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,16 +62,17 @@ int	save_img(t_data *data, t_img *img, char *arg)
 		return (0);
 	}
 	img->img = mlx_xpm_file_to_image(data->mlx, args[1], &size, &size);
-	img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->size_line, &img->endian);
+	img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->size_line,
+			&img->endian);
 	if (!img->addr)
 		panic(data, "Failure while getting the address of the image.");
 	return (1);
 }
 
-int save_rgb(t_data *data, int *rgb_arr, char *arg)
+int	save_rgb(t_data *data, int *rgb_arr, char *arg)
 {
-	char **args;
-	char **nbrs;
+	char	**args;
+	char	**nbrs;
 
 	args = ft_split(arg, ' ');
 	if (!args[1])
@@ -82,5 +83,5 @@ int save_rgb(t_data *data, int *rgb_arr, char *arg)
 	rgb_arr[0] = ft_atoi(nbrs[0]);
 	rgb_arr[1] = ft_atoi(nbrs[1]);
 	rgb_arr[2] = ft_atoi(nbrs[2]);
-	return (1);	
+	return (1);
 }

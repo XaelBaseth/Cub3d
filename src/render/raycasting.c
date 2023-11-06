@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 12:01:06 by acharlot          #+#    #+#             */
-/*   Updated: 2023/11/03 14:22:37 by axel             ###   ########.fr       */
+/*   Updated: 2023/11/06 09:09:46 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	find_dist_wall(t_data *data, t_ray *ray)
 
 void	find_wall_height(t_ray *ray)
 {
-	if(!ray->side)
+	if (!ray->side)
 		ray->wall_dist = ray->sidedist_x - ray->deltadist_x;
 	else
 		ray->wall_dist = ray->sidedist_y - ray->deltadist_y;
@@ -91,8 +91,7 @@ void	find_wall_height(t_ray *ray)
 		ray->draw_start = 0;
 	ray->draw_end = ray->line_height / 2 + WIN_HEIGHT / 2;
 	if (ray->draw_end >= WIN_HEIGHT)
-		ray->draw_end= WIN_HEIGHT - 1;
-	
+		ray->draw_end = WIN_HEIGHT - 1;
 	//printf("\nside : %d", ray->side);
 	//printf("\nwall_dist: %f", ray->wall_dist);
 	//printf("\nline_height: %d", ray->line_height);
