@@ -6,7 +6,7 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 09:17:15 by acharlot          #+#    #+#             */
-/*   Updated: 2023/11/06 09:22:14 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/11/06 11:38:14 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 unsigned int	extract_pixel_from_image(t_img *img, int point_x, int point_y)
 {
-	return (*(unsigned int *)(img->addr + (point_x * img->size_line)
+	return (*(unsigned int *)(img->addr + (point_y * img->size_line)
 		+ (point_x * img->bpp / 8)));
 }
 
