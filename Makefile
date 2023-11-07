@@ -18,7 +18,7 @@ HEADER		=	-I inc
 SRC_DIR		=	src/
 OBJ_DIR		=	obj/
 CC			=	gcc
-FLAGS		=	-g -Wall -Werror -Wextra #-fsanitize=address
+FLAGS		=	-Wall -Werror -Wextra -g3
 MLXFLAGS	= 	-L ./lib/minilibx -lmlx -Ilmlx_linux -lXext -lX11 -lbsd
 LIBFT		=	lib/libft
 MINILIBX	=	lib/minilibx
@@ -38,13 +38,16 @@ CYAN		=	\033[0;96m
 WHITE		=	\033[0;97m
 
 MAIN_DIR 	=	main/
-MAIN_FILES	=	cub3d init game inputs parsing parsing_utils init_mlx image panic init_player_pov
+MAIN_FILES	=	cub3d init game inputs parsing parsing_utils init_mlx image panic init_player_pov press_in minimap minimap_utils
 REND_DIR 	=	render/
 REND_FILES	=	raycasting render 
+MEN_DIR 	=	menu/
+MENU_FILES	=	menu init_menus unload highlight_buttons menu_utils
 
 
 SRC_MAI_FILE=	$(addprefix $(MAIN_DIR), $(MAIN_FILES))
 SRC_REN_FILE=	$(addprefix $(REND_DIR), $(REND_FILES))
+SRC_MEN_FILE=	$(addprefix $(MEN_DIR), $(MENU_FILES))
 
 MSRC		=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_MAI_FILE)))
 MOBJ		=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_MAI_FILE)))
@@ -52,9 +55,12 @@ MOBJ		=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_MAI_FILE)))
 RSRC		=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_REN_FILE)))
 ROBJ		=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_REN_FILE)))
 
+MENUSRC		=	$(addprefix $(MEN_DIR), $(addsuffix .c, $(SRC_MEN_FILE)))
+MENUOBJ		=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_MEN_FILE)))
+
 OBJF 		= 	.cache_exists
 
-OBJ 		=	$(MOBJ) $(ROBJ) 
+OBJ 		=	$(MOBJ) $(MENUOBJ) $(ROBJ) 
 
 all: ${NAME}
 
@@ -62,15 +68,17 @@ ${NAME}: $(OBJ)
 				@make -C $(MINILIBX)
 				@make -C $(LIBFT)
 				$(CC) $(FLAGS) $(OBJ) $(HEADER) $(MLXFLAGS) lib/libft/libft.a lib/minilibx/libmlx.a -lm -o $(NAME)
-				@$(ECHO) "$(YELLOW)[CUB3D]:\t$(ORANGE)[==========]\t$(GREEN) => Success!$(DEF_COLOR)\n"
+				@$(ECHO) "$(YELLOW)[CUB3D]:\t$(ORANGE)[==========]\t$(GREEN) => Success!$(DEF_COLOR)\n\e[?25h"
 
 $(OBJ_DIR)%.o:	$(SRC_DIR)%.c $(OBJF)
 				@$(CC) $(CFLAGS) -c $< -o $@
+				@$(ECHO) -n "\e[?25l\r\033[K$< created"
 
 $(OBJF):		
 				@mkdir -p $(OBJ_DIR)
 				@mkdir -p $(OBJ_DIR)$(MAIN_DIR)
 				@mkdir -p $(OBJ_DIR)$(REND_DIR)
+				@mkdir -p $(OBJ_DIR)$(MEN_DIR)
 				@touch $(OBJF)
 
 help: ## Print help on Makefile.

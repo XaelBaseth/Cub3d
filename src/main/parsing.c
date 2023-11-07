@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 16:26:39 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/06 09:14:43 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/11/07 09:51:27 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ void	parse_map(t_data *data, char *args[])
 {
 	if (!check_args(data, args))
 		return ;
-	data->cube_info.height = IMG_SIZE;
-	data->cube_info.width = IMG_SIZE;
+	// data->cube_info.height = IMG_SIZE;
+	// data->cube_info.width = IMG_SIZE;
 	data->map_info.height = WIN_HEIGHT;
 	data->map_info.width = WIN_WIDTH;
 }

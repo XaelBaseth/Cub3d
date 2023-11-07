@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 17:10:34 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/06 09:21:24 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/11/07 09:28:07 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,39 +17,62 @@ int	window_loop(t_data *data)
 	render_frame(data);
 	mlx_destroy_image(data->mlx, data->img.img);
 	data->img.img = NULL;
+	create_minimap(data);
 	return (SUCCESS);
 }
 
-void	print_vars(t_data *data)
+void	init_sizes(t_data *data)
 {
-	int	i;
+	data->sizes.button_x = B_SIZE_W;
+	data->sizes.button_y = B_SIZE_H;
+	data->sizes.win_x = WIN_WIDTH;
+	data->sizes.win_y = WIN_HEIGHT;
+	data->sizes.title_x = 351;
+	data->sizes.title_y = 100;
+	data->sizes.credit_x = 190;
+	data->sizes.credit_y = 25;
+}
 
-	i = 0;
-	ft_printf("Vars:\n\n");
-	ft_printf("Ceiling color: %d, %d, %d\nFloor color: %d, %d, %d\n",
-		data->map_info.ceiling_color.r, data->map_info.ceiling_color.g,
-		data->map_info.ceiling_color.b, data->map_info.floor_color.r,
-		data->map_info.floor_color.g, data->map_info.floor_color.b);
-	ft_printf("\n--------------------\nFile content:\n\n");
-	while (data->file_content[i])
-		ft_printf("%s\n", data->file_content[i++]);
-	ft_printf("\n--------------------\nMap content:\n\n");
-	i = 0;
-	while (data->map_info.level[i])
-		ft_printf("%s\n", data->map_info.level[i++]);
+void	init_game(t_data *data)
+{
+	data->mlx = mlx_init();
+	data->win = mlx_new_window(data->mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3d");
+	data->menu.bg_controls = mlx_xpm_file_to_image(data->mlx,
+			"textures/bg_controls.xpm", &data->sizes.win_x, &data->sizes.win_y);
+	data->menu.bg_menu = mlx_xpm_file_to_image(data->mlx,
+			"textures/bg_menu.xpm", &data->sizes.win_x, &data->sizes.win_y);
+	data->mouse_position.x = 0;
+	data->mouse_position.y = 0;
+	mlx_mouse_get_pos(data->mlx, data->win, &data->mouse_position.x,
+		&data->mouse_position.y);
 }
 
 int	main(int argc, char *argv[])
 {
 	t_data	data;
 
-	init_mlx(&data);
-	init_cub3d(&data);
-	data.state = IN_GAME;
-	read_file_map(&data, argv[1]);
+	init_sizes(&data);
+	data.argc = argc;
+	if (argc == 1 || argc == 2)
+		init_game(&data);
+	else
+		ft_printf("Error\n\t0 or 1 argument needed!\n");
+	if (argc == 2)
+	{
+		start_level(&data, argv[1]);
+	}
+	else if (argc == 1)
+	{
+		data.state = IN_MENU;
+		init_menu(&data);
+	}
+	else
+		exit_game(&data);
+	mlx_mouse_hide(data.mlx, data.win);
+	mlx_mouse_move(data.mlx, data.win, WIN_WIDTH / 2, WIN_HEIGHT / 2);
+	mlx_hook(data.win, 6, 1L << 6, handle_mouse, &data);
 	mlx_hook(data.win, KeyPress, KeyPressMask, &handle_keypress, &data);
 	mlx_hook(data.win, 17, 0, &exit_game, &data);
-	mlx_loop_hook(data.mlx, &window_loop, &data);
 	mlx_loop(data.mlx);
 	exit_game(&data);
 }
