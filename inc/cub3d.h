@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 08:19:10 by acharlot          #+#    #+#             */
-/*   Updated: 2023/11/07 09:51:18 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/07 12:11:12 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 ---------------------------------------------------------------------*/
 
 # define MAP_PATH "maps/"
-# define WIN_WIDTH 1280
+# define WIN_WIDTH 960
 # define WIN_HEIGHT 720
 # define MINIMAP_SIZE 192
 # define B_SIZE_H 91
