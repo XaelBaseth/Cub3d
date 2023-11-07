@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 08:19:10 by acharlot          #+#    #+#             */
-/*   Updated: 2023/11/07 17:20:19 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/07 18:21:45 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,7 @@
 									MACROS
 ---------------------------------------------------------------------*/
 
-# define FPS 30
-# define ROT_SPEED 0.02
+# define ROT_SPEED 0.03
 # define MAP_PATH "maps/"
 # define WIN_WIDTH 960
 # define WIN_HEIGHT 720

@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 17:10:34 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/07 16:34:13 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/07 17:27:42 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	window_loop(t_data *data)
 {
 	if (data->state != IN_GAME)
 		return (FAILURE);
-	usleep(1000000 / FPS);
 	render_frame(data);
 	create_minimap(data);
 	mlx_destroy_image(data->mlx, data->img.img);
