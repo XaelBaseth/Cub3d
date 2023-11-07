@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 17:10:34 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/07 09:28:07 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/07 10:02:39 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	main(int argc, char *argv[])
 	}
 	else
 		exit_game(&data);
-	mlx_mouse_hide(data.mlx, data.win);
+	// mlx_mouse_hide(data.mlx, data.win);
 	mlx_mouse_move(data.mlx, data.win, WIN_WIDTH / 2, WIN_HEIGHT / 2);
 	mlx_hook(data.win, 6, 1L << 6, handle_mouse, &data);
 	mlx_hook(data.win, KeyPress, KeyPressMask, &handle_keypress, &data);

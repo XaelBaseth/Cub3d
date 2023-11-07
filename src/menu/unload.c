@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 15:20:54 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/07 09:54:14 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/07 10:20:29 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,12 @@ void	unload(t_data *data)
 int	exit_game(t_data *data)
 {
 	unload(data);
-	if (data->argc == 2)
-		exit(0);
-	mlx_destroy_image(data->mlx, data->menu.bg_menu);
-	mlx_destroy_image(data->mlx, data->menu.bg_controls);
+	gc_free_all();
+	if (data->argc == 1)
+	{
+		mlx_destroy_image(data->mlx, data->menu.bg_menu);
+		mlx_destroy_image(data->mlx, data->menu.bg_controls);
+	}
 	if (data->state != STARTING)
 	{
 		mlx_destroy_window(data->mlx, data->win);

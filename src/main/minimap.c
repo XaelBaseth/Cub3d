@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 14:30:14 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/07 09:56:11 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/07 11:27:54 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,9 @@ int	get_map_color(t_data *data, t_vector2 pos)
 {
 	char	c;
 
-	if (pos.y > data->minimap.map_size.y || pos.x > data->minimap.map_size.x
-		|| pos.y < 0 || pos.x < 0
+	if (pos.y < 0 || pos.x < 0
+		|| pos.y > data->minimap.map_size.y
+		|| pos.x > ft_strlen(data->map_info.level[pos.y])
 		|| !data->map_info.level[pos.y] || !data->map_info.level[pos.y][pos.x])
 		return (0x1C1C1C);
 	c = data->map_info.level[pos.y][pos.x];
@@ -71,7 +72,8 @@ void	fill_pixels(t_data *data, int size_line, int bpp,
 		{
 			offset_y = mini_tmp->offset.y * data->minimap.zoom + j
 				- mini_tmp->big_shift;
-			if (offset_y >= 0 && offset_x >= 0 && offset_x < MINIMAP_SIZE)
+			// ft_printf("x: %d, y: %d\n", offset_x, offset_y);
+			if (offset_y >= 0 && offset_x >= 0 && offset_x < MINIMAP_SIZE && offset_y < MINIMAP_SIZE)
 			{
 				*(unsigned int *)(data->minimap.map_data
 						+ (offset_y * size_line + offset_x
