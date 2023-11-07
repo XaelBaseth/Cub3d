@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: axel <axel@student.42.fr>                  +#+  +:+       +#+         #
+#    By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/16 14:46:16 by cpothin           #+#    #+#              #
-#    Updated: 2023/11/03 15:02:09 by axel             ###   ########.fr        #
+#    Updated: 2023/11/07 16:57:00 by cpothin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,8 @@ CYAN		=	\033[0;96m
 WHITE		=	\033[0;97m
 
 MAIN_DIR 	=	main/
-MAIN_FILES	=	cub3d init game inputs parsing parsing_utils init_mlx image panic init_player_pov press_in minimap minimap_utils
+MAIN_FILES	=	cub3d init game inputs parsing parsing_utils init_mlx image panic \
+				init_player_pov press_in minimap minimap_utils move_player
 REND_DIR 	=	render/
 REND_FILES	=	raycasting render 
 MEN_DIR 	=	menu/

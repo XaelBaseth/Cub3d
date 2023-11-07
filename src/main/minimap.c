@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 14:30:14 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/07 11:27:54 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/07 16:03:42 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ void	fill_pixels(t_data *data, int size_line, int bpp,
 		{
 			offset_y = mini_tmp->offset.y * data->minimap.zoom + j
 				- mini_tmp->big_shift;
-			// ft_printf("x: %d, y: %d\n", offset_x, offset_y);
 			if (offset_y >= 0 && offset_x >= 0 && offset_x < MINIMAP_SIZE && offset_y < MINIMAP_SIZE)
 			{
 				*(unsigned int *)(data->minimap.map_data
@@ -116,5 +115,4 @@ void	create_minimap(t_data *data)
 		mini_tmp.offset.y++;
 	}
 	display_minimap(data);
-	mlx_destroy_image(data->mlx, data->minimap.map);
 }

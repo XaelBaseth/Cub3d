@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 08:19:10 by acharlot          #+#    #+#             */
-/*   Updated: 2023/11/07 12:11:12 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/07 16:56:26 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 									MACROS
 ---------------------------------------------------------------------*/
 
+# define FPS 30
 # define MAP_PATH "maps/"
 # define WIN_WIDTH 960
 # define WIN_HEIGHT 720
@@ -200,7 +201,6 @@ typedef struct	s_minimap_tmp
 	int			big_shift;
 }				t_minimap_tmp;
 
-
 typedef struct	s_sizes
 {
 	int	win_x;
@@ -265,7 +265,6 @@ int	create_tex_rgb(int t, int r, int g, int b);
 void	point_rays(t_data *data, t_ray *ray);
 void	find_dist_wall(t_data *data, t_ray *ray);
 void	find_wall_height(t_ray *ray);
-t_img	new_img(void	*mlx);
 void	find_wall_pixel(t_data *data, t_ray *ray);
 void	render_frame(t_data *data);
 
@@ -273,6 +272,9 @@ void	render_frame(t_data *data);
 void	init_player_pov(t_data *data);
 void	init_cub3d(t_data *data);
 int		window_loop(t_data *data);
+
+/* Move player */
+int	rotate_player(t_data *data, double rotdir);
 
 /* Parsing */
 void	read_file_map(t_data *data, char *map_name);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 09:11:10 by acharlot          #+#    #+#             */
-/*   Updated: 2023/11/06 09:20:41 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/11/07 16:03:19 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,9 @@ void	render_frame(t_data *data)
 	int		x;
 	t_ray	ray;
 
-	data->img = new_img(data->mlx);
+	data->img.img = mlx_new_image(data->mlx, WIN_WIDTH, WIN_HEIGHT);
+	data->img.addr = mlx_get_data_addr(data->img.img, &data->img.bpp,
+			&data->img.size_line, &data->img.endian);
 	x = 0;
 	while (x < WIN_WIDTH)
 	{

@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 14:17:23 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/07 09:22:42 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/07 17:01:12 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,15 @@ int	handle_keypress(int keysym, t_data *data)
 
 int	handle_mouse(int x, int y, t_data *data)
 {
+	if (data->state != IN_GAME)
+		return (FAILURE);
 	if (x != data->mouse_position.x)
 	{
-		// if (x < data->mouse_position.x)
-		// 	data->player.dir_x -= 1;
-		// else
-		// 	data->player.dir_x += 1;
+		if (x < data->mouse_position.x)
+			rotate_player(data, 1);
+		else
+			rotate_player(data, -1);
 		data->mouse_position.x = x;
-		ft_printf("x: %d\n", x);
 		if (data->mouse_position.x < WIN_WIDTH / 2 - 100)
 			mlx_mouse_move(data->mlx, data->win,
 			WIN_WIDTH / 2 + 50, WIN_HEIGHT / 2);

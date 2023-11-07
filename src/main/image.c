@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   image.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 09:17:15 by acharlot          #+#    #+#             */
-/*   Updated: 2023/11/06 11:38:14 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/11/07 13:47:09 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,6 @@ unsigned int	get_color(t_data *data, t_ray *ray)
 				ray->tex_x, ray->tex_y));
 	return (extract_pixel_from_image(&data->texinfo.south,
 			ray->tex_x, ray->tex_y));
-}
-
-t_img	new_img(void *mlx)
-{
-	t_img	new_img;
-
-	new_img.img = mlx_new_image(mlx, WIN_WIDTH, WIN_HEIGHT);
-	new_img.addr = mlx_get_data_addr(new_img.img, &new_img.bpp,
-			&new_img.size_line, &new_img.endian);
-	return (new_img);
 }
 
 void	put_pixel_img(t_img *img, int x, int y, unsigned int color)
