@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 16:54:51 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/07 17:02:14 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/07 17:20:23 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	rotate_player(t_data *data, double rotdir)
 	double	rotspeed;
 
 	moved = 0;
-	rotspeed = 0.02 * rotdir;
+	rotspeed = ROT_SPEED * rotdir;
 	moved += rotate_left_right(data, rotspeed);
 	return (moved);
 }
