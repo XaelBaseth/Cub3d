@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 17:56:38 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/08 08:47:14 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/11/08 11:04:07 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,27 @@
 t_vector2	max_map_size(t_data *data)
 {
 	t_vector2	vec;
+	t_vector2	pos;
 	int			cur_max;
 	int			max;
-	int			x;
-	int			y;
 
-	y = 0;
+	pos.y = 0;
 	max = 0;
 	vec.x = 0;
-	while (data->map_info.level[y])
+	while (data->map_info.level[pos.y])
 	{
-		x = 0;
+		pos.x = 0;
 		cur_max = 0;
-		while (data->map_info.level[y][x])
+		while (data->map_info.level[pos.y][pos.x])
 		{
 			cur_max++;
-			x++;
+			pos.x++;
 		}
 		if (cur_max > vec.x)
 			vec.x = cur_max;
-		y++;
+		pos.y++;
 	}
-	vec.y = y;
+	vec.y = pos.y;
 	return (vec);
 }
 

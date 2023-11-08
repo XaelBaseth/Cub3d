@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   press_in.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 10:33:05 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/08 10:19:08 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/11/08 11:18:31 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ void	press_in_controls(int keysym, t_data *data)
 /* Checks which key is pressed when inside the menu */
 void	press_in_menu(int keysym, t_data *data)
 {
-	if (keysym == XK_w)
+	if (keysym == XK_w || keysym == XK_Up)
 		highlight_button(data, UP, data->menu.buttons);
-	else if (keysym == XK_s)
+	else if (keysym == XK_s || keysym == XK_Down)
 		highlight_button(data, DOWN, data->menu.buttons);
 	else if (keysym == XK_Return || keysym == XK_space)
 	{
@@ -57,6 +57,7 @@ void	press_in_menu(int keysym, t_data *data)
 
 void	press_in_game(int keysym, t_data *data)
 {
+	// printf("code: %x\n", keysym);
 	if (keysym == XK_Escape)
 	{
 		if (data->argc == 2)
@@ -72,18 +73,18 @@ void	press_in_game(int keysym, t_data *data)
 		ft_printf("\ns pressed in game\n");
 	else if (keysym == XK_d)
 		ft_printf("\nd pressed in game\n");
-	else if (keysym == 65451)
+	else if (keysym == XK_KP_Add)
 		zoom_in(data);
-	else if (keysym == 65453)
+	else if (keysym == XK_KP_Subtract)
 		zoom_out(data);
 }
 
 /* Checks which key is pressed when inside the game menu */
 void	press_in_game_menu(int keysym, t_data *data)
 {
-	if (keysym == XK_w)
+	if (keysym == XK_w || keysym == XK_Up)
 		highlight_button(data, UP, data->menu.ig_buttons);
-	else if (keysym == XK_s)
+	else if (keysym == XK_s || keysym == XK_Down)
 		highlight_button(data, DOWN, data->menu.ig_buttons);
 	else if (keysym == XK_Return || keysym == XK_space)
 	{
