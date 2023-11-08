@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+         #
+#    By: axel <axel@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/16 14:46:16 by cpothin           #+#    #+#              #
-#    Updated: 2023/11/08 11:20:05 by acharlot         ###   ########.fr        #
+#    Updated: 2023/11/08 17:42:34 by axel             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ PARS_FILES	=	parsing parsing_utils
 MMAP_DIR	=	minimap/
 MMAP_FILES	=	minimap minimap_utils
 INPU_DIR	=	inputs/
-INPU_FILES	=	inputs press_in move_player rotate_player
+INPU_FILES	=	inputs press_in move_player rotate_player valid_move
 
 SRC_MAI_FILE=	$(addprefix $(MAIN_DIR), $(MAIN_FILES))
 SRC_REN_FILE=	$(addprefix $(REND_DIR), $(REND_FILES))

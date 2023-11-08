@@ -3,54 +3,67 @@
 /*                                                        :::      ::::::::   */
 /*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:20:00 by acharlot          #+#    #+#             */
-/*   Updated: 2023/11/08 13:36:43 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/11/08 18:16:52 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-#define MOVESPEED 0.08f
-#define MARGIN	0.1f
-
-void	move_up(t_data *this)
+static int	move_forward(t_data *data)
 {
-	if (this->map_info.level[(int)(this->player.pos_y)]
-		[(int)(this->player.pos_x + this->camera.dir_x * MARGIN)] != 1)
-			this->player.pos_x += this->camera.dir_x * MOVESPEED;
-	if (this->map_info.level[(int)(this->player.pos_y - this->camera.dir_y * MARGIN)]
-		[(int)(this->player.pos_x)] != 1)
-			this->player.pos_y -= this->camera.dir_y * MOVESPEED;
+	double	new_x;
+	double	new_y;
+
+	new_x = data->player.pos_x + data->camera.dir_x * MOVESPEED;
+	new_y = data->player.pos_y + data->camera.dir_y * MOVESPEED;
+	return (validate_move(data, new_x, new_y));
 }
 
-void	move_left(t_data *this)
+static int	move_backward(t_data *data)
 {
-	if (this->map_info.level[(int)(this->player.pos_y)]
-		[(int)(this->player.pos_x - this->camera.dir_y * MARGIN)] != 1)
-		this->player.pos_x -= this->camera.dir_y * MOVESPEED;
-	if (this->map_info.level[(int)(this->player.pos_y - this->camera.dir_x * MARGIN)]
-		[(int)(this->player.pos_x)] != 1)
-			this->player.pos_y -= this->camera.dir_x * MOVESPEED;
+	double	new_x;
+	double	new_y;
+
+	new_x = data->player.pos_x - data->camera.dir_x * MOVESPEED;
+	new_y = data->player.pos_y - data->camera.dir_y * MOVESPEED;
+	return (validate_move(data, new_x, new_y));
 }
 
-void	move_down(t_data *this)
+static int	move_left(t_data *data)
 {
-	if (this->map_info.level[(int)(this->player.pos_y)]
-		[(int)(this->player.pos_x - this->camera.dir_x * MARGIN)] != 1)
-		this->player.pos_x -= this->camera.dir_x * MOVESPEED;
-	if (this->map_info.level[(int)(this->player.pos_y + this->camera.dir_y * MARGIN)]
-		[(int)(this->player.pos_x)] != 1)
-		this->player.pos_y += this->camera.dir_y * MOVESPEED;
+	double	new_x;
+	double	new_y;
+
+	new_x = data->player.pos_x + data->camera.dir_y * MOVESPEED;
+	new_y = data->player.pos_y - data->camera.dir_x * MOVESPEED;
+	return (validate_move(data, new_x, new_y));
 }
 
-void	move_right(t_data *this)
+static int	move_right(t_data *data)
 {
-	if (this->map_info.level[(int)(this->player.pos_y)]
-		[(int)(this->player.pos_x + this->camera.dir_y * MARGIN)] != 1)
-		this->player.pos_x += this->camera.dir_y * MOVESPEED;
-	if (this->map_info.level[(int)(this->player.pos_y + this->camera.dir_x * MARGIN)]
-		[(int)(this->player.pos_x)] != 1)
-		this->player.pos_y += this->camera.dir_x * MOVESPEED;
+	double	new_x;
+	double	new_y;
+
+	new_x = data->player.pos_x - data->camera.dir_y * MOVESPEED;
+	new_y = data->player.pos_y + data->camera.dir_x * MOVESPEED;
+	return (validate_move(data, new_x, new_y));
+}
+
+int	move_player(t_data *data)
+{
+	int	moved;
+
+	moved = 0;
+	if (data->player.move_y == -1)
+		moved += move_forward(data);
+	if (data->player.move_y == 1)
+		moved += move_backward(data);
+	if (data->player.move_x == 1)
+		moved += move_left(data);
+	if (data->player.move_x == -1)
+		moved += move_right(data);
+	return (moved);
 }

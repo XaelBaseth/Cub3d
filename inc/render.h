@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 08:37:10 by acharlot          #+#    #+#             */
-/*   Updated: 2023/11/08 10:03:31 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/11/08 18:35:36 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,9 @@ typedef struct s_player
 	char	dir;
 	double	pos_x;
 	double	pos_y;
+	int		has_moved;
+	int		move_x;
+	int		move_y;
 }				t_player;
 
 typedef struct s_img
