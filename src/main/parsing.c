@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 16:26:39 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/07 09:51:27 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/08 08:02:46 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,6 @@ int	check_args(t_data *data, char *lines[])
 	if (lines[5][0] == 'C' && lines[5][1] == ' ')
 		if (save_rgb(data, data->texinfo.sky_rgb, lines[5]) == 0)
 			return (0);
-	//printf("Image data: %p\n", data->texinfo.north.img);
-	//if (&data->texinfo.north.addr)
-	//	printf("data but unreadable!\n");
-	//printf("Address: %s\n", data->texinfo.north.addr);
-	//printf("Bits per pixel: %d\n", data->texinfo.north.bpp);
-	//printf("Size of a line: %d\n", data->texinfo.north.size_line);
-	//printf("Endian: %d\n", data->texinfo.north.endian);
 	return (1);
 }
 

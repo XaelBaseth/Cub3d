@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 08:19:10 by acharlot          #+#    #+#             */
-/*   Updated: 2023/11/07 18:21:45 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/08 07:56:35 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -272,6 +272,8 @@ void	render_frame(t_data *data);
 void	init_player_pov(t_data *data);
 void	init_cub3d(t_data *data);
 int		window_loop(t_data *data);
+void	init_sizes(t_data *data);
+void	init_game(t_data *data);
 
 /* Move player */
 int	rotate_player(t_data *data, double rotdir);

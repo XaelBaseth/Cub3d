@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 17:10:34 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/07 17:27:42 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/08 08:00:51 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,30 +25,14 @@ int	window_loop(t_data *data)
 	return (SUCCESS);
 }
 
-void	init_sizes(t_data *data)
+void	hook_and_run(t_data *data)
 {
-	data->sizes.button_x = B_SIZE_W;
-	data->sizes.button_y = B_SIZE_H;
-	data->sizes.win_x = WIN_WIDTH;
-	data->sizes.win_y = WIN_HEIGHT;
-	data->sizes.title_x = 351;
-	data->sizes.title_y = 100;
-	data->sizes.credit_x = 190;
-	data->sizes.credit_y = 25;
-}
-
-void	init_game(t_data *data)
-{
-	data->mlx = mlx_init();
-	data->win = mlx_new_window(data->mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3d");
-	data->menu.bg_controls = mlx_xpm_file_to_image(data->mlx,
-			"textures/bg_controls.xpm", &data->sizes.win_x, &data->sizes.win_y);
-	data->menu.bg_menu = mlx_xpm_file_to_image(data->mlx,
-			"textures/bg_menu.xpm", &data->sizes.win_x, &data->sizes.win_y);
-	data->mouse_position.x = 0;
-	data->mouse_position.y = 0;
-	mlx_mouse_get_pos(data->mlx, data->win, &data->mouse_position.x,
-		&data->mouse_position.y);
+	mlx_mouse_hide(data->mlx, data->win);
+	mlx_mouse_move(data->mlx, data->win, WIN_WIDTH / 2, WIN_HEIGHT / 2);
+	mlx_hook(data->win, MotionNotify, PointerMotionMask, handle_mouse, data);
+	mlx_hook(data->win, KeyPress, KeyPressMask, &handle_keypress, data);
+	mlx_hook(data->win, 17, 0, &exit_game, data);
+	mlx_loop(data->mlx);
 }
 
 int	main(int argc, char *argv[])
@@ -72,11 +56,6 @@ int	main(int argc, char *argv[])
 	}
 	else
 		exit_game(&data);
-	mlx_mouse_hide(data.mlx, data.win);
-	mlx_mouse_move(data.mlx, data.win, WIN_WIDTH / 2, WIN_HEIGHT / 2);
-	mlx_hook(data.win, MotionNotify, PointerMotionMask, handle_mouse, &data);
-	mlx_hook(data.win, KeyPress, KeyPressMask, &handle_keypress, &data);
-	mlx_hook(data.win, 17, 0, &exit_game, &data);
-	mlx_loop(data.mlx);
+	hook_and_run(&data);
 	exit_game(&data);
 }

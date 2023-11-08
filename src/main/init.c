@@ -6,7 +6,7 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 09:11:28 by acharlot          #+#    #+#             */
-/*   Updated: 2023/11/06 09:12:06 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/11/08 08:02:25 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,29 @@ void	init_ray(t_data *data, t_ray *ray, int x)
 	ray->map_y = (int)data->player.pos_y;
 	ray->deltadist_x = fabs(1 / ray->dir_x);
 	ray->deltadist_y = fabs(1 / ray->dir_y);
-	//printf("camera_x: %f\n", ray->camera_x);
-	//printf("dir_x: %f\n", ray->dir_x);
-	//printf("camera.dir_x: %f\n", data->camera.dir_x);
-	//printf("camera.plane_x: %f\n", data->camera.plane_x);
-	//printf("dir_y: %f\n", ray->dir_y);
-	//printf("camera.dir_y: %f\n", data->camera.dir_y);
-	//printf("camera_plane_y : %f\n", data->camera.plane_y);	
-	//printf("map_x: %d\n", ray->map_x);
-	//printf("player.pos_x : %f\n", data->player.pos_x);
-	//printf("map_y: %d\n", ray->map_y);
-	//printf("player.pos_y: %f\n", data->player.pos_y);
-	//printf("deltadist_x: %f\n", ray->deltadist_x);
-	//printf("deltadist_y: %f\n", ray->deltadist_y);
+}
+void	init_sizes(t_data *data)
+{
+	data->sizes.button_x = B_SIZE_W;
+	data->sizes.button_y = B_SIZE_H;
+	data->sizes.win_x = WIN_WIDTH;
+	data->sizes.win_y = WIN_HEIGHT;
+	data->sizes.title_x = 351;
+	data->sizes.title_y = 100;
+	data->sizes.credit_x = 190;
+	data->sizes.credit_y = 25;
+}
+
+void	init_game(t_data *data)
+{
+	data->mlx = mlx_init();
+	data->win = mlx_new_window(data->mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3d");
+	data->menu.bg_controls = mlx_xpm_file_to_image(data->mlx,
+			"textures/bg_controls.xpm", &data->sizes.win_x, &data->sizes.win_y);
+	data->menu.bg_menu = mlx_xpm_file_to_image(data->mlx,
+			"textures/bg_menu.xpm", &data->sizes.win_x, &data->sizes.win_y);
+	data->mouse_position.x = 0;
+	data->mouse_position.y = 0;
+	mlx_mouse_get_pos(data->mlx, data->win, &data->mouse_position.x,
+		&data->mouse_position.y);
 }
