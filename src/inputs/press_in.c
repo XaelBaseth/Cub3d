@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 10:33:05 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/08 11:18:31 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/08 11:39:11 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ void	press_in_menu(int keysym, t_data *data)
 
 void	press_in_game(int keysym, t_data *data)
 {
-	// printf("code: %x\n", keysym);
 	if (keysym == XK_Escape)
 	{
 		if (data->argc == 2)

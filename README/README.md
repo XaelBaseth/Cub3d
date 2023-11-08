@@ -38,3 +38,5 @@ The two outer lines, left and right border of the screen, with the angle between
 <ul><a href="https://lodev.org/cgtutor/raycasting.html">Raycasting Basic</a></ul>
 <ul><a href="https://en.wikipedia.org/wiki/Digital_differential_analyzer_(graphics_algorithm)">Digital Differential Analyzer</a></ul>
 <ul><a href="https://github.com/Saxsori/ray-cast">More human comprehension of raycasting</a></ul>
+<ul><a href="https://harm-smits.github.io/42docs/libs/minilibx">Minilibx docs</a></ul>
+<ul><a href="https://www.cl.cam.ac.uk/~mgk25/ucs/keysymdef.h">Keysyms</a></ul>
