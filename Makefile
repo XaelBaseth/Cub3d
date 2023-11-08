@@ -6,7 +6,7 @@
 #    By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/16 14:46:16 by cpothin           #+#    #+#              #
-#    Updated: 2023/11/08 08:47:32 by acharlot         ###   ########.fr        #
+#    Updated: 2023/11/08 11:20:05 by acharlot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,9 +38,9 @@ CYAN		=	\033[0;96m
 WHITE		=	\033[0;97m
 
 MAIN_DIR 	=	main/
-MAIN_FILES	=	cub3d  game panic
+MAIN_FILES	=	cub3d game panic
 REND_DIR 	=	render/
-REND_FILES	=	raycasting render  image 
+REND_FILES	=	raycasting render image 
 MENU_DIR 	=	menu/
 MENU_FILES	=	menu init_menus unload highlight_buttons menu_utils
 INIT_DIR	= 	init/
@@ -50,8 +50,7 @@ PARS_FILES	=	parsing parsing_utils
 MMAP_DIR	=	minimap/
 MMAP_FILES	=	minimap minimap_utils
 INPU_DIR	=	inputs/
-INPU_FILES	=	inputs press_in move_player
-
+INPU_FILES	=	inputs press_in move_player rotate_player
 
 SRC_MAI_FILE=	$(addprefix $(MAIN_DIR), $(MAIN_FILES))
 SRC_REN_FILE=	$(addprefix $(REND_DIR), $(REND_FILES))
