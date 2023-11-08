@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 14:30:14 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/07 16:03:42 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/08 09:40:46 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,14 +82,6 @@ void	fill_pixels(t_data *data, int size_line, int bpp,
 	}
 }
 
-/* Displays the minimap image in the lower right corner of the window,
-	where the minimap square is. */
-void	display_minimap(t_data *data)
-{
-	mlx_put_image_to_window(data->mlx, data->win, data->minimap.map,
-		data->minimap.up_left.x + 1, data->minimap.up_left.y + 1);
-}
-
 void	create_minimap(t_data *data)
 {
 	t_minimap_tmp	mini_tmp;
@@ -114,5 +106,4 @@ void	create_minimap(t_data *data)
 		mini_tmp.pos.y++;
 		mini_tmp.offset.y++;
 	}
-	display_minimap(data);
 }

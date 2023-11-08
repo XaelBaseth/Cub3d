@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 17:10:34 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/08 08:00:51 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/11/08 09:40:36 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ int	window_loop(t_data *data)
 {
 	if (data->state != IN_GAME)
 		return (FAILURE);
-	render_frame(data);
 	create_minimap(data);
+	render_frame(data);
 	mlx_destroy_image(data->mlx, data->img.img);
 	mlx_destroy_image(data->mlx, data->minimap.map);
 	data->minimap.map = NULL;
