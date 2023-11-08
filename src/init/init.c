@@ -6,7 +6,7 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 09:11:28 by acharlot          #+#    #+#             */
-/*   Updated: 2023/11/08 08:02:25 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/11/08 10:17:18 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	init_ray(t_data *data, t_ray *ray, int x)
 	ray->deltadist_x = fabs(1 / ray->dir_x);
 	ray->deltadist_y = fabs(1 / ray->dir_y);
 }
+
 void	init_sizes(t_data *data)
 {
 	data->sizes.button_x = B_SIZE_W;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   highlight_buttons.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 08:41:26 by cpothin           #+#    #+#             */
-/*   Updated: 2023/10/20 08:47:05 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/08 10:06:01 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	highlight_next(t_data *data, t_button *buttons, int nb)
 		button->lit, button->pos_x, button->pos_y);
 }
 
-void	highlight_button(t_data *data, e_direction direction, t_button *buttons)
+void	highlight_button(t_data *data, t_direction direction, t_button *buttons)
 {
 	t_button	*button;
 

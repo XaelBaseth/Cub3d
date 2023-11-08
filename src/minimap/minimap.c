@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 14:30:14 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/07 16:03:42 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/08 10:18:40 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,8 @@ void	fill_pixels(t_data *data, int size_line, int bpp,
 		{
 			offset_y = mini_tmp->offset.y * data->minimap.zoom + j
 				- mini_tmp->big_shift;
-			if (offset_y >= 0 && offset_x >= 0 && offset_x < MINIMAP_SIZE && offset_y < MINIMAP_SIZE)
+			if (offset_y >= 0 && offset_x >= 0 && offset_x < MINIMAP_SIZE
+				&& offset_y < MINIMAP_SIZE)
 			{
 				*(unsigned int *)(data->minimap.map_data
 						+ (offset_y * size_line + offset_x
