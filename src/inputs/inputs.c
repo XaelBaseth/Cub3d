@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inputs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 14:17:23 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/08 07:55:17 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/11/08 10:36:46 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,22 +31,12 @@ int	handle_mouse(int x, int y, t_data *data)
 {
 	if (data->state != IN_GAME)
 		return (FAILURE);
-	data->mouse_position.y = y;
-	if (data->mouse_position.y < 50)
-		mlx_mouse_move(data->mlx, data->win, WIN_WIDTH - 100, WIN_HEIGHT - 100);
-	else if (data->mouse_position.y > WIN_HEIGHT - 50)
-		mlx_mouse_move(data->mlx, data->win, 100, 50);
-	if (x != data->mouse_position.x)
+	if (x != data->mouse_position.x || y != data->mouse_position.y)
 	{
-		if (x < data->mouse_position.x)
-			rotate_player(data, 1);
-		else
-			rotate_player(data, -1);
-		data->mouse_position.x = x;
-		if (data->mouse_position.x < 50)
-			mlx_mouse_move(data->mlx, data->win, WIN_WIDTH - 100,
-				WIN_HEIGHT / 2);
-		else if (data->mouse_position.x > WIN_WIDTH - 50)
-			mlx_mouse_move(data->mlx, data->win, 100, WIN_HEIGHT / 2);
+		rotate_player(data, (double)(data->mouse_position.x - x) / 20.0);
+		data->mouse_position.y = WIN_HEIGHT / 2;
+		data->mouse_position.x = WIN_WIDTH / 2;
+		mlx_mouse_move(data->mlx, data->win, WIN_WIDTH / 2,
+			WIN_HEIGHT / 2);
 	}
 }

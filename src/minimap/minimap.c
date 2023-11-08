@@ -6,7 +6,7 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 14:30:14 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/08 10:18:40 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/11/08 10:49:33 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,22 +55,21 @@ int	get_map_color(t_data *data, t_vector2 pos)
 void	fill_pixels(t_data *data, int size_line, int bpp,
 	t_minimap_tmp *mini_tmp)
 {
-	int	i;
-	int	j;
-	int	color;
-	int	offset_x;
-	int	offset_y;
+	t_vector2	vector;
+	int			color;
+	int			offset_x;
+	int			offset_y;
 
 	color = get_map_color(data, mini_tmp->pos);
-	i = -1;
-	while (++i <= data->minimap.zoom)
+	vector.x = -1;
+	while (++vector.x <= data->minimap.zoom)
 	{
-		j = -1;
-		offset_x = mini_tmp->offset.x * data->minimap.zoom + i
+		vector.y = -1;
+		offset_x = mini_tmp->offset.x * data->minimap.zoom + vector.x
 			- mini_tmp->big_shift;
-		while (++j <= data->minimap.zoom)
+		while (++vector.y <= data->minimap.zoom)
 		{
-			offset_y = mini_tmp->offset.y * data->minimap.zoom + j
+			offset_y = mini_tmp->offset.y * data->minimap.zoom + vector.y
 				- mini_tmp->big_shift;
 			if (offset_y >= 0 && offset_x >= 0 && offset_x < MINIMAP_SIZE
 				&& offset_y < MINIMAP_SIZE)
@@ -81,14 +80,6 @@ void	fill_pixels(t_data *data, int size_line, int bpp,
 			}
 		}
 	}
-}
-
-/* Displays the minimap image in the lower right corner of the window,
-	where the minimap square is. */
-void	display_minimap(t_data *data)
-{
-	mlx_put_image_to_window(data->mlx, data->win, data->minimap.map,
-		data->minimap.up_left.x + 1, data->minimap.up_left.y + 1);
 }
 
 void	create_minimap(t_data *data)
@@ -115,5 +106,4 @@ void	create_minimap(t_data *data)
 		mini_tmp.pos.y++;
 		mini_tmp.offset.y++;
 	}
-	display_minimap(data);
 }
