@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 14:30:14 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/08 10:39:49 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/08 10:48:43 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ void	fill_pixels(t_data *data, int size_line, int bpp,
 	t_minimap_tmp *mini_tmp)
 {
 	t_vector2	vector;
-	int	color;
-	int	offset_x;
-	int	offset_y;
+	int			color;
+	int			offset_x;
+	int			offset_y;
 
 	color = get_map_color(data, mini_tmp->pos);
 	vector.x = -1;
