@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 14:12:19 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/07 09:42:36 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/08 10:16:30 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,5 @@ void	start_level(t_data *data, char *map_name)
 	init_cub3d(data);
 	read_file_map(data, map_name);
 	init_minimap(data);
-	// draw_outline(data);
 	mlx_loop_hook(data->mlx, &window_loop, data);
 }

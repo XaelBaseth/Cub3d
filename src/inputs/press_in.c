@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   press_in.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 10:33:05 by cpothin           #+#    #+#             */
-/*   Updated: 2023/10/23 18:02:04 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/08 10:19:08 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	press_in_menu(int keysym, t_data *data)
 		{
 			unload(data);
 			start_level(data, "test.cub");
-			// trigger_level_selection(data, true);
 		}
 		else if (data->menu.cur_button == 1)
 			trigger_controls(data, true, true);

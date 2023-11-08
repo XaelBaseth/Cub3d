@@ -6,7 +6,7 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 17:10:24 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/06 09:23:01 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/11/08 08:04:02 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,23 +28,6 @@ void	exit_message(char *msg, int *fd)
 	ft_printf("%s", msg);
 	close(*fd);
 	exit(0);
-}
-
-int	save_color(t_data *data, t_color *var, char *arg)
-{
-	char	**args;
-	char	**nbrs;
-
-	args = ft_split(arg, ' ');
-	if (!args[1])
-		return (0);
-	nbrs = ft_split(args[1], ',');
-	if (!check_nbr(nbrs[0]) || !check_nbr(nbrs[1]) || !check_nbr(nbrs[2]))
-		return (0);
-	var->r = ft_atoi(nbrs[0]);
-	var->g = ft_atoi(nbrs[1]);
-	var->b = ft_atoi(nbrs[2]);
-	return (1);
 }
 
 int	save_img(t_data *data, t_img *img, char *arg)

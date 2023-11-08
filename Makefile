@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+         #
+#    By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/16 14:46:16 by cpothin           #+#    #+#              #
-#    Updated: 2023/11/07 16:57:00 by cpothin          ###   ########.fr        #
+#    Updated: 2023/11/08 08:47:32 by acharlot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,30 +38,54 @@ CYAN		=	\033[0;96m
 WHITE		=	\033[0;97m
 
 MAIN_DIR 	=	main/
-MAIN_FILES	=	cub3d init game inputs parsing parsing_utils init_mlx image panic \
-				init_player_pov press_in minimap minimap_utils move_player
+MAIN_FILES	=	cub3d  game panic
 REND_DIR 	=	render/
-REND_FILES	=	raycasting render 
-MEN_DIR 	=	menu/
+REND_FILES	=	raycasting render  image 
+MENU_DIR 	=	menu/
 MENU_FILES	=	menu init_menus unload highlight_buttons menu_utils
+INIT_DIR	= 	init/
+INIT_FILES	=	init_mlx init_player_pov init init_minimap
+PARS_DIR	=	parsing/
+PARS_FILES	=	parsing parsing_utils
+MMAP_DIR	=	minimap/
+MMAP_FILES	=	minimap minimap_utils
+INPU_DIR	=	inputs/
+INPU_FILES	=	inputs press_in move_player
 
 
 SRC_MAI_FILE=	$(addprefix $(MAIN_DIR), $(MAIN_FILES))
 SRC_REN_FILE=	$(addprefix $(REND_DIR), $(REND_FILES))
-SRC_MEN_FILE=	$(addprefix $(MEN_DIR), $(MENU_FILES))
+SRC_MEN_FILE=	$(addprefix $(MENU_DIR), $(MENU_FILES))
+SRC_INI_FILE=	$(addprefix $(INIT_DIR), $(INIT_FILES))
+SRC_PAR_FILE=	$(addprefix $(PARS_DIR), $(PARS_FILES))
+SRC_MAP_FILE=	$(addprefix $(MMAP_DIR), $(MMAP_FILES))
+SRC_INP_FILE=	$(addprefix $(INPU_DIR), $(INPU_FILES))
 
-MSRC		=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_MAI_FILE)))
-MOBJ		=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_MAI_FILE)))
+MAINSRC		=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_MAI_FILE)))
+MAINOBJ		=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_MAI_FILE)))
 
-RSRC		=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_REN_FILE)))
-ROBJ		=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_REN_FILE)))
+RENDSRC		=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_REN_FILE)))
+RENDOBJ		=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_REN_FILE)))
 
-MENUSRC		=	$(addprefix $(MEN_DIR), $(addsuffix .c, $(SRC_MEN_FILE)))
+MENUSRC		=	$(addprefix $(MENU_DIR), $(addsuffix .c, $(SRC_MEN_FILE)))
 MENUOBJ		=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_MEN_FILE)))
+
+INITSRC		=	$(addprefix $(INIT_DIR), $(addsuffix .c, $(SRC_INI_FILE)))
+INITOBJ		=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_INI_FILE)))
+
+PARSSRC		=	$(addprefix $(PARS_DIR), $(addsuffix .c, $(SRC_PAR_FILE)))
+PARSOBJ		=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_PAR_FILE)))
+
+MMAPSRC		=	$(addprefix $(MMAP_DIR), $(addsuffix .c, $(SRC_MAP_FILE)))
+MMAPOBJ		=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_MAP_FILE)))
+
+INPUSRC		=	$(addprefix $(INPU_DIR_DIR), $(addsuffix .c, $(SRC_INP_FILE)))
+INPUOBJ		=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_INP_FILE)))
+
 
 OBJF 		= 	.cache_exists
 
-OBJ 		=	$(MOBJ) $(MENUOBJ) $(ROBJ) 
+OBJ 		=	$(MAINOBJ) $(MENUOBJ) $(RENDOBJ) $(INITOBJ) $(PARSOBJ) $(MMAPOBJ) $(INPUOBJ)
 
 all: ${NAME}
 
@@ -79,7 +103,11 @@ $(OBJF):
 				@mkdir -p $(OBJ_DIR)
 				@mkdir -p $(OBJ_DIR)$(MAIN_DIR)
 				@mkdir -p $(OBJ_DIR)$(REND_DIR)
-				@mkdir -p $(OBJ_DIR)$(MEN_DIR)
+				@mkdir -p $(OBJ_DIR)$(MENU_DIR)
+				@mkdir -p $(OBJ_DIR)$(INIT_DIR)
+				@mkdir -p $(OBJ_DIR)$(PARS_DIR)
+				@mkdir -p $(OBJ_DIR)$(MMAP_DIR)
+				@mkdir -p $(OBJ_DIR)$(INPU_DIR)
 				@touch $(OBJF)
 
 help: ## Print help on Makefile.

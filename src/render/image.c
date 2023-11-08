@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   image.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 09:17:15 by acharlot          #+#    #+#             */
-/*   Updated: 2023/11/07 13:47:09 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/08 10:16:42 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,6 @@ void	put_pixel_img(t_img *img, int x, int y, unsigned int color)
 {
 	char	*dest;
 
-	//printf("\nx : %d", x);
-	//printf("\ny : %d", y);
-	//printf("\ncolor : %d", color);
 	dest = img->addr + (y * img->size_line + x * (img->bpp / 8));
 	*(unsigned int *)dest = color;
 }
