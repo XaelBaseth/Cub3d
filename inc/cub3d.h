@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 08:19:10 by acharlot          #+#    #+#             */
-/*   Updated: 2023/11/08 10:14:10 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/11/08 14:15:35 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef enum g_state
 /*-----------------------------------------------------------------------------
 								STRUCTURES
 -----------------------------------------------------------------------------*/
+
 typedef struct s_vector2		t_vector2;
 typedef struct s_minimap		t_minimap;
 typedef struct s_button			t_button;

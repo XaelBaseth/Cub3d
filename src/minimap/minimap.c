@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 14:30:14 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/08 11:21:25 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/11/08 15:32:27 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,13 @@ int	get_map_color(t_data *data, t_vector2 pos)
 	c = data->map_info.level[pos.y][pos.x];
 	if (c == '1')
 		return (0x404050);
-	else if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
+	else if ((int)data->player.pos_x == pos.x
+		&& (int)data->player.pos_y == pos.y)
 		return (0xFF4466);
+	else if (c == 'N' || c == 'S' || c == 'W' || c == 'E' || c == '0')
+		return (0x888892);
 	else if (c == 'D')
 		return (0xBBBB99);
-	else if (c == '0')
-		return (0x888892);
 	return (0x1C1C1C);
 }
 

@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 10:33:05 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/08 13:41:02 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/08 14:34:05 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,17 +65,29 @@ void	press_in_game(int keysym, t_data *data)
 			trigger_menu_ig(data, true);
 	}
 	if (keysym == XK_w)
-		move_up(data);
+		data->player.movement.y -= 1;
 	else if (keysym == XK_a)
-		move_left(data);
+		data->player.movement.x -= 1;
 	else if (keysym == XK_s)
-		move_down(data);
+		data->player.movement.y += 1;
 	else if (keysym == XK_d)
-		move_right(data);	
+		data->player.movement.x += 1;
 	else if (keysym == XK_KP_Add)
 		zoom_in(data);
 	else if (keysym == XK_KP_Subtract)
 		zoom_out(data);
+}
+
+void	release_in_game(int keysym, t_data *data)
+{
+	if (keysym == XK_w)
+		data->player.movement.y += 1;
+	else if (keysym == XK_a)
+		data->player.movement.x += 1;
+	else if (keysym == XK_s)
+		data->player.movement.y -= 1;
+	else if (keysym == XK_d)
+		data->player.movement.x -= 1;
 }
 
 /* Checks which key is pressed when inside the game menu */

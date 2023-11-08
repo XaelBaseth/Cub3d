@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 17:10:34 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/08 09:40:36 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/08 15:35:38 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	window_loop(t_data *data)
 {
 	if (data->state != IN_GAME)
 		return (FAILURE);
+	move_player(data);
 	create_minimap(data);
 	render_frame(data);
 	mlx_destroy_image(data->mlx, data->img.img);
@@ -29,8 +30,11 @@ void	hook_and_run(t_data *data)
 {
 	mlx_mouse_hide(data->mlx, data->win);
 	mlx_mouse_move(data->mlx, data->win, WIN_WIDTH / 2, WIN_HEIGHT / 2);
+	data->mouse_position.y = WIN_HEIGHT / 2;
+	data->mouse_position.x = WIN_WIDTH / 2;
 	mlx_hook(data->win, MotionNotify, PointerMotionMask, handle_mouse, data);
 	mlx_hook(data->win, KeyPress, KeyPressMask, &handle_keypress, data);
+	mlx_hook(data->win, KeyRelease, KeyReleaseMask, &handle_keyrelease, data);
 	mlx_hook(data->win, 17, 0, &exit_game, data);
 	mlx_loop(data->mlx);
 }

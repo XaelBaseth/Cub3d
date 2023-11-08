@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 08:37:10 by acharlot          #+#    #+#             */
-/*   Updated: 2023/11/08 10:03:31 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/11/08 14:19:32 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 									LIBRAIRIES
 -----------------------------------------------------------------------------*/
 # include "cub3d.h"
+# include "minimap.h"
 
 /*-----------------------------------------------------------------------------
 									MACRO
@@ -66,9 +67,10 @@ typedef struct s_camera
 
 typedef struct s_player
 {
-	char	dir;
-	double	pos_x;
-	double	pos_y;
+	char		dir;
+	double		pos_x;
+	double		pos_y;
+	t_vector2	movement;
 }				t_player;
 
 typedef struct s_img

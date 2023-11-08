@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 14:17:23 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/08 10:36:46 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/08 13:49:38 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@ int	handle_keypress(int keysym, t_data *data)
 		press_in_controls(keysym, data);
 	else if (data->state == IN_GAME)
 		press_in_game(keysym, data);
+	return (0);
+}
+int	handle_keyrelease(int keysym, t_data *data)
+{
+	if (data->state == IN_GAME)
+		release_in_game(keysym, data);
 	return (0);
 }
 
