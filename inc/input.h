@@ -6,7 +6,7 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 08:44:53 by acharlot          #+#    #+#             */
-/*   Updated: 2023/11/08 10:04:44 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/11/08 13:28:01 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 -----------------------------------------------------------------------------*/
 
 # define ROT_SPEED 0.03
+
 
 /*-----------------------------------------------------------------------------
 									STRUCTURES
@@ -42,5 +43,9 @@ void	press_in_game(int keysym, t_data *data);
 void	press_in_menu(int keysym, t_data *data);
 void	press_in_controls(int keysym, t_data *data);
 void	press_in_lvl_selection(int keysym, t_data *data);
+void	move_up(t_data *this);
+void	move_left(t_data *this);
+void	move_down(t_data *this);
+void	move_right(t_data *this);
 
 #endif

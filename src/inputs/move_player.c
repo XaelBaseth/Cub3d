@@ -5,35 +5,52 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 16:54:51 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/08 10:19:20 by acharlot         ###   ########.fr       */
+/*   Created: 2023/11/08 11:20:00 by acharlot          #+#    #+#             */
+/*   Updated: 2023/11/08 12:01:17 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-static int	rotate_left_right(t_data *data, double rotspeed)
-{
-	t_camera	*cam;
-	double		tmp_x;
+#define MOVESPEED 0.08f
+#define MARGIN	0.1f
 
-	cam = &data->camera;
-	tmp_x = cam->dir_x;
-	cam->dir_x = cam->dir_x * cos(rotspeed) - cam->dir_y * sin(rotspeed);
-	cam->dir_y = tmp_x * sin(rotspeed) + cam->dir_y * cos(rotspeed);
-	tmp_x = cam->plane_x;
-	cam->plane_x = cam->plane_x * cos(rotspeed) - cam->plane_y * sin(rotspeed);
-	cam->plane_y = tmp_x * sin(rotspeed) + cam->plane_y * cos(rotspeed);
-	return (1);
+void	move_up(t_data *this)
+{
+	if (this->map_info.level[(int)(this->player.pos_y)]
+		[(int)(this->player.pos_x + this->camera.dir_x * MARGIN)] != 1)
+			this->player.pos_x += this->camera.dir_x * MOVESPEED;
+	if (this->map_info.level[(int)(this->player.pos_y - this->camera.dir_y * MARGIN)]
+		[(int)(this->player.pos_x)] != 1)
+			this->player.pos_y -= this->camera.dir_y * MOVESPEED;
 }
 
-int	rotate_player(t_data *data, double rotdir)
+void	move_left(t_data *this)
 {
-	int		moved;
-	double	rotspeed;
+	if (this->map_info.level[(int)(this->player.pos_y)]
+		[(int)(this->player.pos_x - this->camera.dir_y * MARGIN)] != 1)
+		this->player.pos_x -= this->camera.dir_y * MOVESPEED;
+	if (this->map_info.level[(int)(this->player.pos_y - this->camera.dir_x * MARGIN)]
+		[(int)(this->player.pos_x)] != 1)
+			this->player.pos_y -= this->camera.dir_x * MOVESPEED;
+}
 
-	moved = 0;
-	rotspeed = ROT_SPEED * rotdir;
-	moved += rotate_left_right(data, rotspeed);
-	return (moved);
+void	move_down(t_data *this)
+{
+	if (this->map_info.level[(int)(this->player.pos_y)]
+		[(int)(this->player.pos_x - this->camera.dir_x * MARGIN)] != 1)
+		this->player.pos_x -= this->camera.dir_x * MOVESPEED;
+	if (this->map_info.level[(int)(this->player.pos_y + this->camera.dir_y * MARGIN)]
+		[(int)(this->player.pos_x)] != 1)
+		this->player.pos_y += this->camera.dir_y * MOVESPEED;
+}
+
+void	move_right(t_data *this)
+{
+	if (this->map_info.level[(int)(this->player.pos_y)]
+		[(int)(this->player.pos_x + this->camera.dir_y * MARGIN)] != 1)
+		this->player.pos_x += this->camera.dir_y * MOVESPEED;
+	if (this->map_info.level[(int)(this->player.pos_y + this->camera.dir_x * MARGIN)]
+		[(int)(this->player.pos_x)] != 1)
+		this->player.pos_y += this->camera.dir_x * MOVESPEED;
 }

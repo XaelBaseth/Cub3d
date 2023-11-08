@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   press_in.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 10:33:05 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/08 11:18:31 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/08 13:29:42 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ void	press_in_menu(int keysym, t_data *data)
 
 void	press_in_game(int keysym, t_data *data)
 {
-	// printf("code: %x\n", keysym);
 	if (keysym == XK_Escape)
 	{
 		if (data->argc == 2)
@@ -66,13 +65,13 @@ void	press_in_game(int keysym, t_data *data)
 			trigger_menu_ig(data, true);
 	}
 	if (keysym == XK_w)
-		ft_printf("\nw pressed in game\n");
+		move_up(data);
 	else if (keysym == XK_a)
-		ft_printf("\na pressed in game\n");
+		move_left(data);
 	else if (keysym == XK_s)
-		ft_printf("\ns pressed in game\n");
+		move_down(data);
 	else if (keysym == XK_d)
-		ft_printf("\nd pressed in game\n");
+		move_right(data);	
 	else if (keysym == XK_KP_Add)
 		zoom_in(data);
 	else if (keysym == XK_KP_Subtract)
