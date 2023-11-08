@@ -6,30 +6,11 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 14:30:14 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/08 10:48:43 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/08 11:01:10 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
-
-void	draw_outline(t_data *data)
-{
-	int	x;
-	int	y;
-
-	x = data->minimap.up_left.x;
-	y = data->minimap.up_left.y;
-	while (y <= data->minimap.lwr_rt.y)
-		mlx_pixel_put(data->mlx, data->win, x, y++, WHITE);
-	y = data->minimap.up_left.y;
-	while (x <= data->minimap.lwr_rt.x)
-		mlx_pixel_put(data->mlx, data->win, x++, y, WHITE);
-	while (y <= data->minimap.lwr_rt.y)
-		mlx_pixel_put(data->mlx, data->win, x, y++, WHITE);
-	x = data->minimap.up_left.x;
-	while (x <= data->minimap.lwr_rt.x + 1)
-		mlx_pixel_put(data->mlx, data->win, x++, y, WHITE);
-}
 
 int	get_map_color(t_data *data, t_vector2 pos)
 {
@@ -55,27 +36,26 @@ int	get_map_color(t_data *data, t_vector2 pos)
 void	fill_pixels(t_data *data, int size_line, int bpp,
 	t_minimap_tmp *mini_tmp)
 {
-	t_vector2	vector;
+	t_vector2	pos;
+	t_vector2	offset;
 	int			color;
-	int			offset_x;
-	int			offset_y;
 
 	color = get_map_color(data, mini_tmp->pos);
-	vector.x = -1;
-	while (++vector.x <= data->minimap.zoom)
+	pos.x = -1;
+	while (++pos.x <= data->minimap.zoom)
 	{
-		vector.y = -1;
-		offset_x = mini_tmp->offset.x * data->minimap.zoom + vector.x
+		pos.y = -1;
+		offset.x = mini_tmp->offset.x * data->minimap.zoom + pos.x
 			- mini_tmp->big_shift;
-		while (++vector.y <= data->minimap.zoom)
+		while (++pos.y <= data->minimap.zoom)
 		{
-			offset_y = mini_tmp->offset.y * data->minimap.zoom + vector.y
+			offset.y = mini_tmp->offset.y * data->minimap.zoom + pos.y
 				- mini_tmp->big_shift;
-			if (offset_y >= 0 && offset_x >= 0 && offset_x < MINIMAP_SIZE
-				&& offset_y < MINIMAP_SIZE)
+			if (offset.y >= 0 && offset.x >= 0 && offset.x < MINIMAP_SIZE
+				&& offset.y < MINIMAP_SIZE)
 			{
 				*(unsigned int *)(data->minimap.map_data
-						+ (offset_y * size_line + offset_x
+						+ (offset.y * size_line + offset.x
 							* (bpp / 8))) = color;
 			}
 		}
