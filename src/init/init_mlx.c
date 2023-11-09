@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 09:17:36 by acharlot          #+#    #+#             */
-/*   Updated: 2023/11/07 09:03:02 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/08 14:25:58 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,4 +16,6 @@ void	init_cub3d(t_data *data)
 {
 	data->file_content = NULL;
 	data->img = init_img();
+	data->player.movement.y = 0;
+	data->player.movement.x = 0;
 }

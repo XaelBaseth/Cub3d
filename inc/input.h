@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 08:44:53 by acharlot          #+#    #+#             */
-/*   Updated: 2023/11/08 17:49:03 by axel             ###   ########.fr       */
+/*   Updated: 2023/11/09 09:48:25 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,11 @@ typedef struct s_data			t_data;
 int		rotate_player(t_data *data, double rotdir);
 int		handle_keypress(int keysym, t_data *data);
 int		handle_keyrelease(int keysym, t_data *data);
+int		handle_keyrelease(int keysym, t_data *data);
 int		handle_mouse(int x, int y, t_data *data);
 void	press_in_game_menu(int keysym, t_data *data);
 void	press_in_game(int keysym, t_data *data);
+void	release_in_game(int keysym, t_data *data);
 void	release_in_game(int keysym, t_data *data);
 void	press_in_menu(int keysym, t_data *data);
 void	press_in_controls(int keysym, t_data *data);

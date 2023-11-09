@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:20:00 by acharlot          #+#    #+#             */
-/*   Updated: 2023/11/08 18:16:52 by axel             ###   ########.fr       */
+/*   Updated: 2023/11/09 09:49:55 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,16 @@ int	move_player(t_data *data)
 	if (data->player.move_x == -1)
 		moved += move_right(data);
 	return (moved);
+}
+
+void	move_player(t_data *data)
+{
+	if (data->player.movement.y == -1)
+		move_up(data);
+	else if (data->player.movement.y == 1)
+		move_down(data);
+	if (data->player.movement.x == -1)
+		move_left(data);
+	else if (data->player.movement.x == 1)
+		move_right(data);
 }
