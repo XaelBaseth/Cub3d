@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 12:01:06 by acharlot          #+#    #+#             */
-/*   Updated: 2023/11/08 08:01:57 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/11/09 09:40:19 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,19 +82,19 @@ void	find_wall_height(t_ray *ray)
 		ray->draw_end = WIN_HEIGHT - 1;
 }
 
-void	find_wall_pixel(t_data *data, t_ray *ray)
+void	find_wall_pixel(t_data *data, t_ray *ray, int x)
 {
 	if (!ray->side)
 		ray->wall_x = (int)data->player.pos_y + ray->wall_dist * ray->dir_y;
 	else
 		ray->wall_x = (int)data->player.pos_x + ray->wall_dist * ray->dir_x;
 	ray->wall_x -= floor(ray->wall_x);
-	ray->tex_x = (int)(ray->wall_x * (double)128);
+	ray->tex_x = (int)(ray->wall_x * (double)IMG_SIZE);
 	if (!ray->side && ray->dir_x > 0)
-		ray->tex_x = 128 - ray->tex_x - 1;
+		ray->tex_x = IMG_SIZE - ray->tex_x - 1;
 	if (ray->side && ray->dir_y < 0)
-		ray->tex_x = 128 - ray->tex_x - 1;
-	ray->step = 1.0 * 128 / ray->line_height;
+		ray->tex_x = IMG_SIZE - ray->tex_x - 1;
+	ray->step = 1.0 * IMG_SIZE / ray->line_height;
 	ray->tex_pos = (ray->draw_start - (WIN_HEIGHT / 2) + ray->line_height / 2)
 		* ray->step;
 }

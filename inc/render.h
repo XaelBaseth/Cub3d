@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 08:37:10 by acharlot          #+#    #+#             */
-/*   Updated: 2023/11/08 14:19:32 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/08 15:59:31 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ typedef struct s_texture
 void			point_rays(t_data *data, t_ray *ray);
 void			find_dist_wall(t_data *data, t_ray *ray);
 void			find_wall_height(t_ray *ray);
-void			find_wall_pixel(t_data *data, t_ray *ray);
+void			find_wall_pixel(t_data *data, t_ray *ray, int x);
 void			render_frame(t_data *data);
 void			put_pixel_img(t_img *img, int x, int y, unsigned int color);
 unsigned int	get_color(t_data *data, t_ray *ray);

@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 09:11:10 by acharlot          #+#    #+#             */
-/*   Updated: 2023/11/08 10:37:35 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/08 15:59:46 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	render_frame(t_data *data)
 		point_rays(data, &ray);
 		find_dist_wall(data, &ray);
 		find_wall_height(&ray);
-		find_wall_pixel(data, &ray);
+		find_wall_pixel(data, &ray, x);
 		draw_vertical_line(data, &ray, x);
 		x += 1;
 	}
