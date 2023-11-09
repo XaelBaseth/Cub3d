@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 14:17:23 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/08 13:49:38 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/09 15:24:11 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	handle_keyrelease(int keysym, t_data *data)
 
 int	handle_mouse(int x, int y, t_data *data)
 {
-	if (data->state != IN_GAME)
+	if (data->state != IN_GAME || !BONUS)
 		return (FAILURE);
 	if (x != data->mouse_position.x || y != data->mouse_position.y)
 	{

@@ -3,16 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+         #
+#    By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/16 14:46:16 by cpothin           #+#    #+#              #
-#    Updated: 2023/11/08 11:20:05 by acharlot         ###   ########.fr        #
+#    Updated: 2023/11/09 15:12:46 by cpothin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 MAKEFLAGS += --silent
 
 NAME		=	cub3d
+BONUS		=	0
 INC			=	inc/
 HEADER		=	-I inc
 SRC_DIR		=	src/
@@ -91,11 +92,11 @@ all: ${NAME}
 ${NAME}: $(OBJ)
 				@make -C $(MINILIBX)
 				@make -C $(LIBFT)
-				$(CC) $(FLAGS) $(OBJ) $(HEADER) $(MLXFLAGS) lib/libft/libft.a lib/minilibx/libmlx.a -lm -o $(NAME)
+				$(CC) $(FLAGS) -DBONUS=$(BONUS) $(OBJ) $(HEADER) $(MLXFLAGS) lib/libft/libft.a lib/minilibx/libmlx.a -lm -o $(NAME)
 				@$(ECHO) "$(YELLOW)[CUB3D]:\t$(ORANGE)[==========]\t$(GREEN) => Success!$(DEF_COLOR)\n\e[?25h"
 
 $(OBJ_DIR)%.o:	$(SRC_DIR)%.c $(OBJF)
-				@$(CC) $(CFLAGS) -c $< -o $@
+				@$(CC) $(CFLAGS) -DBONUS=$(BONUS) -c $< -o $@
 				@$(ECHO) -n "\e[?25l\r\033[K$< created"
 
 $(OBJF):		
@@ -108,6 +109,9 @@ $(OBJF):
 				@mkdir -p $(OBJ_DIR)$(MMAP_DIR)
 				@mkdir -p $(OBJ_DIR)$(INPU_DIR)
 				@touch $(OBJF)
+
+bonus: ## Adds bonuses.
+		make all BONUS=1
 
 help: ## Print help on Makefile.
 				@grep '^[^.#]\+:\s\+.*#' Makefile | \
@@ -132,4 +136,4 @@ fclean: ## Clean all generated file, including binaries.
 re: ## Clean and rebuild binary file.
 				@make fclean all
 
-.PHONY: all clean fclean re help
+.PHONY: all clean fclean re bonus help

@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 09:11:10 by acharlot          #+#    #+#             */
-/*   Updated: 2023/11/08 15:59:46 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/09 15:11:43 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	render_frame(t_data *data)
 	}
 	mlx_clear_window(data->mlx, data->win);
 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
-	mlx_put_image_to_window(data->mlx, data->win, data->minimap.map,
-		data->minimap.up_left.x + 1, data->minimap.up_left.y + 1);
+	if (BONUS)
+		mlx_put_image_to_window(data->mlx, data->win, data->minimap.map,
+			data->minimap.up_left.x + 1, data->minimap.up_left.y + 1);
 }

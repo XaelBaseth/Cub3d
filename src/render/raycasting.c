@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 12:01:06 by acharlot          #+#    #+#             */
-/*   Updated: 2023/11/09 09:40:19 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/09 10:29:57 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,9 @@ void	find_wall_pixel(t_data *data, t_ray *ray, int x)
 	ray->wall_x -= floor(ray->wall_x);
 	ray->tex_x = (int)(ray->wall_x * (double)IMG_SIZE);
 	if (!ray->side && ray->dir_x > 0)
-		ray->tex_x = IMG_SIZE - ray->tex_x - 1;
+		ray->tex_x = IMG_SIZE - ray->tex_x;
 	if (ray->side && ray->dir_y < 0)
-		ray->tex_x = IMG_SIZE - ray->tex_x - 1;
+		ray->tex_x = IMG_SIZE - ray->tex_x;
 	ray->step = 1.0 * IMG_SIZE / ray->line_height;
 	ray->tex_pos = (ray->draw_start - (WIN_HEIGHT / 2) + ray->line_height / 2)
 		* ray->step;

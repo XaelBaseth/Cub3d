@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 17:10:34 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/08 15:35:38 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/09 15:26:38 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,12 @@ int	window_loop(t_data *data)
 	if (data->state != IN_GAME)
 		return (FAILURE);
 	move_player(data);
-	create_minimap(data);
+	if (BONUS)
+		create_minimap(data);
 	render_frame(data);
 	mlx_destroy_image(data->mlx, data->img.img);
-	mlx_destroy_image(data->mlx, data->minimap.map);
+	if (BONUS)
+		mlx_destroy_image(data->mlx, data->minimap.map);
 	data->minimap.map = NULL;
 	data->img.img = NULL;
 	return (SUCCESS);
@@ -45,10 +47,10 @@ int	main(int argc, char *argv[])
 
 	init_sizes(&data);
 	data.argc = argc;
-	if (argc == 1 || argc == 2)
+	if ((BONUS && argc == 1) || argc == 2)
 		init_game(&data);
 	else
-		ft_printf("Error\n\t0 or 1 argument needed!\n");
+		return (ft_printf("Error\n\t0 or 1 argument needed!\n"));
 	if (argc == 2)
 	{
 		start_level(&data, argv[1]);
