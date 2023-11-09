@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inputs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 14:17:23 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/08 13:49:38 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/09 09:49:36 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	handle_keypress(int keysym, t_data *data)
 		press_in_game(keysym, data);
 	return (0);
 }
+
 int	handle_keyrelease(int keysym, t_data *data)
 {
 	if (data->state == IN_GAME)

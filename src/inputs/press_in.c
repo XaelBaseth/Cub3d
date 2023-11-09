@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   press_in.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 10:33:05 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/08 14:34:05 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/09 09:48:05 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	press_in_controls(int keysym, t_data *data)
 		trigger_controls(data, false, false);
 }
 
-/* Checks which key is pressed when inside the menu */
+/* Checks which keysym is pressed when inside the menu */
 void	press_in_menu(int keysym, t_data *data)
 {
 	if (keysym == XK_w || keysym == XK_Up)
@@ -65,13 +65,25 @@ void	press_in_game(int keysym, t_data *data)
 			trigger_menu_ig(data, true);
 	}
 	if (keysym == XK_w)
-		data->player.movement.y -= 1;
-	else if (keysym == XK_a)
-		data->player.movement.x -= 1;
-	else if (keysym == XK_s)
-		data->player.movement.y += 1;
-	else if (keysym == XK_d)
-		data->player.movement.x += 1;
+	{
+		printf("\nW");
+		data->player.move_y = 1;
+	}
+	if (keysym == XK_a)
+	{
+		printf("\nA");
+		data->player.move_x = -1;
+	}
+	if (keysym == XK_s)
+	{
+		printf("\nS");
+		data->player.move_y = -1;
+	}
+	if (keysym == XK_d)
+	{
+		printf("\nD");
+		data->player.move_x = 1;
+	}
 	else if (keysym == XK_KP_Add)
 		zoom_in(data);
 	else if (keysym == XK_KP_Subtract)
@@ -80,14 +92,14 @@ void	press_in_game(int keysym, t_data *data)
 
 void	release_in_game(int keysym, t_data *data)
 {
-	if (keysym == XK_w)
-		data->player.movement.y += 1;
-	else if (keysym == XK_a)
-		data->player.movement.x += 1;
-	else if (keysym == XK_s)
-		data->player.movement.y -= 1;
-	else if (keysym == XK_d)
-		data->player.movement.x -= 1;
+	if (keysym == XK_w && data->player.move_y == 1)
+		data->player.move_y = 0;
+	if (keysym == XK_s && data->player.move_y == -1)
+		data->player.move_y = 0;
+	if (keysym == XK_a && data->player.move_x == -1)
+		data->player.move_x += 1;
+	if (keysym == XK_d && data->player.move_x == 1)
+		data->player.move_x -= 1;
 }
 
 /* Checks which key is pressed when inside the game menu */
