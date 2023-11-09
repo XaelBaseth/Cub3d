@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 16:26:39 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/08 10:18:15 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/11/09 10:09:00 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,10 @@ void	save_player(t_data *data)
 			|| data->map_info.level[y][x] == 'S'
 			|| data->map_info.level[y][x] == 'E')
 			{
-				data->player.pos_x = x;
-				data->player.pos_y = y;
+				data->player.pos_x = x + 0.5;
+				data->player.pos_y = y + 0.5;
 				data->player.dir = data->map_info.level[y][x];
+				data->map_info.level[y][x] = '0';
 				break ;
 			}
 			x++;
