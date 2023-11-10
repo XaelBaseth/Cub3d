@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 16:27:22 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/10 17:34:05 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/10 18:36:36 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,6 @@ typedef struct	s_door
 -----------------------------------------------------------------------------*/
 
 void	init_doors(t_data *data);
+void	check_open_doors(t_data *data);
 
 #endif
