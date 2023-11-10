@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 14:30:14 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/08 15:32:27 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/10 16:18:40 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,6 @@ int	get_map_color(t_data *data, t_vector2 pos)
 	c = data->map_info.level[pos.y][pos.x];
 	if (c == '1')
 		return (0x404050);
-	else if ((int)data->player.pos_x == pos.x
-		&& (int)data->player.pos_y == pos.y)
-		return (0xFF4466);
 	else if (c == 'N' || c == 'S' || c == 'W' || c == 'E' || c == '0')
 		return (0x888892);
 	else if (c == 'D')
@@ -38,7 +35,7 @@ void	fill_pixels(t_data *data, int size_line, int bpp,
 	t_minimap_tmp *mini_tmp)
 {
 	t_vector2	pos;
-	t_vector2	offset;
+	t_vector2	off;
 	int			color;
 
 	color = get_map_color(data, mini_tmp->pos);
@@ -46,20 +43,40 @@ void	fill_pixels(t_data *data, int size_line, int bpp,
 	while (++pos.x <= data->minimap.zoom)
 	{
 		pos.y = -1;
-		offset.x = mini_tmp->offset.x * data->minimap.zoom + pos.x
-			- mini_tmp->big_shift;
+		off.x = mini_tmp->offset.x * data->minimap.zoom + pos.x
+			- mini_tmp->big_shift - (int)((double)data->minimap.zoom
+				* (data->player.pos_x - (int)data->player.pos_x));
 		while (++pos.y <= data->minimap.zoom)
 		{
-			offset.y = mini_tmp->offset.y * data->minimap.zoom + pos.y
-				- mini_tmp->big_shift;
-			if (offset.y >= 0 && offset.x >= 0 && offset.x < MINIMAP_SIZE
-				&& offset.y < MINIMAP_SIZE)
+			off.y = mini_tmp->offset.y * data->minimap.zoom + pos.y
+				- mini_tmp->big_shift - (int)((double)data->minimap.zoom
+					* (data->player.pos_y - (int)data->player.pos_y));
+			if (off.y >= 0 && off.x >= 0 && off.x < MINIMAP_SIZE
+				&& off.y < MINIMAP_SIZE)
 			{
 				*(unsigned int *)(data->minimap.map_data
-						+ (offset.y * size_line + offset.x
-							* (bpp / 8))) = color;
+						+ (off.y * size_line + off.x * (bpp / 8))) = color;
 			}
 		}
+	}
+}
+
+void	draw_player(t_data *data, int sz_line, int bpp, t_minimap_tmp *mn_tmp)
+{
+	int	x;
+	int	y;
+
+	x = 90;
+	while (x < 96)
+	{
+		y = 90;
+		while (y < 96)
+		{
+			*(unsigned int *)(data->minimap.map_data
+					+ (y * sz_line + x * (bpp / 8))) = 0xFF4466;
+			y++;
+		}
+		x++;
 	}
 }
 
@@ -87,4 +104,5 @@ void	create_minimap(t_data *data)
 		mini_tmp.pos.y++;
 		mini_tmp.offset.y++;
 	}
+	draw_player(data, size_line, bpp, &mini_tmp);
 }
