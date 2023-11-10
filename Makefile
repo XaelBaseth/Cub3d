@@ -6,7 +6,7 @@
 #    By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/16 14:46:16 by cpothin           #+#    #+#              #
-#    Updated: 2023/11/09 16:22:36 by cpothin          ###   ########.fr        #
+#    Updated: 2023/11/10 11:04:29 by cpothin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,8 @@ MMAP_DIR	=	minimap/
 MMAP_FILES	=	minimap minimap_utils
 INPU_DIR	=	inputs/
 INPU_FILES	=	inputs press_in_menus press_in_game move_player rotate_player
+GAME_DIR	=	gameplay/
+GAME_FILES	=	doors
 
 SRC_MAI_FILE=	$(addprefix $(MAIN_DIR), $(MAIN_FILES))
 SRC_REN_FILE=	$(addprefix $(REND_DIR), $(REND_FILES))
@@ -60,6 +62,7 @@ SRC_INI_FILE=	$(addprefix $(INIT_DIR), $(INIT_FILES))
 SRC_PAR_FILE=	$(addprefix $(PARS_DIR), $(PARS_FILES))
 SRC_MAP_FILE=	$(addprefix $(MMAP_DIR), $(MMAP_FILES))
 SRC_INP_FILE=	$(addprefix $(INPU_DIR), $(INPU_FILES))
+SRC_GMP_FILE=	$(addprefix $(GAME_DIR), $(GAME_FILES))
 
 MAINSRC		=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_MAI_FILE)))
 MAINOBJ		=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_MAI_FILE)))
@@ -79,13 +82,16 @@ PARSOBJ		=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_PAR_FILE)))
 MMAPSRC		=	$(addprefix $(MMAP_DIR), $(addsuffix .c, $(SRC_MAP_FILE)))
 MMAPOBJ		=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_MAP_FILE)))
 
-INPUSRC		=	$(addprefix $(INPU_DIR_DIR), $(addsuffix .c, $(SRC_INP_FILE)))
+INPUSRC		=	$(addprefix $(INPU_DIR), $(addsuffix .c, $(SRC_INP_FILE)))
 INPUOBJ		=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_INP_FILE)))
+
+GAMESRC		=	$(addprefix $(GAME_DIR), $(addsuffix .c, $(SRC_GMP_FILE)))
+GAMEOBJ		=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_GMP_FILE)))
 
 
 OBJF 		= 	.cache_exists
 
-OBJ 		=	$(MAINOBJ) $(MENUOBJ) $(RENDOBJ) $(INITOBJ) $(PARSOBJ) $(MMAPOBJ) $(INPUOBJ)
+OBJ 		=	$(MAINOBJ) $(MENUOBJ) $(RENDOBJ) $(INITOBJ) $(PARSOBJ) $(MMAPOBJ) $(INPUOBJ) $(GAMEOBJ)
 
 all: ${NAME}
 
@@ -108,6 +114,7 @@ $(OBJF):
 				@mkdir -p $(OBJ_DIR)$(PARS_DIR)
 				@mkdir -p $(OBJ_DIR)$(MMAP_DIR)
 				@mkdir -p $(OBJ_DIR)$(INPU_DIR)
+				@mkdir -p $(OBJ_DIR)$(GAME_DIR)
 				@touch $(OBJF)
 
 bonus: ## Adds bonuses.

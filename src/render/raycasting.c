@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 12:01:06 by acharlot          #+#    #+#             */
-/*   Updated: 2023/11/10 10:12:39 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/10 11:51:45 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,9 @@ void	point_rays(t_data *data, t_ray *ray)
 	else
 	{
 		ray->step_x = 1;
-		ray->sidedist_x = (ray->map_x + 1.0 - data->player.pos_x)
-			* ray->deltadist_x;
+		ray->sidedist_x = (ray->map_x + 1.0 - data->player.pos_x) * ray->deltadist_x;
 	}
-	if (ray->dir_y > 0)
+	if (ray->dir_y < 0)
 	{
 		ray->step_y = -1;
 		ray->sidedist_y = (data->player.pos_y - ray->map_y) * ray->deltadist_y;
@@ -33,8 +32,7 @@ void	point_rays(t_data *data, t_ray *ray)
 	else
 	{
 		ray->step_y = 1;
-		ray->sidedist_y = (ray->map_y + 1.0 - data->player.pos_y)
-			* ray->deltadist_y;
+		ray->sidedist_y = (ray->map_y + 1.0 - data->player.pos_y) * ray->deltadist_y;
 	}
 }
 

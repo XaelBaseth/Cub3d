@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 09:18:27 by acharlot          #+#    #+#             */
-/*   Updated: 2023/11/10 10:10:34 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/10 11:15:35 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	south_pov(t_data *data)
 static void	east_pov(t_data *data)
 {
 	data->camera.plane_x = 0;
-	data->camera.plane_y = -0.66;
+	data->camera.plane_y = 0.66;
 	data->camera.dir_x = 1.0f;
 	data->camera.dir_y = 0.0f;
 }
@@ -39,7 +39,7 @@ static void	east_pov(t_data *data)
 static void	west_pov(t_data *data)
 {
 	data->camera.plane_x = 0;
-	data->camera.plane_y = 0.66;
+	data->camera.plane_y = -0.66;
 	data->camera.dir_x = -1.0f;
 	data->camera.dir_y = 0.0f;
 }

@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 14:17:23 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/09 15:59:38 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/10 11:25:24 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	handle_mouse(int x, int y, t_data *data)
 		return (FAILURE);
 	if (x != data->mouse_position.x || y != data->mouse_position.y)
 	{
-		rotate_player(data, (double)(data->mouse_position.x - x) / 20.0);
+		rotate_player(data, (double)(x - data->mouse_position.x) / 20.0);
 		data->mouse_position.y = WIN_HEIGHT / 2;
 		data->mouse_position.x = WIN_WIDTH / 2;
 		mlx_mouse_move(data->mlx, data->win, WIN_WIDTH / 2,
