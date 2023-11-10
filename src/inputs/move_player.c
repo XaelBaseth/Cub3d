@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:20:00 by acharlot          #+#    #+#             */
-/*   Updated: 2023/11/09 15:17:12 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/09 16:00:37 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,11 @@ void	move_up(t_data *this)
 	}
 	if (this->map_info.level[(int)(this->player.pos_y)]
 		[(int)(this->player.pos_x + this->camera.dir_x * MARGIN)] != '1')
-			this->player.pos_x += this->camera.dir_x * MOVESPEED;
-	if (this->map_info.level[(int)(this->player.pos_y - this->camera.dir_y * MARGIN)]
+		this->player.pos_x += this->camera.dir_x * MOVESPEED;
+	if (this->map_info.level
+		[(int)(this->player.pos_y - this->camera.dir_y * MARGIN)]
 		[(int)(this->player.pos_x)] != '1')
-			this->player.pos_y -= this->camera.dir_y * MOVESPEED;
+		this->player.pos_y -= this->camera.dir_y * MOVESPEED;
 }
 
 void	move_left(t_data *this)
@@ -38,10 +39,11 @@ void	move_left(t_data *this)
 	}
 	if (this->map_info.level[(int)(this->player.pos_y)]
 		[(int)(this->player.pos_x - this->camera.dir_y * MARGIN)] != '1')
-			this->player.pos_x -= this->camera.dir_y * MOVESPEED;
-	if (this->map_info.level[(int)(this->player.pos_y - this->camera.dir_x * MARGIN)]
+		this->player.pos_x -= this->camera.dir_y * MOVESPEED;
+	if (this->map_info.level
+		[(int)(this->player.pos_y - this->camera.dir_x * MARGIN)]
 		[(int)(this->player.pos_x)] != '1')
-			this->player.pos_y -= this->camera.dir_x * MOVESPEED;
+		this->player.pos_y -= this->camera.dir_x * MOVESPEED;
 }
 
 void	move_down(t_data *this)
@@ -55,7 +57,8 @@ void	move_down(t_data *this)
 	if (this->map_info.level[(int)(this->player.pos_y)]
 		[(int)(this->player.pos_x - this->camera.dir_x * MARGIN)] != '1')
 		this->player.pos_x -= this->camera.dir_x * MOVESPEED;
-	if (this->map_info.level[(int)(this->player.pos_y + this->camera.dir_y * MARGIN)]
+	if (this->map_info.level
+		[(int)(this->player.pos_y + this->camera.dir_y * MARGIN)]
 		[(int)(this->player.pos_x)] != '1')
 		this->player.pos_y += this->camera.dir_y * MOVESPEED;
 }
@@ -71,7 +74,8 @@ void	move_right(t_data *this)
 	if (this->map_info.level[(int)(this->player.pos_y)]
 		[(int)(this->player.pos_x + this->camera.dir_y * MARGIN)] != '1')
 		this->player.pos_x += this->camera.dir_y * MOVESPEED;
-	if (this->map_info.level[(int)(this->player.pos_y + this->camera.dir_x * MARGIN)]
+	if (this->map_info.level
+		[(int)(this->player.pos_y + this->camera.dir_x * MARGIN)]
 		[(int)(this->player.pos_x)] != '1')
 		this->player.pos_y += this->camera.dir_x * MOVESPEED;
 }

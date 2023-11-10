@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 14:12:19 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/09 15:13:47 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/09 15:39:41 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 
 void	start_level(t_data *data, char *map_name)
 {
+	if (!check_map_extension(map_name))
+	{
+		ft_printf("Error:\n\tThe file extension must be \".cub\"!");
+		exit_game(data);
+	}
 	data->state = IN_GAME;
 	init_level_menu_images(data);
 	init_cub3d(data);

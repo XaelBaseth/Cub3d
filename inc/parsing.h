@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 09:07:53 by acharlot          #+#    #+#             */
-/*   Updated: 2023/11/08 10:15:48 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/11/09 15:36:19 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,6 @@ int		save_img(t_data *data, t_img *img, char *arg);
 int		save_rgb(t_data *data, int *rgb_arr, char *arg);
 void	exit_message(char *msg, int *fd);
 int		check_nbr(char *str);
+int		check_map_extension(char *map_name);
 
 #endif
