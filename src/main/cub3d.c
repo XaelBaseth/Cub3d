@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 17:10:34 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/09 15:26:38 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/10 08:38:19 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	hook_and_run(t_data *data)
 	data->mouse_position.x = WIN_WIDTH / 2;
 	mlx_hook(data->win, MotionNotify, PointerMotionMask, handle_mouse, data);
 	mlx_hook(data->win, KeyPress, KeyPressMask, &handle_keypress, data);
+	mlx_hook(data->win, KeyRelease, KeyReleaseMask, &handle_keyrelease, data);
 	mlx_hook(data->win, KeyRelease, KeyReleaseMask, &handle_keyrelease, data);
 	mlx_hook(data->win, 17, 0, &exit_game, data);
 	mlx_loop(data->mlx);

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:20:00 by acharlot          #+#    #+#             */
-/*   Updated: 2023/11/09 15:17:12 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/10 08:37:47 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-void	move_up(t_data *this)
+static int	move_forward(t_data *data)
 {
 	if (!BONUS)
 	{
@@ -28,7 +28,7 @@ void	move_up(t_data *this)
 			this->player.pos_y -= this->camera.dir_y * MOVESPEED;
 }
 
-void	move_left(t_data *this)
+static int	move_backward(t_data *data)
 {
 	if (!BONUS)
 	{
@@ -76,14 +76,18 @@ void	move_right(t_data *this)
 		this->player.pos_y += this->camera.dir_x * MOVESPEED;
 }
 
-void	move_player(t_data *data)
+int	move_player(t_data *data)
 {
-	if (data->player.movement.y == -1)
-		move_up(data);
-	else if (data->player.movement.y == 1)
-		move_down(data);
-	if (data->player.movement.x == -1)
-		move_left(data);
-	else if (data->player.movement.x == 1)
-		move_right(data);
+	int	moved;
+
+	moved = 0;
+	if (data->player.move_y == -1)
+		moved += move_forward(data);
+	if (data->player.move_y == 1)
+		moved += move_backward(data);
+	if (data->player.move_x == 1)
+		moved += move_left(data);
+	if (data->player.move_x == -1)
+		moved += move_right(data);
+	return (moved);
 }

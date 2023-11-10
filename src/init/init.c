@@ -3,14 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 09:11:28 by acharlot          #+#    #+#             */
-/*   Updated: 2023/11/08 10:17:18 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/11/08 18:13:38 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
+
+void	init_player(t_player *player)
+{
+
+}
 
 t_img	init_img(void)
 {
@@ -58,4 +63,7 @@ void	init_game(t_data *data)
 	data->mouse_position.y = 0;
 	mlx_mouse_get_pos(data->mlx, data->win, &data->mouse_position.x,
 		&data->mouse_position.y);
+	data->player.move_x = 0;
+	data->player.move_y = 0;
+	data->player.has_moved = 0;
 }

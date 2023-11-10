@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 09:17:36 by acharlot          #+#    #+#             */
-/*   Updated: 2023/11/08 14:25:58 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/09 09:50:57 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,4 @@ void	init_cub3d(t_data *data)
 {
 	data->file_content = NULL;
 	data->img = init_img();
-	data->player.movement.y = 0;
-	data->player.movement.x = 0;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 08:37:10 by acharlot          #+#    #+#             */
-/*   Updated: 2023/11/08 15:59:31 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/09 10:18:07 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,12 @@ typedef struct s_camera
 
 typedef struct s_player
 {
-	char		dir;
-	double		pos_x;
-	double		pos_y;
-	t_vector2	movement;
+	char	dir;
+	double	pos_x;
+	double	pos_y;
+	int		has_moved;
+	int		move_x;
+	int		move_y;
 }				t_player;
 
 typedef struct s_img
