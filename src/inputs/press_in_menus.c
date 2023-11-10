@@ -6,25 +6,11 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 10:33:05 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/09 16:21:34 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/10 17:54:54 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
-
-void	press_in_lvl_selection(int keysym, t_data *data)
-{
-	if (keysym == XK_Escape || keysym == XK_Return || keysym == XK_space)
-		trigger_level_selection(data, false);
-	else if (keysym == XK_w)
-		ft_printf("\nw pressed in level selection menu\n");
-	else if (keysym == XK_a)
-		ft_printf("\na pressed in level selection menu\n");
-	else if (keysym == XK_s)
-		ft_printf("\ns pressed in level selection menu\n");
-	else if (keysym == XK_d)
-		ft_printf("\nd pressed in level selection menu\n");
-}
 
 void	press_in_controls(int keysym, t_data *data)
 {

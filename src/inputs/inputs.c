@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 14:17:23 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/10 11:25:24 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/10 17:55:07 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ int	handle_keypress(int keysym, t_data *data)
 		press_in_menu(keysym, data);
 	else if (data->state == IN_GAME_MENU)
 		press_in_game_menu(keysym, data);
-	else if (data->state == IN_LVL_SELECTION)
-		press_in_lvl_selection(keysym, data);
 	else if (data->state == IN_CONTROLS || data->state == IN_GAME_CONTROLS)
 		press_in_controls(keysym, data);
 	else if (data->state == IN_GAME)

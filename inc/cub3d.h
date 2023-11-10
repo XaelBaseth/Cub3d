@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 08:19:10 by acharlot          #+#    #+#             */
-/*   Updated: 2023/11/09 15:41:23 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/10 17:26:11 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # include "menu.h"
 # include "minimap.h"
 # include "parsing.h"
+# include "gameplay.h"
 
 # include <unistd.h>
 # include <stdio.h>
@@ -91,6 +92,7 @@ typedef struct s_data
 	t_sizes			sizes;
 	t_minimap		minimap;
 	t_vector2		mouse_position;
+	t_door			*doors;
 }					t_data;
 
 /*-----------------------------------------------------------------------------

@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:21:13 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/09 16:22:15 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/10 18:23:26 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ void	press_in_game(int keysym, t_data *data)
 	else if (keysym == XK_KP_Subtract)
 		zoom_out(data);
 	if (keysym == XK_Right)
-		rotate_player(data, -1);
-	else if (keysym == XK_Left)
 		rotate_player(data, 1);
+	else if (keysym == XK_Left)
+		rotate_player(data, -1);
 }
 
 void	release_in_game(int keysym, t_data *data)

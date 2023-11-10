@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   menu.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 08:50:41 by acharlot          #+#    #+#             */
-/*   Updated: 2023/11/08 10:07:20 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/11/10 17:53:57 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ typedef struct s_menu
 	int			cur_button;
 	int			cur_selected_level;
 	void		*bg_menu;
-	void		*bg_levels;
 	void		*bg_controls;
 	void		*title;
 	void		*title_menu;
@@ -78,14 +77,11 @@ typedef struct s_menu
 -----------------------------------------------------------------------------*/
 
 void	trigger_controls(t_data *data, bool is_on, bool from_menu);
-void	trigger_level_selection(t_data *data, bool is_on);
 void	open_menu(t_data *data, int hl_button);
 void	trigger_menu_ig(t_data *data, bool is_on);
 void	return_game(t_data *data);
 void	prepare_level(t_data *data, char *level_name);
 void	trigger_menu_ig(t_data *data, bool is_on);
-void	trigger_level_selection(t_data *data, bool is_on);
-void	trigger_controls(t_data *data, bool is_on, bool from_menu);
 void	highlight_button(t_data *data, t_direction direction,
 			t_button *buttons);
 

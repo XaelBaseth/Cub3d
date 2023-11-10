@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 15:20:54 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/07 10:20:29 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/10 18:25:38 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	unload_level(t_data *data)
 	mlx_destroy_image(data->mlx, data->texinfo.east.img);
 	mlx_destroy_image(data->mlx, data->texinfo.west.img);
 	free_level(data);
-	if (data->argc == 2)
+	if (!BONUS || data->argc == 2)
 		return ;
 	mlx_destroy_image(data->mlx, data->menu.ig_buttons[0].lit);
 	mlx_destroy_image(data->mlx, data->menu.ig_buttons[0].unlit);
@@ -58,7 +58,6 @@ static void	unload_menu(t_data *data)
 	mlx_destroy_image(data->mlx, data->menu.buttons[1].unlit);
 	mlx_destroy_image(data->mlx, data->menu.buttons[2].lit);
 	mlx_destroy_image(data->mlx, data->menu.buttons[2].unlit);
-	mlx_destroy_image(data->mlx, data->menu.bg_levels);
 	mlx_destroy_image(data->mlx, data->menu.title);
 	mlx_destroy_image(data->mlx, data->menu.credit);
 }

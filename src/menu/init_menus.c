@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 10:03:46 by cpothin           #+#    #+#             */
-/*   Updated: 2023/10/20 09:17:04 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/10 18:02:38 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ void	init_level_menu_images(t_data *data)
 
 void	init_menu_images(t_data *data)
 {
-	data->menu.bg_levels = mlx_xpm_file_to_image(data->mlx,
-			"textures/bg_levels.xpm", &data->sizes.win_x, &data->sizes.win_y);
 	data->menu.title = mlx_xpm_file_to_image(data->mlx,
 			"textures/title.xpm", &data->sizes.title_x, &data->sizes.title_y);
 	data->menu.credit = mlx_xpm_file_to_image(data->mlx,
@@ -67,6 +65,10 @@ void	init_menu_images(t_data *data)
 
 void	init_menu(t_data *data)
 {
+	data->menu.bg_controls = mlx_xpm_file_to_image(data->mlx,
+			"textures/bg_controls.xpm", &data->sizes.win_x, &data->sizes.win_y);
+	data->menu.bg_menu = mlx_xpm_file_to_image(data->mlx,
+			"textures/bg_menu.xpm", &data->sizes.win_x, &data->sizes.win_y);
 	data->menu.cur_button = 0;
 	data->menu.cur_selected_level = 0;
 	data->menu.buttons[0].pos_x = 321;
