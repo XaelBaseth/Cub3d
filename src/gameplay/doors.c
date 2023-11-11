@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:00:06 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/10 19:01:13 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/11 15:38:43 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,13 @@ void	check_open_doors(t_data *data)
 	while (head)
 	{
 		if (((int)data->player.pos_x == head->pos.x + 1
-			|| (int)data->player.pos_x == head->pos.x - 1)
+				|| (int)data->player.pos_x == head->pos.x - 1)
 			&& ((int)data->player.pos_y == head->pos.y
-			|| (int)data->player.pos_y == head->pos.y)
+				|| (int)data->player.pos_y == head->pos.y)
 			|| ((int)data->player.pos_x == head->pos.x
-			|| (int)data->player.pos_x == head->pos.x)
+				|| (int)data->player.pos_x == head->pos.x)
 			&& ((int)data->player.pos_y == head->pos.y + 1
-			|| (int)data->player.pos_y == head->pos.y - 1))
+				|| (int)data->player.pos_y == head->pos.y - 1))
 			open_close_door(data, head);
 		head = head->next;
 	}

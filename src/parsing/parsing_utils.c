@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 17:10:24 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/09 15:38:10 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/11 15:56:32 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	save_img(t_data *data, t_img *img, char *arg)
 		ft_printf("Error:\n\t%s doesn't exist\n", args[1]);
 		return (0);
 	}
+	img->name = args[1];
 	img->img = mlx_xpm_file_to_image(data->mlx, args[1], &size, &size);
 	img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->size_line,
 			&img->endian);

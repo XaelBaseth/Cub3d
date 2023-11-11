@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 14:12:19 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/10 18:27:22 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/11 16:24:43 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ void	start_level(t_data *data, char *map_name)
 	read_file_map(data, map_name);
 	init_doors(data);
 	if (BONUS)
+	{
+		save_wall_frames(data);
 		init_minimap(data);
+	}
 	mlx_loop_hook(data->mlx, &window_loop, data);
 }

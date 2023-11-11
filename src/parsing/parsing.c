@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 16:26:39 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/09 10:09:00 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/11 17:12:02 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,9 @@ int	check_args(t_data *data, char *lines[])
 
 void	parse_map(t_data *data, char *args[])
 {
+	data->map_info.height = get_map_height(data);
 	if (!check_args(data, args))
 		return ;
-	data->map_info.height = WIN_HEIGHT;
-	data->map_info.width = WIN_WIDTH;
 }
 
 char	*extract_map(char *map)

@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 08:19:10 by acharlot          #+#    #+#             */
-/*   Updated: 2023/11/10 17:26:11 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/11 15:58:46 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ typedef struct s_data
 	t_minimap		minimap;
 	t_vector2		mouse_position;
 	t_door			*doors;
+	bool			exit;
 }					t_data;
 
 /*-----------------------------------------------------------------------------

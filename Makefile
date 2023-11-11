@@ -6,7 +6,7 @@
 #    By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/16 14:46:16 by cpothin           #+#    #+#              #
-#    Updated: 2023/11/10 11:04:29 by cpothin          ###   ########.fr        #
+#    Updated: 2023/11/11 15:39:59 by cpothin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,13 +41,13 @@ WHITE		=	\033[0;97m
 MAIN_DIR 	=	main/
 MAIN_FILES	=	cub3d game panic
 REND_DIR 	=	render/
-REND_FILES	=	raycasting render image 
+REND_FILES	=	raycasting render image animation
 MENU_DIR 	=	menu/
 MENU_FILES	=	menu init_menus unload highlight_buttons menu_utils
 INIT_DIR	= 	init/
 INIT_FILES	=	init_mlx init_player_pov init init_minimap
 PARS_DIR	=	parsing/
-PARS_FILES	=	parsing parsing_utils
+PARS_FILES	=	parsing parsing_utils map_utils
 MMAP_DIR	=	minimap/
 MMAP_FILES	=	minimap minimap_utils
 INPU_DIR	=	inputs/

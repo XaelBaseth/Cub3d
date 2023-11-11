@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 17:10:34 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/10 18:28:11 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/11 16:29:45 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ int	window_loop(t_data *data)
 		return (FAILURE);
 	move_player(data);
 	if (BONUS)
+	{
+		animate_wall(data);
 		create_minimap(data);
+	}
 	render_frame(data);
 	mlx_destroy_image(data->mlx, data->img.img);
 	if (BONUS)

@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:21:13 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/10 18:29:50 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/11 15:18:12 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	press_in_game(int keysym, t_data *data)
 		rotate_player(data, 1);
 	else if (keysym == XK_Left)
 		rotate_player(data, -1);
-	if (keysym == XK_f)
+	if (BONUS && keysym == XK_f)
 		check_open_doors(data);
 }
 
