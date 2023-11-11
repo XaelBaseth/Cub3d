@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 14:30:14 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/11 17:15:47 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/11 17:15:54 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	fill_pixels(t_data *data, int size_line, int bpp,
 			if (off.y >= 0 && off.x >= 0 && off.x < MINIMAP_SIZE
 				&& off.y < MINIMAP_SIZE)
 			{
-				*(unsigned int *)(data->img.addr
+				*(unsigned int *)(data->minimap.map_data
 						+ (off.y * size_line + off.x * (bpp / 8))) = color;
 			}
 		}
