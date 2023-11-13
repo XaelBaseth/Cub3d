@@ -6,7 +6,7 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:21:13 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/13 08:22:35 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/11/13 08:24:12 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ void	press_in_game(int keysym, t_data *data)
 			trigger_menu_ig(data, true);
 	}
 	if (keysym == XK_w)
-		data->player.movement.y -= 1;
+		data->player.move_y -= 1;
 	else if (keysym == XK_a)
-		data->player.movement.x -= 1;
+		data->player.move_x -= 1;
 	else if (keysym == XK_s)
-		data->player.movement.y += 1;
+		data->player.move_y += 1;
 	else if (keysym == XK_d)
-		data->player.movement.x += 1;
+		data->player.move_x += 1;
 	if (keysym == XK_KP_Add)
 		zoom_in(data);
 	else if (keysym == XK_KP_Subtract)
@@ -44,13 +44,13 @@ void	press_in_game(int keysym, t_data *data)
 void	release_in_game(int keysym, t_data *data)
 {
 	if (keysym == XK_w)
-		data->player.movement.y += 1;
+		data->player.move_y += 1;
 	else if (keysym == XK_a)
-		data->player.movement.x += 1;
+		data->player.move_x += 1;
 	else if (keysym == XK_s)
-		data->player.movement.y -= 1;
+		data->player.move_y -= 1;
 	else if (keysym == XK_d)
-		data->player.movement.x -= 1;
+		data->player.move_x -= 1;
 }
 
 /* Checks which key is pressed when inside the game menu */

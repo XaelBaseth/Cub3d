@@ -6,7 +6,7 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:20:00 by acharlot          #+#    #+#             */
-/*   Updated: 2023/11/13 08:21:45 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/11/13 08:22:19 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ void	move_forward(t_data *data, int i)
 
 int	move_player(t_data *data)
 {
-	if (data->player.movement.y != 0)
-		move_forward(data, -data->player.movement.y);
-	if (data->player.movement.x != 0)
-		move_side(data, data->player.movement.x);
+	if (data->player.move_y != 0)
+		move_forward(data, -data->player.move_y);
+	if (data->player.move_x != 0)
+		move_side(data, data->player.move_x);
 }
