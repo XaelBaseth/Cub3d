@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 17:10:24 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/08 08:04:02 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/11/11 15:56:32 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	save_img(t_data *data, t_img *img, char *arg)
 		ft_printf("Error:\n\t%s doesn't exist\n", args[1]);
 		return (0);
 	}
+	img->name = args[1];
 	img->img = mlx_xpm_file_to_image(data->mlx, args[1], &size, &size);
 	img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->size_line,
 			&img->endian);
@@ -66,5 +67,16 @@ int	save_rgb(t_data *data, int *rgb_arr, char *arg)
 	rgb_arr[0] = ft_atoi(nbrs[0]);
 	rgb_arr[1] = ft_atoi(nbrs[1]);
 	rgb_arr[2] = ft_atoi(nbrs[2]);
+	return (1);
+}
+
+int	check_map_extension(char *map_name)
+{
+	int	i;
+
+	i = ft_strlen(map_name);
+	if (map_name[i - 4] != '.' || map_name[i - 3] != 'c'
+		|| map_name[i - 2] != 'u' || map_name[i - 1] != 'b')
+		return (0);
 	return (1);
 }

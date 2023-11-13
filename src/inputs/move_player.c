@@ -6,88 +6,58 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:20:00 by acharlot          #+#    #+#             */
-/*   Updated: 2023/11/10 08:37:47 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/11/13 08:21:45 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-static int	move_forward(t_data *data)
+void	move_side(t_data *data, int i)
 {
+	char	c;
+
 	if (!BONUS)
 	{
-		this->player.pos_x += this->camera.dir_x * MOVESPEED;
-		this->player.pos_y -= this->camera.dir_y * MOVESPEED;
+		data->player.pos_x += data->camera.dir_y * MOVESPEED * -i;
+		data->player.pos_y += data->camera.dir_x * MOVESPEED * i;
 		return ;
 	}
-	if (this->map_info.level[(int)(this->player.pos_y)]
-		[(int)(this->player.pos_x + this->camera.dir_x * MARGIN)] != '1')
-			this->player.pos_x += this->camera.dir_x * MOVESPEED;
-	if (this->map_info.level[(int)(this->player.pos_y - this->camera.dir_y * MARGIN)]
-		[(int)(this->player.pos_x)] != '1')
-			this->player.pos_y -= this->camera.dir_y * MOVESPEED;
+	c = data->map_info.level[(int)(data->player.pos_y)]
+	[(int)(data->player.pos_x + data->camera.dir_y * MARGIN * -i)];
+	if (c == '0')
+		data->player.pos_x += data->camera.dir_y * MOVESPEED * -i;
+	c = data->map_info.level
+	[(int)(data->player.pos_y + data->camera.dir_x * MARGIN * i)]
+	[(int)(data->player.pos_x)];
+	if (c == '0')
+		data->player.pos_y += data->camera.dir_x * MOVESPEED * i;
 }
 
-static int	move_backward(t_data *data)
+void	move_forward(t_data *data, int i)
 {
-	if (!BONUS)
-	{
-		this->player.pos_x -= this->camera.dir_y * MOVESPEED;
-		this->player.pos_y -= this->camera.dir_x * MOVESPEED;
-		return ;
-	}
-	if (this->map_info.level[(int)(this->player.pos_y)]
-		[(int)(this->player.pos_x - this->camera.dir_y * MARGIN)] != '1')
-			this->player.pos_x -= this->camera.dir_y * MOVESPEED;
-	if (this->map_info.level[(int)(this->player.pos_y - this->camera.dir_x * MARGIN)]
-		[(int)(this->player.pos_x)] != '1')
-			this->player.pos_y -= this->camera.dir_x * MOVESPEED;
-}
+	char	c;
 
-void	move_down(t_data *this)
-{
 	if (!BONUS)
 	{
-		this->player.pos_x -= this->camera.dir_x * MOVESPEED;
-		this->player.pos_y += this->camera.dir_y * MOVESPEED;
+		data->player.pos_x += data->camera.dir_x * MOVESPEED * i;
+		data->player.pos_y += data->camera.dir_y * MOVESPEED * i;
 		return ;
 	}
-	if (this->map_info.level[(int)(this->player.pos_y)]
-		[(int)(this->player.pos_x - this->camera.dir_x * MARGIN)] != '1')
-		this->player.pos_x -= this->camera.dir_x * MOVESPEED;
-	if (this->map_info.level[(int)(this->player.pos_y + this->camera.dir_y * MARGIN)]
-		[(int)(this->player.pos_x)] != '1')
-		this->player.pos_y += this->camera.dir_y * MOVESPEED;
-}
-
-void	move_right(t_data *this)
-{
-	if (!BONUS)
-	{
-		this->player.pos_x += this->camera.dir_y * MOVESPEED;
-		this->player.pos_y += this->camera.dir_x * MOVESPEED;
-		return ;
-	}
-	if (this->map_info.level[(int)(this->player.pos_y)]
-		[(int)(this->player.pos_x + this->camera.dir_y * MARGIN)] != '1')
-		this->player.pos_x += this->camera.dir_y * MOVESPEED;
-	if (this->map_info.level[(int)(this->player.pos_y + this->camera.dir_x * MARGIN)]
-		[(int)(this->player.pos_x)] != '1')
-		this->player.pos_y += this->camera.dir_x * MOVESPEED;
+	c = data->map_info.level[(int)(data->player.pos_y)]
+	[(int)(data->player.pos_x + data->camera.dir_x * MARGIN * i)];
+	if (c != '1' && c != 'D' && c)
+		data->player.pos_x += data->camera.dir_x * MOVESPEED * i;
+	c = data->map_info.level
+	[(int)(data->player.pos_y + data->camera.dir_y * MARGIN * i)]
+	[(int)(data->player.pos_x)];
+	if (c != '1' && c != 'D' && c)
+		data->player.pos_y += data->camera.dir_y * MOVESPEED * i;
 }
 
 int	move_player(t_data *data)
 {
-	int	moved;
-
-	moved = 0;
-	if (data->player.move_y == -1)
-		moved += move_forward(data);
-	if (data->player.move_y == 1)
-		moved += move_backward(data);
-	if (data->player.move_x == 1)
-		moved += move_left(data);
-	if (data->player.move_x == -1)
-		moved += move_right(data);
-	return (moved);
+	if (data->player.movement.y != 0)
+		move_forward(data, -data->player.movement.y);
+	if (data->player.movement.x != 0)
+		move_side(data, data->player.movement.x);
 }

@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 10:29:21 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/06 10:31:31 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/10 17:54:07 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,21 +33,6 @@ void	trigger_menu_ig(t_data *data, bool is_on)
 	}
 	else
 		return_game(data);
-}
-
-void	trigger_level_selection(t_data *data, bool is_on)
-{
-	if (is_on)
-	{
-		data->state = IN_LVL_SELECTION;
-		mlx_put_image_to_window(data->mlx, data->win,
-			data->menu.bg_levels, 0, 0);
-	}
-	else
-	{
-		data->state = IN_MENU;
-		open_menu(data, 0);
-	}
 }
 
 void	trigger_controls(t_data *data, bool is_on, bool from_menu)

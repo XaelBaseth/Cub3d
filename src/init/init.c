@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 09:11:28 by acharlot          #+#    #+#             */
-/*   Updated: 2023/11/08 18:13:38 by axel             ###   ########.fr       */
+/*   Updated: 2023/11/13 08:20:52 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,6 @@ void	init_game(t_data *data)
 {
 	data->mlx = mlx_init();
 	data->win = mlx_new_window(data->mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3d");
-	data->menu.bg_controls = mlx_xpm_file_to_image(data->mlx,
-			"textures/bg_controls.xpm", &data->sizes.win_x, &data->sizes.win_y);
-	data->menu.bg_menu = mlx_xpm_file_to_image(data->mlx,
-			"textures/bg_menu.xpm", &data->sizes.win_x, &data->sizes.win_y);
 	data->mouse_position.x = 0;
 	data->mouse_position.y = 0;
 	mlx_mouse_get_pos(data->mlx, data->win, &data->mouse_position.x,

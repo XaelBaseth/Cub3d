@@ -6,7 +6,7 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 08:37:10 by acharlot          #+#    #+#             */
-/*   Updated: 2023/11/09 10:18:07 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/11/13 08:20:41 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ typedef struct s_img
 {
 	void	*img;
 	char	*addr;
+	char	*name;
 	int		bpp;
 	int		size_line;
 	int		endian;
@@ -92,6 +93,7 @@ typedef struct s_texture
 	t_img		east;
 	int			sky_rgb[3];
 	int			floor_rgb[3];
+	void		*animations[8];
 }				t_texture;
 
 /*-----------------------------------------------------------------------------
@@ -106,5 +108,8 @@ void			render_frame(t_data *data);
 void			put_pixel_img(t_img *img, int x, int y, unsigned int color);
 unsigned int	get_color(t_data *data, t_ray *ray);
 int				create_tex_rgb(int t, int r, int g, int b);
+void			animate_wall(t_data *data);
+void			save_wall_frames(t_data *data);
+void			delete_animations(t_data *data);
 
 #endif
