@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 15:39:03 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/13 15:31:44 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/13 18:21:09 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,7 @@ void	delete_animations(t_data *data)
 		mlx_destroy_image(data->mlx, data->texinfo.animations[i++]);
 }
 
-void	anim_up(t_data *data, int *i, bool *up)
-{
-	data->texinfo.north.img = data->texinfo.animations[*i];
-	data->texinfo.north.addr = mlx_get_data_addr
-		(data->texinfo.north.img, &data->texinfo.north.bpp,
-			&data->texinfo.north.size_line,
-			&data->texinfo.north.endian);
-}
-
-void	anim_down(t_data *data, int *i, bool *up)
+void	anim(t_data *data, int *i, bool *up)
 {
 	data->texinfo.north.img = data->texinfo.animations[*i];
 	data->texinfo.north.addr = mlx_get_data_addr
@@ -47,16 +38,15 @@ void	animate_wall(t_data *data)
 
 	if (wait == 10)
 	{
+		anim(data, &i, &up);
 		if (!up)
 		{
-			anim_up(data, &i, &up);
 			i++;
 			if (i == 7)
 				up = !up;
 		}
 		else
 		{
-			anim_down(data, &i, &up);
 			i--;
 			if (i == 0)
 				up = !up;
@@ -71,8 +61,7 @@ void	save_wall_frames(t_data *data)
 	int	size;
 
 	size = IMG_SIZE;
-	data->texinfo.animations[0] = mlx_xpm_file_to_image(data->mlx,
-			"textures/anim0.xpm", &size, &size);
+	data->texinfo.animations[0] = data->texinfo.north.img;
 	data->texinfo.animations[1] = mlx_xpm_file_to_image(data->mlx,
 			"textures/anim1.xpm", &size, &size);
 	data->texinfo.animations[2] = mlx_xpm_file_to_image(data->mlx,
