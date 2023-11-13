@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 17:10:34 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/11 16:29:45 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/13 10:59:42 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	window_loop(t_data *data)
 {
-	if (data->state != IN_GAME)
+	if (data->state != IN_GAME || data->exit)
 		return (FAILURE);
 	move_player(data);
 	if (BONUS)
@@ -50,6 +50,7 @@ int	main(int argc, char *argv[])
 
 	init_sizes(&data);
 	data.argc = argc;
+	data.state = STARTING;
 	if ((BONUS && argc == 1) || argc == 2)
 		init_game(&data);
 	else

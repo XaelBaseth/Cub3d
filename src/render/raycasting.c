@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 12:01:06 by acharlot          #+#    #+#             */
-/*   Updated: 2023/11/11 15:25:16 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/13 10:15:26 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	find_dist_wall(t_data *data, t_ray *ray)
 			|| ray->map_y > data->map_info.height - 0.25
 			|| ray->map_x > data->map_info.width - 1.25)
 			break ;
-		else if (data->map_info.level[ray->map_y][ray->map_x] > '0')
+		else if (data->map_info.level[ray->map_y][ray->map_x] != '0')
 			break ;
 	}
 }

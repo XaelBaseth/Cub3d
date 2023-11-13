@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 15:20:54 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/11 17:10:08 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/13 10:58:41 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,14 @@ static void	free_level(t_data *data)
 
 static void	unload_level(t_data *data)
 {
-	mlx_destroy_image(data->mlx, data->texinfo.north.img);
+	if (BONUS)
+		delete_animations(data);
+	else
+		mlx_destroy_image(data->mlx, data->texinfo.north.img);
 	mlx_destroy_image(data->mlx, data->texinfo.south.img);
 	mlx_destroy_image(data->mlx, data->texinfo.east.img);
 	mlx_destroy_image(data->mlx, data->texinfo.west.img);
 	free_level(data);
-	if (BONUS)
-		delete_animations(data);
 	if (!BONUS || data->argc == 2)
 		return ;
 	mlx_destroy_image(data->mlx, data->menu.ig_buttons[0].lit);
@@ -74,6 +75,7 @@ void	unload(t_data *data)
 
 int	exit_game(t_data *data)
 {
+	data->exit = true;
 	unload(data);
 	gc_free_all();
 	if (data->argc == 1)
