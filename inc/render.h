@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 08:37:10 by acharlot          #+#    #+#             */
-/*   Updated: 2023/11/11 16:25:10 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/13 11:35:34 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void			find_wall_pixel(t_data *data, t_ray *ray, int x);
 void			render_frame(t_data *data);
 void			put_pixel_img(t_img *img, int x, int y, unsigned int color);
 unsigned int	get_color(t_data *data, t_ray *ray);
-int				create_tex_rgb(int t, int r, int g, int b);
+int				create_tex_rgb(int r, int g, int b);
 void			animate_wall(t_data *data);
 void			save_wall_frames(t_data *data);
 void			delete_animations(t_data *data);

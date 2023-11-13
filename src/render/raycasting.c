@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 12:01:06 by acharlot          #+#    #+#             */
-/*   Updated: 2023/11/13 10:15:26 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/13 16:03:40 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	point_rays(t_data *data, t_ray *ray)
 
 void	find_dist_wall(t_data *data, t_ray *ray)
 {
-	while (1)
+	while (1 && !data->exit)
 	{
 		if (ray->sidedist_x < ray->sidedist_y)
 		{

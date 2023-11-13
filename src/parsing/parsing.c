@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 16:26:39 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/13 11:20:56 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/13 18:05:43 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	check_args(t_data *data, char *lines[])
 {
+	check_args_lines(data, lines);
 	if (lines[0][0] == 'N' && lines[0][1] == 'O' && lines[0][2] == ' ')
 		if (save_img(data, &data->texinfo.north, lines[0]) == 0)
 			return (0);
@@ -37,7 +38,9 @@ int	check_args(t_data *data, char *lines[])
 
 void	parse_map(t_data *data, char *args[])
 {
+	init_map_args(data);
 	data->map_info.height = get_map_height(data);
+	data->map_info.width = WIN_WIDTH;
 	if (!check_args(data, args))
 		return ;
 }
@@ -113,11 +116,11 @@ void	read_file_map(t_data *data, char *map_name)
 	file_content[read_int] = 0;
 	close(fd);
 	level = extract_map(file_content);
+	check_borders(data, level);
 	data->file_content = ft_split(file_content, '\n');
 	data->map_info.level = ft_split(level, '\n');
 	parse_map(data, data->file_content);
 	save_player(data);
 	init_player_pov(data);
 	gc_free(file_content);
-	gc_free(level);
 }

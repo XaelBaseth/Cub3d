@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 17:10:24 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/11 15:56:32 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/13 17:07:11 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,10 @@ int	save_rgb(t_data *data, int *rgb_arr, char *arg)
 	rgb_arr[0] = ft_atoi(nbrs[0]);
 	rgb_arr[1] = ft_atoi(nbrs[1]);
 	rgb_arr[2] = ft_atoi(nbrs[2]);
+	if (rgb_arr[0] < 0 || rgb_arr[0] > 255
+		|| rgb_arr[1] < 0 || rgb_arr[1] > 255
+		|| rgb_arr[2] < 0 || rgb_arr[2] > 255)
+		return (0);
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 09:11:28 by acharlot          #+#    #+#             */
-/*   Updated: 2023/11/13 10:30:04 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/13 17:02:51 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,15 @@ void	init_game(t_data *data)
 	data->mouse_position.y = 0;
 	mlx_mouse_get_pos(data->mlx, data->win, &data->mouse_position.x,
 		&data->mouse_position.y);
+}
+
+void	init_map_args(t_data *data)
+{
+	data->valid_args.no = false;
+	data->valid_args.so = false;
+	data->valid_args.we = false;
+	data->valid_args.ea = false;
+	data->valid_args.f = false;
+	data->valid_args.c = false;
+	data->valid_args.valid = true;
 }

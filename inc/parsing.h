@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 09:07:53 by acharlot          #+#    #+#             */
-/*   Updated: 2023/11/11 14:54:20 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/13 18:00:51 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,30 @@
 typedef struct s_img	t_img;
 typedef struct s_data	t_data;
 
+typedef struct	s_valid_args
+{
+	bool	valid;
+	bool	no;
+	bool	so;
+	bool	we;
+	bool	ea;
+	bool	f;
+	bool	c;
+}				t_valid_args;
+
 typedef struct s_mapinfo
 {
-	int			fd;
-	int			line_count;
-	char		*path;
-	char		**level;
-	int			height;
-	int			width;
-	int			index_end_of_map;
+	int				fd;
+	int				line_count;
+	char			*path;
+	char			**level;
+	char			**tmplevel;
+	int				height;
+	int				width;
+	int				index_end_of_map;
+	int				map_is_valid;
 }				t_mapinfo;
+
 
 /*-----------------------------------------------------------------------------
 									FUNCTIONS
@@ -54,5 +68,8 @@ int		check_nbr(char *str);
 int		check_map_extension(char *map_name);
 int		get_map_height(t_data *data);
 int		get_size_line(char *line);
+void	init_map_args(t_data *data);
+void	check_args_lines(t_data *data, char *lines[]);
+void	check_borders(t_data *data, char *level);
 
 #endif

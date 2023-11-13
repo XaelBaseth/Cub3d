@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 08:19:10 by acharlot          #+#    #+#             */
-/*   Updated: 2023/11/11 15:58:46 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/13 16:59:12 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@
 typedef enum g_state
 {
 	STARTING,
+	PARSING,
 	IN_MENU,
 	IN_GAME_MENU,
 	IN_LVL_SELECTION,
@@ -94,6 +95,7 @@ typedef struct s_data
 	t_vector2		mouse_position;
 	t_door			*doors;
 	bool			exit;
+	t_valid_args	valid_args;
 }					t_data;
 
 /*-----------------------------------------------------------------------------

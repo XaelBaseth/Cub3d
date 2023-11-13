@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 09:11:10 by acharlot          #+#    #+#             */
-/*   Updated: 2023/11/10 16:46:49 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/13 11:46:45 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	draw_vertical_line(t_data *data, t_ray *ray, int x)
 	y = -1;
 	while (++y < ray->draw_start)
 	{
-		put_pixel_img(&data->img, x, y, create_tex_rgb(256,
+		put_pixel_img(&data->img, x, y, create_tex_rgb(
 				data->texinfo.sky_rgb[0], data->texinfo.sky_rgb[1],
 				data->texinfo.sky_rgb[2]));
 	}
@@ -34,7 +34,7 @@ void	draw_vertical_line(t_data *data, t_ray *ray, int x)
 	y = ray->draw_end;
 	while (y < WIN_HEIGHT)
 	{
-		put_pixel_img(&data->img, x, y, create_tex_rgb(256,
+		put_pixel_img(&data->img, x, y, create_tex_rgb(
 				data->texinfo.floor_rgb[0], data->texinfo.floor_rgb[1],
 				data->texinfo.floor_rgb[2]));
 		y += 1;

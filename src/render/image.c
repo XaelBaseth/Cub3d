@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 09:17:15 by acharlot          #+#    #+#             */
-/*   Updated: 2023/11/10 16:58:36 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/13 11:50:51 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	put_pixel_img(t_img *img, int x, int y, unsigned int color)
 	*(unsigned int *)dest = color;
 }
 
-int	create_tex_rgb(int t, int r, int g, int b)
+int	create_tex_rgb(int r, int g, int b)
 {
-	return (t << 24 | r << 16 | g << 8 | b);
+	return (r << 16 | g << 8 | b);
 }
