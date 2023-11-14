@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 14:30:14 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/13 15:06:30 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/14 10:32:29 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	fill_pixels(t_data *data, int size_line, int bpp,
 			if (off.y >= 0 && off.x >= 0 && off.x < MINIMAP_SIZE
 				&& off.y < MINIMAP_SIZE)
 			{
-				*(unsigned int *)(data->minimap.map_data
+				*(unsigned int *)(data->img.addr
 						+ (off.y * size_line + off.x * (bpp / 8))) = color;
 			}
 		}
@@ -72,7 +72,7 @@ void	draw_player(t_data *data, int sz_line, int bpp, t_minimap_tmp *mn_tmp)
 		y = 90;
 		while (y < 96)
 		{
-			*(unsigned int *)(data->minimap.map_data
+			*(unsigned int *)(data->img.addr
 					+ (y * sz_line + x * (bpp / 8))) = 0xFF4466;
 			y++;
 		}
@@ -87,9 +87,6 @@ void	create_minimap(t_data *data)
 	int				endian;
 	int				size_line;
 
-	data->minimap.map = mlx_new_image(data->mlx, MINIMAP_SIZE, MINIMAP_SIZE);
-	data->minimap.map_data = mlx_get_data_addr(data->minimap.map, &bpp,
-			&size_line, &endian);
 	init_mini_tmp(data, &mini_tmp);
 	while (mini_tmp.pos.y <= data->player.pos_y + mini_tmp.shift + 1)
 	{
