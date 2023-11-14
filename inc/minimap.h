@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 09:00:26 by acharlot          #+#    #+#             */
-/*   Updated: 2023/11/14 10:30:45 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/14 10:42:10 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ typedef struct s_minimap
 	int			zoom;
 	t_vector2	center;
 	t_vector2	map_size;
-	// void		*map;
-	// char		*map_data;
 }				t_minimap;
 
 typedef struct s_minimap_tmp

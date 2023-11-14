@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 14:30:14 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/14 10:32:29 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/14 11:09:58 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,7 @@ int	get_map_color(t_data *data, t_vector2 pos)
 	return (0x1C1C1C);
 }
 
-void	fill_pixels(t_data *data, int size_line, int bpp,
-	t_minimap_tmp *mini_tmp)
+void	fill_pixels(t_data *data, t_minimap_tmp *mini_tmp)
 {
 	t_vector2	pos;
 	t_vector2	off;
@@ -53,15 +52,14 @@ void	fill_pixels(t_data *data, int size_line, int bpp,
 					* (data->player.pos_y - (int)data->player.pos_y));
 			if (off.y >= 0 && off.x >= 0 && off.x < MINIMAP_SIZE
 				&& off.y < MINIMAP_SIZE)
-			{
-				*(unsigned int *)(data->img.addr
-						+ (off.y * size_line + off.x * (bpp / 8))) = color;
-			}
+				*(unsigned int *)(data->img.addr + ((530 + off.y)
+							* data->img.size_line
+							+ (770 + off.x) * (data->img.bpp / 8))) = color;
 		}
 	}
 }
 
-void	draw_player(t_data *data, int sz_line, int bpp, t_minimap_tmp *mn_tmp)
+void	draw_player(t_data *data, t_minimap_tmp *mn_tmp)
 {
 	int	x;
 	int	y;
@@ -73,7 +71,8 @@ void	draw_player(t_data *data, int sz_line, int bpp, t_minimap_tmp *mn_tmp)
 		while (y < 96)
 		{
 			*(unsigned int *)(data->img.addr
-					+ (y * sz_line + x * (bpp / 8))) = 0xFF4466;
+					+ ((530 + y) * data->img.size_line + (770 + x)
+						* (data->img.bpp / 8))) = 0xFF4466;
 			y++;
 		}
 		x++;
@@ -83,9 +82,6 @@ void	draw_player(t_data *data, int sz_line, int bpp, t_minimap_tmp *mn_tmp)
 void	create_minimap(t_data *data)
 {
 	t_minimap_tmp	mini_tmp;
-	int				bpp;
-	int				endian;
-	int				size_line;
 
 	init_mini_tmp(data, &mini_tmp);
 	while (mini_tmp.pos.y <= data->player.pos_y + mini_tmp.shift + 1)
@@ -94,12 +90,12 @@ void	create_minimap(t_data *data)
 		mini_tmp.pos.x = (int)data->player.pos_x - mini_tmp.shift;
 		while (mini_tmp.pos.x < data->player.pos_x + mini_tmp.shift + 1)
 		{
-			fill_pixels(data, size_line, bpp, &mini_tmp);
+			fill_pixels(data, &mini_tmp);
 			mini_tmp.pos.x++;
 			mini_tmp.offset.x++;
 		}
 		mini_tmp.pos.y++;
 		mini_tmp.offset.y++;
 	}
-	draw_player(data, size_line, bpp, &mini_tmp);
+	draw_player(data, &mini_tmp);
 }

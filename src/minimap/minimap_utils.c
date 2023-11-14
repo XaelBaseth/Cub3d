@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 17:56:38 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/08 11:04:07 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/14 10:50:20 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,17 +42,11 @@ t_vector2	max_map_size(t_data *data)
 void	zoom_in(t_data *data)
 {
 	if (data->minimap.zoom < 20)
-	{
 		data->minimap.zoom += 2;
-		create_minimap(data);
-	}
 }
 
 void	zoom_out(t_data *data)
 {
 	if (data->minimap.zoom > 4)
-	{
 		data->minimap.zoom -= 2;
-		create_minimap(data);
-	}
 }

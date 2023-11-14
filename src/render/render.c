@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 09:11:10 by acharlot          #+#    #+#             */
-/*   Updated: 2023/11/14 10:32:39 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/14 10:34:54 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ void	render_frame(t_data *data)
 		find_wall_pixel(data, &ray, x);
 		draw_vertical_line(data, &ray, x);
 	}
+	if (BONUS)
+		create_minimap(data);
 	mlx_clear_window(data->mlx, data->win);
 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
 }
