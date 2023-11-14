@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 14:47:40 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/13 18:07:18 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/14 10:18:55 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,13 @@ int	get_size_line(char *line)
 	while (line[i])
 		i++;
 	return (i);
+}
+
+bool	is_player(t_data *data, char c)
+{
+	if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
+		return (true);
+	return (false);
 }
 
 int	get_map_height(t_data *data)
@@ -66,7 +73,8 @@ void	check_borders(t_data *data, char *level)
 		while (data->map_info.tmplevel[y][x])
 		{
 			if (data->map_info.tmplevel[y][x] == '0'
-				|| data->map_info.tmplevel[y][x] == 'D')
+				|| data->map_info.tmplevel[y][x] == 'D'
+				|| is_player(data, data->map_info.tmplevel[y][x]))
 				check_map_borders(data, x, y);
 			x++;
 		}

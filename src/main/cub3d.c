@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 17:10:34 by cpothin           #+#    #+#             */
-/*   Updated: 2023/11/13 18:18:03 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/11/14 10:27:21 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	window_loop(t_data *data)
 
 void	hook_and_run(t_data *data)
 {
-	// mlx_mouse_hide(data->mlx, data->win);
+	mlx_mouse_hide(data->mlx, data->win);
 	mlx_mouse_move(data->mlx, data->win, WIN_WIDTH / 2, WIN_HEIGHT / 2);
 	data->mouse_position.y = WIN_HEIGHT / 2;
 	data->mouse_position.x = WIN_WIDTH / 2;
